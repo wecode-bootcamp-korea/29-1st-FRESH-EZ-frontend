@@ -1,0 +1,15 @@
+$font-gray : #6F7174;
+$border-gray : #D5E0DB;
+$theme-green : #2AB16F;
+
+$headline : 20px;
+$body : 14px;
+$caption: 12px;
+
+$radio-size: 20px;
+$checkbox-size: 20px;
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+}
