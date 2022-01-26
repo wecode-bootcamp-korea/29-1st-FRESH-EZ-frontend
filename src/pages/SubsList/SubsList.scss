@@ -1,2 +1,78 @@
-@import '../../styles/variables.scss'
+@import '../../styles/variables.scss';
 
+.SubsList {
+  @include flex-center;
+  flex-direction: column;
+  margin-top: 148px;
+
+  .SubsListHead {
+    @include flex-center;
+    flex-direction: column;
+    padding: 50px;
+
+    .title {
+      padding-bottom: 15px;
+      font-weight: bold;
+      font-size: 30px;
+    }
+    .SubsSlogan {
+      font-size: $headline;
+  
+      :nth-child(2) {
+        color: $theme-green;
+      }
+    }
+
+  }
+
+  .SubsProd {
+    @include flex-center;
+    justify-content: space-between;
+    padding: 50px;
+    margin-bottom: 20px;
+    border: 1px solid $border-gray;
+    border-radius: $radio-size;
+    box-shadow: 5px 3px 3px $border-gray;
+
+    img {
+      width: 20%;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    .SubsProdText {
+      display: flex;
+      flex-direction: column;
+
+      .SubsProdDesc {
+        font-size: $headline;
+      }
+      .SubsProdName {
+        font-size: 38px;
+        font-weight: bold;
+        color: $theme-green;
+      }
+  
+      .SubsProdSub {
+        padding-top: 30px;
+        color: #838383;
+      }
+
+    }
+
+    &[position="right"] {
+      img {
+        order: 1;
+      }
+    }
+
+    &[position="left"] {
+      .SubsProdText {
+        text-align: end;
+      }
+    }
+    
+  }
+}
