@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "category": "전체"
+  },
+  {
+    "id": 2,
+    "category": "샐러드"
+  },
+  {
+    "id": 3,
+    "category": "샌드위치 · 랩"
+  },
+  {
+    "id": 4,
+    "category": "도시락 · 간편식"
+  },
+  {
+    "id": 5,
+    "category": "죽 · 스프"
+  },
+  {
+    "id": 6,
+    "category": "간식"
+  },
+  {
+    "id": 7,
+    "category": "음료"
+  }
+]

@@ -2,50 +2,32 @@ import React, { useState, useEffect } from 'react';
 import ProductList from './ProductList';
 
 export default function ProductAll() {
-  const [product, setProduct] = useState([]);
+  const [data, setData] = useState({
+    category: [],
+    product: [],
+  });
 
   useEffect(() => {
     fetch('http://localhost:3000/data/PRODUCT_DATA.json')
       .then(res => res.json())
-      .then(data => {
-        setProduct(data);
+      .then(products => {
+        setData(prev => ({ ...prev, product: products }));
+      });
+
+    fetch('http://localhost:3000/data/SUB_CATEGORY.json')
+      .then(res => res.json())
+      .then(categories => {
+        setData(prev => ({ ...prev, category: categories }));
       });
   }, []);
 
   return (
     <div>
-      <ProductList title="전체" subnav={SUB_CATEGORY} productData={product} />
+      <ProductList
+        title="전체"
+        subnav={data.category}
+        productData={data.product}
+      />
     </div>
   );
 }
-
-const SUB_CATEGORY = [
-  {
-    id: 1,
-    category: '전체',
-  },
-  {
-    id: 2,
-    category: '샐러드',
-  },
-  {
-    id: 3,
-    category: '샌드위치 · 랩',
-  },
-  {
-    id: 4,
-    category: '도시락 · 간편식',
-  },
-  {
-    id: 5,
-    category: '죽 · 스프',
-  },
-  {
-    id: 6,
-    category: '간식',
-  },
-  {
-    id: 7,
-    category: '음료',
-  },
-];
