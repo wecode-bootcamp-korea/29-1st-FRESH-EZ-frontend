@@ -1,18 +1,8 @@
-import React, { createFactory, useEffect, useState } from 'react';
+import React from 'react';
 import './ProductList.scss';
 import ProductCard from './ProductCard';
 
 function ProductList({ title, subnav, productData }) {
-  const [className, setClassName] = useState('');
-
-  useEffect(() => {
-    if (title === subnav.category) {
-      setClassName('navElementSelected');
-    } else {
-      setClassName('navElement');
-    }
-  });
-
   return (
     <div className="ProductList">
       <div className="navWrapper">FRESH-EZ</div>
@@ -25,7 +15,14 @@ function ProductList({ title, subnav, productData }) {
             <section>
               <nav className="singleNav">
                 {subnav.map(info => (
-                  <button key={info.id} className={className}>
+                  <button
+                    key={info.id}
+                    className={
+                      title === info.category
+                        ? 'navElementSelected'
+                        : 'navElement'
+                    }
+                  >
                     {info.category}
                   </button>
                 ))}
