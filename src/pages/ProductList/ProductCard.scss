@@ -1,0 +1,77 @@
+@import '../../styles/variables.scss';
+
+.productCard {
+  padding: 12px 8px 36px 8px;
+  flex: 0 0 25%;
+  max-width: 25%;
+
+  .imgWrapper {
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .productName {
+    margin: 15px 0 0;
+    font-size: 18px;
+    color: #3d3d3d;
+    font-weight: bold;
+  }
+  .price {
+    font-size: 16px;
+    color: $theme-green;
+    margin: 10px 0;
+    font-weight: bold;
+  }
+  .description {
+    color: #666;
+    font-size: $body;
+  }
+  .cardFooter {
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .scoreComment {
+      display: flex;
+      .score {
+        display: flex;
+        margin-right: 8px;
+        .far {
+          margin-right: 4px;
+          color: #f5a323;
+        }
+        .scoreNumber {
+          margin-top: 3px;
+          display: flex;
+          align-items: center;
+          font-size: $body;
+        }
+      }
+      .comment {
+        display: flex;
+        .far {
+          margin-right: 4px;
+          color: #f5a323;
+        }
+        .commentNumber {
+          margin-top: 3px;
+          display: flex;
+          align-items: center;
+          font-size: $body;
+        }
+      }
+    }
+    .vegeterianOptions {
+      font-size: $body;
+      height: 24px;
+      color: #f5a323;
+      border: 1px solid #f5a323;
+      display: flex;
+      align-items: center;
+      padding: 3px 6px 0 6px;
+    }
+  }
+}
