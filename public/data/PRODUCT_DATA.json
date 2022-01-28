@@ -5,7 +5,7 @@
     "price": "8,010",
     "description": "Lorem Ipsum Dolor Emet",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   },
   {
@@ -14,7 +14,7 @@
     "price": "B",
     "description": "Lorem Ipsum",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   },
   {
@@ -23,7 +23,7 @@
     "price": "B",
     "description": "Lorem Ipsum",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   },
   {
@@ -32,7 +32,7 @@
     "price": "B",
     "description": "Lorem Ipsum",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   },
   {
@@ -41,7 +41,7 @@
     "price": "B",
     "description": "Lorem Ipsum",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   },
   {
@@ -50,7 +50,7 @@
     "price": "B",
     "description": "Lorem Ipsum",
     "score": "4.8",
-    "comments": "481",
+    "review_count": "481",
     "vegetarian": "락토베지터리안"
   }
 ]

@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 .ProductList {
   width: 100vw;
@@ -43,6 +43,11 @@
             justify-content: space-between;
             margin: 3px 0 15px;
 
+            .text-link {
+              color: inherit;
+              text-decoration: inherit;
+            }
+
             .navElement {
               background-color: #fff;
               border: 1px solid $theme-green;
@@ -55,6 +60,11 @@
               font-size: $body;
               color: $theme-green;
               cursor: pointer;
+
+              &:hover:not(.active) {
+                background-color: $theme-green;
+                color: #fff;
+              }
             }
 
             .navElementSelected {
@@ -68,7 +78,7 @@
               align-items: center;
               font-size: $body;
               color: #fff;
-              cursor: pointer;
+              cursor: default;
             }
 
             .singleNav {
@@ -91,6 +101,11 @@
                 color: $theme-green;
                 cursor: pointer;
                 margin: 0 0 10px 0;
+
+                &:hover:not(.active) {
+                  background-color: $theme-green;
+                  color: #fff;
+                }
               }
               .caption {
                 color: #3d3d3d;

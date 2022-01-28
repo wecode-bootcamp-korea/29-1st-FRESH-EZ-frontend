@@ -40,7 +40,7 @@ export default function ProductAll() {
   return (
     <div>
       <ProductList
-        title="전체"
+        title="죽 · 스프"
         subnav={data.category}
         productData={data.product}
       >
