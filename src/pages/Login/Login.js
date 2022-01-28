@@ -1,6 +1,6 @@
 import React from 'react';
-import './Login.scss';
 import Nav from '../../components/Nav/Nav';
+import './Login.scss';
 
 import { Link, NavLink } from 'react-router-dom';
 
@@ -11,7 +11,11 @@ function Login() {
       <div className="login">
         <div className="loginBox">
           <div className="loginHeader">
-            <img src="images/onlyLogo.png" className="logo" />
+            <img
+              src="images/onlyLogo.png"
+              className="logo"
+              alt="잠시만 기다려주세요"
+            />
 
             <p>프리미엄 샐러드 배송</p>
           </div>
@@ -29,7 +33,7 @@ function Login() {
             </NavLink>
           </div>
 
-          <div className="orLine"></div>
+          <div className="orLine" />
           <div className="or">OR</div>
 
           <div className="inputInfo">
