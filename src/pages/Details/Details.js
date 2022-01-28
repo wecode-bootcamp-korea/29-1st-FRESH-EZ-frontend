@@ -11,6 +11,15 @@ function Details() {
     },
   ]);
 
+  const [recommendMenu, setRecommendMenu] = useState([
+    {
+      id: 1,
+      menuName: '딸기 바닐라 크림치즈 샐러드',
+      content: '프렌치 디저트 스타일 셰프메이드 스페셜 메뉴',
+      price: '8,010',
+    },
+  ]);
+
   // const handleMenuName = () => {
   //   setMenuName(cur => [...cur]);
   // };
@@ -30,7 +39,7 @@ function Details() {
 
           <div className="menuInfo">
             <div className="menuName">
-              <h2>{menuName[0]['menuName']}</h2>
+              <h2>{menuName[0].menuName}</h2>
               <p>{menuName[0]['content']}</p>
               <p className="price">{menuName[0]['price']}</p>
             </div>
@@ -65,33 +74,47 @@ function Details() {
               <div className="selectAddition">
                 {/* div 대신에 form 사용가능 */}
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
-                <div className="additionOptions">
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="계란 2개"
-                      className="optionCheckbox"
-                    />
-                    <span>계란 2개</span>
-                    <span className="price">3,000원</span>
+                <div className="additionalOptionList">
+                  <div className="additionalOption">
+                    <div className="checkboxAndOption">
+                      <input
+                        type="checkbox"
+                        name="계란 2개"
+                        className="optionCheckbox"
+                      />
+                      <span>계란 2개</span>
+                    </div>
+                    <div>
+                      <span className="price">3,000원</span>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="고구마 1개"
-                      className="optionCheckbox"
-                    />
-                    <span>고구마 1개</span>
-                    <span>4,000원</span>
+
+                  <div className="additionalOption">
+                    <div className="checkboxAndOption">
+                      <input
+                        type="checkbox"
+                        name="고구마 1개"
+                        className="optionCheckbox"
+                      />
+                      <span>고구마 1개</span>
+                    </div>
+                    <div>
+                      <span className="price">4,000원</span>
+                    </div>
                   </div>
-                  <div>
-                    <input
-                      type="checkbox"
-                      name="고구마 1개"
-                      className="optionCheckbox"
-                    />
-                    <span>아보카도 50g</span>
-                    <span>5,000원</span>
+
+                  <div className="additionalOption">
+                    <div className="checkboxAndOption">
+                      <input
+                        type="checkbox"
+                        name="고구마 1개"
+                        className="optionCheckbox"
+                      />
+                      <span>아보카도 50g</span>
+                    </div>
+                    <div>
+                      <span className="price">5,000원</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -99,7 +122,10 @@ function Details() {
 
             <div className="productPrice">
               <p>상품 금액</p>
-              <p>11,900원</p>
+              <p>
+                <span>11,900</span>
+                <span>원</span>
+              </p>
             </div>
             <div className="makeAnOrder">
               <button className="buttonBasket">장바구니 담기</button>
@@ -118,12 +144,13 @@ function Details() {
 
           <div className="recommendationList">
             {/* wrap이 데이터 불러와서 쓰이는부분 */}
+            {/* <RecommendWrap></RecommendWrap> */}
             <div className="recommendationWrap">
               <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717" />
-              <h3>딸기 바닐라 크림치즈 샐러드</h3>
-              <span>8,010</span>
+              <h3>{recommendMenu[0].menuName}</h3>
+              <span>{recommendMenu[0].price}</span>
               <span>~</span>
-              <p>프렌치 디저트 스타일 셰프메이드 스페셜 메뉴</p>
+              <p>{recommendMenu[0].content}</p>
             </div>
           </div>
         </article>
@@ -137,3 +164,15 @@ function Details() {
 }
 
 export default Details;
+
+// function RecommendWrap() {
+//   return (
+//     <div className="recommendationWrap">
+//       <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717" />
+//       <h3>{recommendMenu[0].menuName}</h3>
+//       <span>{recommendMenu[0].price}</span>
+//       <span>~</span>
+//       <p>{recommendMenu[0].content}</p>
+//     </div>
+//   );
+// }
