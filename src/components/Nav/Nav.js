@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Nav.scss';
 
@@ -6,7 +6,11 @@ const Nav = () => {
   return (
     <div className="nav">
       <div className="navFirstLine">
-        <img className="navFirstLeft" src="/images/Logo.png" />
+        <img
+          className="navFirstLeft"
+          src="/images/Logo.png"
+          alt="잠시만 기다려주세요"
+        />
         {/* 이게 누르면 메인페이지 가게끔 링크 걸기 */}
         <ul className="navFirstLineRight">
           <li className="signUpBtn">
@@ -54,16 +58,16 @@ const Nav = () => {
 
           <ul className="navSecondLineRight">
             <ul className="searchWrap">
-              <i className="fas fa-search"></i>
+              <i className="fas fa-search" />
               <input type="text" placeholder="검색" />
             </ul>
-            <i className="fas fa-shopping-cart"></i>
+            <i className="fas fa-shopping-cart" />
             <li className="cart">
               <NavLink className="fontGray" to="/" activeClassName="active">
                 장바구니
               </NavLink>
             </li>
-            <i className="fas fa-file-alt"></i>
+            <i className="fas fa-file-alt" />
             <li>
               <NavLink className="fontGray" to="/">
                 바로주문
@@ -75,8 +79,8 @@ const Nav = () => {
     </div>
   );
 };
-{
-  /* <ul className="menuFirstList">
+
+  /* {<ul className="menuFirstList">
               <li>정기구독</li>
               <li>단품구매</li>
             </ul>
