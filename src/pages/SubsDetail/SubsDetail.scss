@@ -6,7 +6,15 @@
   align-items: center;
   flex-direction: column;
   .imgAndInfo {
+    display: flex;
     max-width: 1200px;
     width: 80%;
+    img {
+      width: 486px;
+      height: 486px;
+    }
+    .information {
+      padding: 0 0 0 128px;
+    }
   }
 }
