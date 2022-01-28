@@ -28,7 +28,10 @@ function Details() {
     <div className="menuDetails">
       <div className="menuBody">
         <div className="menuHeader">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421" />
+          <img
+            alt="productImage"
+            src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
+          />
 
           {/* <picture> */}
           {/* <source
@@ -40,8 +43,8 @@ function Details() {
           <div className="menuInfo">
             <div className="menuName">
               <h2>{menuName[0].menuName}</h2>
-              <p>{menuName[0]['content']}</p>
-              <p className="price">{menuName[0]['price']}</p>
+              <p>{menuName[0].content}</p>
+              <p className="price">{menuName[0].price}</p>
             </div>
 
             <div className="productExplanation">
@@ -138,7 +141,7 @@ function Details() {
 
         <article className="productRecommendation">
           <div className="recommendationTitle">
-            <img src="/images/favicon.png" />
+            <img alt="favicon" src="/images/favicon.png" />
             <h2>다른 고객들이 함께 본 상품</h2>
           </div>
 
@@ -146,7 +149,10 @@ function Details() {
             {/* wrap이 데이터 불러와서 쓰이는부분 */}
             {/* <RecommendWrap></RecommendWrap> */}
             <div className="recommendationWrap">
-              <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717" />
+              <img
+                alt="recommendproduct"
+                src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
+              />
               <h3>{recommendMenu[0].menuName}</h3>
               <span>{recommendMenu[0].price}</span>
               <span>~</span>
@@ -156,7 +162,10 @@ function Details() {
         </article>
 
         <div className="productInformation">
-          <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/content/origin/11362_20211130105738" />
+          <img
+            alt="productinformation"
+            src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/content/origin/11362_20211130105738"
+          />
         </div>
       </div>
     </div>
