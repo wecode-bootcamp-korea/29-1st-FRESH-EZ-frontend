@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RECOMMEND_LIST from './recommendData';
 import './Details.scss';
 
 function Details() {
@@ -145,20 +146,22 @@ function Details() {
             <h2>다른 고객들이 함께 본 상품</h2>
           </div>
 
-          <div className="recommendationList">
-            {/* wrap이 데이터 불러와서 쓰이는부분 */}
-            {/* <RecommendWrap></RecommendWrap> */}
-            <div className="recommendationWrap">
-              <img
-                alt="recommendproduct"
-                src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
-              />
-              <h3>{recommendMenu[0].menuName}</h3>
-              <span>{recommendMenu[0].price}</span>
-              <span>~</span>
-              <p>{recommendMenu[0].content}</p>
-            </div>
-          </div>
+          <ul className="recommendationList">
+            {RECOMMEND_LIST.map(function (data) {
+              return (
+                <li className="recommendationWrap">
+                  <img
+                    alt="recommendproduct"
+                    src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
+                  />
+                  <h3>{data.menuName}</h3>
+                  <span>{data.price}</span>
+                  <span>~</span>
+                  <p>{data.content}</p>
+                </li>
+              );
+            })}
+          </ul>
         </article>
 
         <div className="productInformation">
