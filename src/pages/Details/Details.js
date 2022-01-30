@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import RECOMMEND_LIST from './recommendData';
+import React, { useState, useEffect } from 'react';
+// import RECOMMEND_LIST from './recommendData';
 import './Details.scss';
 
 function Details() {
@@ -12,18 +12,19 @@ function Details() {
     },
   ]);
 
-  const [recommendMenu, setRecommendMenu] = useState([
-    {
-      id: 1,
-      menuName: '딸기 바닐라 크림치즈 샐러드',
-      content: '프렌치 디저트 스타일 셰프메이드 스페셜 메뉴',
-      price: '8,010',
-    },
-  ]);
+  const [recommendProducts, setRecommendProducts] = useState([]);
+  // console.log(recommendProducts);
 
-  // const handleMenuName = () => {
-  //   setMenuName(cur => [...cur]);
-  // };
+  useEffect(() => {
+    fetch('http://localhost:3000/data/recommendData.json', { method: 'GET' })
+      .then(res => res.json())
+      // json으로 받은걸 object 형식으로 바꿔준다
+      .then(res => {
+        // console.log(res);
+        setRecommendProducts(res);
+      });
+    // object로 받아온걸 console.log로 찍어본다
+  }, []);
 
   return (
     <div className="menuDetails">
@@ -147,20 +148,11 @@ function Details() {
           </div>
 
           <ul className="recommendationList">
-            {RECOMMEND_LIST.map(function (data) {
-              return (
-                <li className="recommendationWrap">
-                  <img
-                    alt="recommendproduct"
-                    src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
-                  />
-                  <h3>{data.menuName}</h3>
-                  <span>{data.price}</span>
-                  <span>~</span>
-                  <p>{data.content}</p>
-                </li>
-              );
-            })}
+            {recommendProducts && // 이 데이터가 있을때만 그려준다
+              recommendProducts.map(() => {
+                return <RecommendWrap />;
+              })}
+            {/* {RECOMMEND_LIST.map(list => {})} */}
           </ul>
         </article>
 
@@ -177,14 +169,17 @@ function Details() {
 
 export default Details;
 
-// function RecommendWrap() {
-//   return (
-//     <div className="recommendationWrap">
-//       <img src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717" />
-//       <h3>{recommendMenu[0].menuName}</h3>
-//       <span>{recommendMenu[0].price}</span>
-//       <span>~</span>
-//       <p>{recommendMenu[0].content}</p>
-//     </div>
-//   );
-// }
+const RecommendWrap = list => {
+  return (
+    <li key={list.id} className="recommendationWrap">
+      <img
+        alt="recommendproduct"
+        src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
+      />
+      <h3>{list.menuName}</h3>
+      <span>{list.price}</span>
+      <span>~</span>
+      <p>{list.content}</p>
+    </li>
+  );
+};
