@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ADDITIONS_LIST from './additionalOptions';
 // import RECOMMEND_LIST from './recommendData';
 import './Details.scss';
 
@@ -13,7 +14,7 @@ function Details() {
   ]);
 
   const [recommendProducts, setRecommendProducts] = useState([]);
-  // console.log(recommendProducts);
+  console.log(recommendProducts);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/recommendData.json', { method: 'GET' })
@@ -80,47 +81,24 @@ function Details() {
                 {/* div 대신에 form 사용가능 */}
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
-                  <div className="additionalOption">
-                    <div className="checkboxAndOption">
-                      <input
-                        type="checkbox"
-                        name="계란 2개"
-                        className="optionCheckbox"
-                      />
-                      <span>계란 2개</span>
-                    </div>
-                    <div>
-                      <span className="price">3,000원</span>
-                    </div>
-                  </div>
-
-                  <div className="additionalOption">
-                    <div className="checkboxAndOption">
-                      <input
-                        type="checkbox"
-                        name="고구마 1개"
-                        className="optionCheckbox"
-                      />
-                      <span>고구마 1개</span>
-                    </div>
-                    <div>
-                      <span className="price">4,000원</span>
-                    </div>
-                  </div>
-
-                  <div className="additionalOption">
-                    <div className="checkboxAndOption">
-                      <input
-                        type="checkbox"
-                        name="고구마 1개"
-                        className="optionCheckbox"
-                      />
-                      <span>아보카도 50g</span>
-                    </div>
-                    <div>
-                      <span className="price">5,000원</span>
-                    </div>
-                  </div>
+                  {ADDITIONS_LIST.map(list => {
+                    return (
+                      <div key={list.id} className="additionalOption">
+                        <div className="checkboxAndOption">
+                          <input
+                            type="checkbox"
+                            name={list.name}
+                            className="optionCheckbox"
+                          />
+                          <span>{list.name}</span>
+                        </div>
+                        <div>
+                          <span className="price">{list.price}</span>
+                          <span>원</span>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -169,7 +147,23 @@ function Details() {
 
 export default Details;
 
+// 현재 안쓰고있음
+const AdditionalOptionList = list => {
+  return (
+    <div key={list.id} className="additionalOption">
+      <div className="checkboxAndOption">
+        <input type="checkbox" name="고구마 1개" className="optionCheckbox" />
+        <span>{list.name}</span>
+      </div>
+      <div>
+        <span className="price">{list.price}</span>
+      </div>
+    </div>
+  );
+};
+
 const RecommendWrap = list => {
+  console.log(list);
   return (
     <li key={list.id} className="recommendationWrap">
       <img
