@@ -6,23 +6,14 @@ function SubsProd({ data }) {
   const { category, prod, desc, price_info, img_url, img_pos } = data;
   const [buttonMode, setButtonMode] = useState('Default');
   const navigate = useNavigate();
-  function handleClick() {
-    navigate(`/subsDetail${category}`);
-  }
-  function emphasizeButton() {
-    setButtonMode('Emphasized');
-  }
-  function resetButton() {
-    setButtonMode('Default');
-  }
 
   return (
     <li
       className={`subsProd${buttonMode}`}
       position={img_pos}
-      onClick={handleClick}
-      onMouseEnter={emphasizeButton}
-      onMouseLeave={resetButton}
+      onClick={() => navigate(`/subsDetail${category}`)}
+      onMouseEnter={() => setButtonMode('Emphasized')}
+      onMouseLeave={() => setButtonMode('Default')}
     >
       <img className="subsProdImg" alt={prod} src={img_url} />
       <div className="subsProdText">
