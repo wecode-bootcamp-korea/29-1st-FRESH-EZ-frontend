@@ -8,7 +8,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
-        <Route path="/SubsList" element={<SubsList />} />
+        <Route path="/subsList" element={<SubsList />} />
       </Routes>
     </BrowserRouter>
   );

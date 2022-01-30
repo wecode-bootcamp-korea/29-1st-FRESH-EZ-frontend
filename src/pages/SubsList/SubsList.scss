@@ -1,11 +1,11 @@
 @import '../../styles/variables.scss';
 
-.SubsList {
+.subsList {
   @include flex-center;
   flex-direction: column;
   margin-top: 148px;
 
-  .SubsListHead {
+  .subsListHead {
     @include flex-center;
     flex-direction: column;
     padding: 50px;
@@ -15,7 +15,7 @@
       font-weight: bold;
       font-size: 30px;
     }
-    .SubsSlogan {
+    .subsSlogan {
       font-size: $headline;
   
       :nth-child(2) {
@@ -25,7 +25,7 @@
 
   }
 
-  .SubsProd {
+  .subsProd {
     @include flex-center;
     justify-content: space-between;
     padding: 50px;
@@ -35,28 +35,28 @@
     border-radius: $radio-size;
     box-shadow: 5px 3px 3px $border-gray;
 
-    img {
+    .subsProdImg {
       width: 20%;
     }
 
-    p {
+    .subsProdName {
       margin-bottom: 10px;
     }
 
-    .SubsProdText {
+    .subsProdText {
       display: flex;
       flex-direction: column;
 
-      .SubsProdDesc {
+      .subsProdDesc {
         font-size: $headline;
       }
-      .SubsProdName {
+      .subsProdName {
         font-size: 38px;
         font-weight: bold;
         color: $theme-green;
       }
   
-      .SubsProdSub {
+      .subsProdSub {
         padding-top: 30px;
         color: $font-gray;
       }
@@ -70,7 +70,7 @@
     }
 
     &[position="left"] {
-      .SubsProdText {
+      .subsProdText {
         text-align: end;
       }
     }
