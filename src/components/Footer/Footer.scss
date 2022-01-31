@@ -1,1 +1,40 @@
 @import '../../styles/variables.scss';
+
+.footer {
+  width: 1173px;
+
+  .footerFirst {
+    display: flex;
+    justify-content: space-between;
+    height: 42px;
+    .footerFirstRight {
+      display: flex;
+    }
+  }
+  .asTitle {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .footerSecond {
+    display: flex;
+    height: 62px;
+    button {
+      width: 124px;
+      height: 44px;
+      border: 1px solid $theme-green;
+      background-color: white;
+      color: $theme-green;
+      margin-right: 30px;
+    }
+  }
+  .footerThird {
+    display: flex;
+  }
+  .footerFourth {
+    display: flex;
+    height: 61px;
+    .footerFourthIcon {
+      display: flex;
+    }
+  }
+}
