@@ -80,7 +80,7 @@ const Nav = () => {
   );
 };
 
-  /* {<ul className="menuFirstList">
+/* {<ul className="menuFirstList">
               <li>정기구독</li>
               <li>단품구매</li>
             </ul>
@@ -106,5 +106,5 @@ const Nav = () => {
                 <NavLink to="/">음료</NavLink>
               </li>
             </ul> */
-}
+// }
 export default Nav;
