@@ -1,11 +1,22 @@
 import React from 'react';
+import SubsStep from './SubsStep';
+import SubsOptQuery from './SubsOptQuery';
+import SubsOptSelect from './SubsOptSelect';
+import SubsOptPrice from './SubsOptPrice';
 import './SubsOpt.scss';
+
+// modal 바깥쪽 선택 및 esc 키 누를때 모달창 꺼지는 기능
+// children으로 받아서 단계 구현
 
 function SubsOpt({ modalState, closeModal }) {
   const step = '1';
-  const [queryMain, querySub] = ['사이즈는', '어떻게 하시겠어요?'];
-  const { id, name, value } = { id: 1, name: 'food_count', value: 'Medium' };
-  const subsPredictedPrice = '45,000';
+  const questions = { queryMain: '사이즈는', querySub: '어떻게 하시겠어요?' };
+  const selectOpt = {
+    id: 1,
+    name: 'food_count',
+    value: 'Medium',
+    price: '45,000',
+  };
 
   if (!modalState) return null;
 
@@ -22,37 +33,15 @@ function SubsOpt({ modalState, closeModal }) {
           </div>
           <div className="subsOptTitle">
             <p className="title">구독 옵션 선택하기</p>
-            <div className="step">
-              <span className="currentStep">{`${step}단계 `}</span>
-              <span className="finalStep">/ 6단계</span>
-            </div>
+            <SubsStep step={step} />
           </div>
         </div>
         <div className="subsOptBody">
-          <div className="subsOptQuery">
-            <p className="queryMain">{queryMain}</p>
-            <p className="querySub">{querySub}</p>
-          </div>
-          <form className="subsOptSelect">
-            <input type="radio" id={id} name={name} value={value} />
-            <label>{value}</label>
-          </form>
+          <SubsOptQuery questions={questions} />
+          <SubsOptSelect selectOpt={selectOpt} />
         </div>
         <div className="subsOptFooter">
-          <div className="subsOptPrice">
-            <div className="subsOptSize">
-              <span>추천식단 샐러드</span>
-              <span> {value} </span>
-              <span>사이즈</span>
-            </div>
-            <div className="subsOptPeriod">
-              <span> 하루 1회,</span>
-              <span> 주 3일,</span>
-              <span> 2주간</span>
-              <span> 구독하실 경우 </span>
-            </div>
-            <p className="subsPredictedPrice">{subsPredictedPrice}원</p>
-          </div>
+          <SubsOptPrice selectOpt={selectOpt} />
           <div className="subsOptBottom">
             <button className="backButton">{'< 이전'}</button>
             <button className="nextButton">{'다음 >'}</button>
