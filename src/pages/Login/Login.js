@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import Nav from '../../components/Nav/Nav';
 import './Login.scss';
 
@@ -81,5 +82,11 @@ function Login() {
     </>
   );
 }
+=======
+
+const Login = () => {
+  return <>login</>;
+};
+>>>>>>> master
 
 export default Login;
