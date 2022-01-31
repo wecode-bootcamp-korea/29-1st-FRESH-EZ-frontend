@@ -1,0 +1,127 @@
+@import '../../styles/variables.scss';
+
+.nav {
+  color: $font-gray;
+  font-size: 16px;
+  width: 100%;
+  position: fixed;
+  background-color: white;
+
+  .navFirstLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 150px 0px 150px;
+
+    .navFirstLeft {
+      width: auto;
+      height: 35px;
+    }
+    .navFirstLineRight {
+      display: flex;
+      font-size: 15px;
+
+      .loginBtn {
+        border-left: 1px solid #c9cacc;
+        border-right: 1px solid #c9cacc;
+        padding: 0 10px;
+        margin: 0 10px;
+      }
+      .as {
+        border-right: 1px solid #c9cacc;
+        padding-right: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .navSecondLine {
+    @include flex-center;
+    justify-content: space-between;
+    padding: 20px 150px;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+
+    .navSecondLineLeft {
+      @include flex-center;
+
+      .subScriptionMenu,
+      .oneMenuPurchase {
+        border-left: 1px solid #c9cacc;
+        margin-left: 10px;
+        padding-left: 10px;
+      }
+
+      .allOfMenu {
+        @include flex-center;
+        font-size: 16px;
+
+        &:hover {
+          color: $theme-green;
+        }
+        .fa-bars {
+          @include flex-center;
+        }
+        li {
+          margin-left: 8px;
+          // line-height: 20px;
+        }
+      }
+    }
+
+    .navSecondLineRight {
+      @include flex-center;
+      font-size: 15px;
+      .cart {
+        border-right: 1px solid #c9cacc;
+        padding-right: 10px;
+      }
+
+      i {
+        margin-left: 10px;
+        margin-right: 12px;
+      }
+
+      .searchWrap {
+        border: 1px solid $border-gray;
+        border-radius: 5px;
+        margin-right: 3px;
+
+        input {
+          border: none;
+          outline: none;
+          width: 170px;
+          padding: 3px 0;
+
+          &:focus::-webkit-input-placeholder {
+            color: transparent;
+            // 이거 새로 배움
+          }
+
+          &::placeholder {
+            // 이거 :랑 ::차이 다시 공부하기
+            color: rgb(182, 182, 182);
+            font-size: 16px;
+          }
+        }
+      }
+
+      i {
+        margin-right: 7px;
+      }
+    }
+  }
+
+  p {
+    font-size: 18px;
+    color: $border-gray;
+    margin: 0 3px;
+  }
+
+  .themeColor {
+    color: $theme-green;
+  }
+  .fontGray {
+    color: $font-gray;
+  }
+}
