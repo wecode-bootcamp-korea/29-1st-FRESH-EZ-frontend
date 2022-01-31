@@ -44,14 +44,15 @@
       @include flex-between();
 
       img {
-        width: 10%;
+        width: 7%;
       }
 
       .closeButton {
         background-color: white;
         border: none;
-        font-size: 1.8vw;
+        font-size: 1.3vw;
         color: #C9CACC;
+        cursor: pointer;
       }
     }
 
@@ -78,38 +79,62 @@
 
   .subsOptBody {
     @include flex-column();
-    padding: 0 5px 0 5px;
+    width: 90%;
     
     .subsOptQuery {
       font-size: 2.3vw;
       font-weight: bold;
       text-align: center;
       color: $theme-green;
+      margin-top: -20px;
+      margin-bottom: 20px;
 
       p {
         padding-bottom: 5px;
       }
     }
 
+    .subsOptSelect {
+      input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin-right: 5px;
+        border-radius: 50%;
+        width: 1.3vw;
+        height: 1.3vw;
+        border: 1px solid $font-gray;
+        font-size: 1.8vw;
+        transition: 0.2s all linear;
+
+        &:checked {
+          border: 5px solid $theme-green;
+       }
+      }
+    }
   }
 
 
   .subsOptFooter {
     @include flex-column();
     width: 100%;
-    
-    .subsOptSize :nth-child(2) {
-      font-weight: bold;
-      color: $theme-green;
-    }
+
     .subsOptPrice {
       @include flex-center;
       flex-direction: column;
+      font-size: 1.4vw;
+      color: $font-gray;
+
+      .subsOptSize :nth-child(2) {
+        font-weight: bold;
+        color: $theme-green;
+      }
     
       p {
         margin-top: 5px;
-        font-size: 2.5vw;
+        font-size: 2vw;
         font-weight: bold;
+        color: black;
       }
     }
 
@@ -120,8 +145,9 @@
       button {
         background-color: white;
         border: none;
-        font-size: 1.5vw;
+        font-size: 1.3vw;
         color: $theme-green;
+        cursor: pointer;
       }
     }
   }

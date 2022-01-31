@@ -5,14 +5,14 @@ function SubsOpt({ modalState, closeModal }) {
   const step = '1';
   const [queryMain, querySub] = ['사이즈는', '어떻게 하시겠어요?'];
   const { id, name, value } = { id: 1, name: 'food_count', value: 'Medium' };
-  const subsOptSimulResult = '45000';
+  const subsPredictedPrice = '45,000';
 
   if (!modalState) return null;
 
   return (
     <>
       <div className="subsOptOverlay" />
-      <aside className="subsOptModal">
+      <div className="subsOptModal">
         <div className="subsOptHeader">
           <div className="subsOptTop">
             <img className="logo" alt="logo" src="/images/favicon.png" />
@@ -35,7 +35,7 @@ function SubsOpt({ modalState, closeModal }) {
           </div>
           <form className="subsOptSelect">
             <input type="radio" id={id} name={name} value={value} />
-            {value}
+            <label>{value}</label>
           </form>
         </div>
         <div className="subsOptFooter">
@@ -49,16 +49,16 @@ function SubsOpt({ modalState, closeModal }) {
               <span> 하루 1회,</span>
               <span> 주 3일,</span>
               <span> 2주간</span>
+              <span> 구독하실 경우 </span>
             </div>
-            <span> 구독하실 경우 </span>
-            <p className="subsPredictedPrice">{subsOptSimulResult}원</p>
+            <p className="subsPredictedPrice">{subsPredictedPrice}원</p>
           </div>
           <div className="subsOptBottom">
             <button className="backButton">{'< 이전'}</button>
             <button className="nextButton">{'다음 >'}</button>
           </div>
         </div>
-      </aside>
+      </div>
     </>
   );
 }
