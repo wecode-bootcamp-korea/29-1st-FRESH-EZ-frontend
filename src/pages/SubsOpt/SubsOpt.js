@@ -1,53 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import SubsOptForm from './SubsOptForm';
 import SubsStep from './SubsStep';
 import SubsOptQuery from './SubsOptQuery';
 import SubsOptSelect from './SubsOptSelect';
 import SubsOptPrice from './SubsOptPrice';
+import SubsOptStepBtn from './SubsOptStepBtn';
+import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
+import { DATA_CLONE_ERR } from 'domexception';
+import { list } from 'postcss';
 
-// modal 바깥쪽 선택 및 esc 키 누를때 모달창 꺼지는 기능
-// children으로 받아서 단계 구현
+// modal창에서 옵션 선택 안 한 경우에도 esc 키 누를때 모달창 꺼지는 기능
 
 function SubsOpt({ modalState, closeModal }) {
-  const step = '1';
-  const questions = { queryMain: '사이즈는', querySub: '어떻게 하시겠어요?' };
-  const selectOpt = {
-    id: 1,
-    name: 'food_count',
-    value: 'Medium',
-    price: '45,000',
-  };
+  const [step, setStep] = useState(
+    () => Number(window.localStorage.getItem('step')) || 1
+  );
+
+  useEffect(() => {
+    window.localStorage.setItem('step', JSON.stringify(step));
+  }, [step]);
+
+  const [selectedOpt, setSelectedOpt] = useState(() =>
+    window.localStorage.getItem('')
+  );
+
+  let data = SubsOptData[step - 1];
 
   if (!modalState) return null;
   return (
-    <>
-      <div className="subsOptOverlay" onClick={closeModal} />
-      <div className="subsOptModal">
-        <div className="subsOptHeader">
-          <div className="subsOptTop">
-            <img className="logo" alt="logo" src="/images/favicon.png" />
-            <button className="closeButton" onClick={closeModal}>
-              𝖷
-            </button>
-          </div>
-          <div className="subsOptTitle">
-            <p className="title">구독 옵션 선택하기</p>
-            <SubsStep step={step} />
-          </div>
-        </div>
-        <div className="subsOptBody">
-          <SubsOptQuery questions={questions} />
-          <SubsOptSelect selectOpt={selectOpt} />
-        </div>
-        <div className="subsOptFooter">
-          <SubsOptPrice selectOpt={selectOpt} />
-          <div className="subsOptBottom">
-            <button className="backButton">{'< 이전'}</button>
-            <button className="nextButton">{'다음 >'}</button>
-          </div>
-        </div>
-      </div>
-    </>
+    <SubsOptForm
+      closeModal={closeModal}
+      subsStep={<SubsStep step={step} />}
+      subsOptQuery={<SubsOptQuery questions={data.questions} />}
+      subsOptSelect={data.selectOpt.optList.map(list => (
+        <SubsOptSelect
+          key={list.id}
+          optType={data.optType}
+          queryKey={data.selectOpt.queryKey}
+          value={list.value}
+        />
+      ))}
+      subsOptPrice={<SubsOptPrice />}
+      subsOptStepBtn={
+        <SubsOptStepBtn
+          step={step}
+          postStep={() => setStep(step - 1)}
+          nextStep={() => setStep(step + 1)}
+        />
+      }
+    />
   );
 }
 

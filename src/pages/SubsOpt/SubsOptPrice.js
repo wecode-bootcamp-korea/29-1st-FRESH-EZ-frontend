@@ -1,7 +1,7 @@
 import React from 'react';
 
-function SubsOptPrice({ selectOpt }) {
-  const { id, name, value, price } = selectOpt;
+function SubsOptPrice() {
+  const [value, price] = ['Medium', '45,000'];
   return (
     <div className="subsOptPrice">
       <div className="subsOptSize">
