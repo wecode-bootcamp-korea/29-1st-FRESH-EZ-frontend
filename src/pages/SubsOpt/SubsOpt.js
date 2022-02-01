@@ -19,10 +19,9 @@ function SubsOpt({ modalState, closeModal }) {
   };
 
   if (!modalState) return null;
-
   return (
     <>
-      <div className="subsOptOverlay" />
+      <div className="subsOptOverlay" onClick={closeModal} />
       <div className="subsOptModal">
         <div className="subsOptHeader">
           <div className="subsOptTop">
