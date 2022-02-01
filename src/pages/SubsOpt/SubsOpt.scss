@@ -94,28 +94,31 @@
       }
     }
 
-    .subsOptSelect {
-      display: inline;
-          
-      input[type="radio"] {
-        vertical-align: -30%;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        margin: 5px;
-        border-radius: 50%;
-        width: 1.6vw;
-        height: 1.6vw;
-        border: 1px solid $font-gray;
-        transition: 0.2s all linear;
+    .subsOptSelectList {
+      
+      .subsOptSelect {
+        display: inline;
+            
+        input[type="radio"] {
+          vertical-align: -30%;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          margin: 5px;
+          border-radius: 50%;
+          width: 1.6vw;
+          height: 1.6vw;
+          border: 1px solid $font-gray;
+          transition: 0.2s all linear;
 
-        &:checked {
-          border: 5px solid $theme-green;
-       }
-      }
+          &:checked {
+            border: 5px solid $theme-green;
+        }
+        }
 
-      label {
-        font-size: 1.8vw;
+        label {
+          font-size: 1.8vw;
+        }
       }
     }
   }
@@ -154,6 +157,11 @@
         font-size: 1.3vw;
         color: $theme-green;
         cursor: pointer;
+      
+        &[disabled] {
+          color: $border-gray;
+          cursor: default;
+        }
       }
     }
   }
