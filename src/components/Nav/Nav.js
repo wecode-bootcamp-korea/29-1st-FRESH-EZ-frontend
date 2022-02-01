@@ -86,9 +86,9 @@ const Nav = () => {
             </ul>
             <ul className="menuSecondList">
               <li>
-                <NavLink to="/" activeClassName="active">
+                <Link to="/" activeClassName="active">
                   샐러드
-                </NavLink>
+                </Li>
               </li>
               <li>
                 <NavLink to="/">샌드위치 · 랩</NavLink>
