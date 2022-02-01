@@ -7,8 +7,6 @@ import SubsOptPrice from './SubsOptPrice';
 import SubsOptStepBtn from './SubsOptStepBtn';
 import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
-import { DATA_CLONE_ERR } from 'domexception';
-import { list } from 'postcss';
 
 // modal창에서 옵션 선택 안 한 경우에도 esc 키 누를때 모달창 꺼지는 기능
 
@@ -20,10 +18,6 @@ function SubsOpt({ modalState, closeModal }) {
   useEffect(() => {
     window.localStorage.setItem('step', JSON.stringify(step));
   }, [step]);
-
-  const [selectedOpt, setSelectedOpt] = useState(() =>
-    window.localStorage.getItem('')
-  );
 
   let data = SubsOptData[step - 1];
 
