@@ -1,11 +1,38 @@
-import React from 'react';
-<<<<<<< HEAD
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import './Login.scss';
 
-import { Link, NavLink } from 'react-router-dom';
-
 function Login() {
+  const navigate = useNavigate();
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = inputs;
+  // const email = inputs.email;
+  // const password = inputs.password;
+  // const [isActive, setIsActive] = useState(false);
+
+  const goToMain = () => {
+    email.includes('@') && password.length > 6
+      ? navigate('/main')
+      : alert('제대로 입력되지 않았습니다. 다시 시도해주세요');
+  };
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+
+  const checkValidation = email.includes('@') && password.length > 6;
+
+  // const isPassedLogin = () => {
+  //   checkValidation ? setIsActive(true) : setIsActive(false);
+  // };
+
   return (
     <>
       <Nav />
@@ -21,25 +48,39 @@ function Login() {
             <p>프리미엄 샐러드 배송</p>
           </div>
           <div className="kakaoConnect">
-            <i class="fas fa-comment" />
+            <i className="fas fa-comment" />
             <span>카카오로 3초만에 시작하기</span>
           </div>
 
           <div className="advertiseBanner">
-            <NavLink className="fontGray" to="/">
+            <Link to="/">
               <img
                 src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
                 alt="잠시만 기다려주세요"
               />
-            </NavLink>
+            </Link>
           </div>
 
           <div className="orLine" />
           <div className="or">OR</div>
 
           <div className="inputInfo">
-            <input type="text" placeholder="이메일(아이디) 입력" />
-            <input type="text" placeholder="비밀번호 입력" />
+            <input
+              name="email"
+              value={email}
+              type="text"
+              onChange={handleInput}
+              // onKeyUp={isPassedLogin}
+              placeholder="이메일(아이디) 입력"
+            />
+            <input
+              name="password"
+              value={password}
+              type="password"
+              onChange={handleInput}
+              // onKeyUp={isPassedLogin}
+              placeholder="비밀번호 입력"
+            />
           </div>
 
           <div className="autoLogin">
@@ -48,32 +89,32 @@ function Login() {
           </div>
 
           {/* 체크 했을 때, 안했을때 css변화, usestate 적용 */}
-          <button className="loginBtn">로그인</button>
+          <button
+            onClick={goToMain}
+            className={checkValidation ? 'active' : 'unActive'}
+            disabled={email === '' || password === '' ? true : false}
+          >
+            로그인
+          </button>
           {/* 입력된 정보에 따라서 활성화,비활성화 css, useState 적용 */}
 
           <button className="appleConnect">
-            <i class="fab fa-apple" />
+            <i className="fab fa-apple" />
             <span>Apple로 계속하기</span>
           </button>
 
           <div className="findAndSignUp">
             <ul className="find">
               <li>
-                <Link className="fontGray" to="/">
-                  이메일(아이디) 찾기
-                </Link>
+                <Link to="/">이메일(아이디) 찾기</Link>
               </li>
               <li>
-                <NavLink className="fontGray" to="/">
-                  비밀번호 찾기
-                </NavLink>
+                <Link to="/">비밀번호 찾기</Link>
               </li>
             </ul>
             <ul>
               <li>
-                <NavLink className="fontGray" to="/presignuppage">
-                  회원가입
-                </NavLink>
+                <Link to="/presignuppage">회원가입</Link>
               </li>
             </ul>
           </div>
@@ -82,11 +123,5 @@ function Login() {
     </>
   );
 }
-=======
-
-const Login = () => {
-  return <>login</>;
-};
->>>>>>> master
 
 export default Login;
