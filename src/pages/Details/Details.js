@@ -14,7 +14,7 @@ function Details() {
   ]);
 
   const [recommendProducts, setRecommendProducts] = useState([]);
-  console.log(recommendProducts);
+  // console.log(recommendProducts);
 
   useEffect(() => {
     fetch('http://localhost:3000/data/recommendData.json', { method: 'GET' })
@@ -74,7 +74,7 @@ function Details() {
                 <details>
                   <summary>사이즈 선택</summary>
                   <div className="medium">미디움 (M)</div>
-                  <div>라지 (L)</div>
+                  <div className="large">라지 (L)</div>
                 </details>
               </div>
               <div className="selectAddition">
@@ -127,8 +127,17 @@ function Details() {
 
           <ul className="recommendationList">
             {recommendProducts && // 이 데이터가 있을때만 그려준다
-              recommendProducts.map(() => {
-                return <RecommendWrap />;
+              recommendProducts.map(list => {
+                // console.log(list);
+                return (
+                  <RecommendWrap
+                    key={list.id}
+                    menuName={list.menuName}
+                    price={list.price}
+                    content={list.content}
+                    src={list.src}
+                  />
+                );
               })}
             {/* {RECOMMEND_LIST.map(list => {})} */}
           </ul>
@@ -147,33 +156,30 @@ function Details() {
 
 export default Details;
 
-// 현재 안쓰고있음
-const AdditionalOptionList = list => {
+function RecommendWrap({ id, menuName, price, content, src }) {
+  // console.log(props);
   return (
-    <div key={list.id} className="additionalOption">
-      <div className="checkboxAndOption">
-        <input type="checkbox" name="고구마 1개" className="optionCheckbox" />
-        <span>{list.name}</span>
-      </div>
-      <div>
-        <span className="price">{list.price}</span>
-      </div>
-    </div>
-  );
-};
-
-const RecommendWrap = list => {
-  console.log(list);
-  return (
-    <li key={list.id} className="recommendationWrap">
-      <img
-        alt="recommendproduct"
-        src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/244_20220118112717"
-      />
-      <h3>{list.menuName}</h3>
-      <span>{list.price}</span>
+    <li key={id} className="recommendationWrap">
+      <img alt="recommendproduct" src={src} />
+      <h3>{menuName}</h3>
+      <span>{price}</span>
       <span>~</span>
-      <p>{list.content}</p>
+      <p>{content}</p>
     </li>
   );
-};
+}
+
+// 현재 안쓰고있음
+// const AdditionalOptionList = list => {
+//   return (
+//     <div key={list.id} className="additionalOption">
+//       <div className="checkboxAndOption">
+//         <input type="checkbox" name="고구마 1개" className="optionCheckbox" />
+//         <span>{list.name}</span>
+//       </div>
+//       <div>
+//         <span className="price">{list.price}</span>
+//       </div>
+//     </div>
+//   );
+// };

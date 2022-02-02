@@ -11,13 +11,13 @@ const ADDITIONS_LIST = [
   },
   {
     id: 3,
-    name: '아보카도 50g',
+    name: '사과 1개',
     price: '5,000',
   },
   {
     id: 4,
     name: '아보카도 50g',
-    price: '5,000',
+    price: '6,000',
   },
 ];
 
