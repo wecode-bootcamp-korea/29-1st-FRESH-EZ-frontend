@@ -82,21 +82,13 @@ function Details() {
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
                   {ADDITIONS_LIST.map(list => {
+                    // console.log(list);
                     return (
-                      <div key={list.id} className="additionalOption">
-                        <div className="checkboxAndOption">
-                          <input
-                            type="checkbox"
-                            name={list.name}
-                            className="optionCheckbox"
-                          />
-                          <span>{list.name}</span>
-                        </div>
-                        <div>
-                          <span className="price">{list.price}</span>
-                          <span>원</span>
-                        </div>
-                      </div>
+                      <AdditionalOptionList
+                        key={list.id}
+                        name={list.name}
+                        price={list.price}
+                      />
                     );
                   })}
                 </div>
@@ -156,6 +148,21 @@ function Details() {
 
 export default Details;
 
+const AdditionalOptionList = ({ id, name, price }) => {
+  return (
+    <div key={id} className="additionalOption">
+      <div className="checkboxAndOption">
+        <input type="checkbox" name={name} className="optionCheckbox" />
+        <span>{name}</span>
+      </div>
+      <div>
+        <span className="price">{price}</span>
+        <span>원</span>
+      </div>
+    </div>
+  );
+};
+
 function RecommendWrap({ id, menuName, price, content, src }) {
   // console.log(props);
   return (
@@ -170,16 +177,3 @@ function RecommendWrap({ id, menuName, price, content, src }) {
 }
 
 // 현재 안쓰고있음
-// const AdditionalOptionList = list => {
-//   return (
-//     <div key={list.id} className="additionalOption">
-//       <div className="checkboxAndOption">
-//         <input type="checkbox" name="고구마 1개" className="optionCheckbox" />
-//         <span>{list.name}</span>
-//       </div>
-//       <div>
-//         <span className="price">{list.price}</span>
-//       </div>
-//     </div>
-//   );
-// };
