@@ -23,27 +23,30 @@ function SubsOpt({ modalState, closeModal }) {
 
   if (!modalState) return null;
   return (
-    <SubsOptForm
-      closeModal={closeModal}
-      subsStep={<SubsStep step={step} />}
-      subsOptQuery={<SubsOptQuery questions={data.questions} />}
-      subsOptSelect={data.selectOpt.optList.map(list => (
-        <SubsOptSelect
-          key={list.id}
-          optType={data.optType}
-          queryKey={data.selectOpt.queryKey}
-          value={list.value}
-        />
-      ))}
-      subsOptPrice={<SubsOptPrice />}
-      subsOptStepBtn={
-        <SubsOptStepBtn
-          step={step}
-          postStep={() => setStep(step - 1)}
-          nextStep={() => setStep(step + 1)}
-        />
-      }
-    />
+    <>
+      <div className="subsOptOverlay" onClick={closeModal} />
+      <SubsOptForm
+        closeModal={closeModal}
+        subsStep={<SubsStep step={step} />}
+        subsOptQuery={<SubsOptQuery questions={data.questions} />}
+        subsOptSelect={data.selectOpt.optList.map(list => (
+          <SubsOptSelect
+            key={list.id}
+            optType={data.optType}
+            queryKey={data.selectOpt.queryKey}
+            value={list.value}
+          />
+        ))}
+        subsOptPrice={<SubsOptPrice />}
+        subsOptStepBtn={
+          <SubsOptStepBtn
+            step={step}
+            postStep={() => setStep(step - 1)}
+            nextStep={() => setStep(step + 1)}
+          />
+        }
+      />
+    </>
   );
 }
 

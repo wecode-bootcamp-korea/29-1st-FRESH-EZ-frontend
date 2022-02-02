@@ -46,14 +46,19 @@ const SubsOptData = [
     selectOpt: {
       queryKey: 'food_period',
       optList: [
-        { id: 0, value: '구독 주기를 선택해주세요' },
-        { id: 1, value: '2주' },
-        { id: 2, value: '3주' },
-        { id: 3, value: '4주' },
-        { id: 4, value: '5주' },
-        { id: 5, value: '6주' },
-        { id: 6, value: '7주' },
-        { id: 7, value: '8주' },
+        {
+          id: 0,
+          value: [
+            '구독 주기를 선택해주세요',
+            '2주',
+            '3주',
+            '4주',
+            '5주',
+            '6주',
+            '7주',
+            '8주',
+          ],
+        },
       ],
     },
   },
@@ -66,6 +71,11 @@ const SubsOptData = [
       optList: [
         {
           id: 1,
+          value: [
+            new Date().getFullYear(),
+            new Date().getMonth() + 1,
+            new Date().getDate(),
+          ].join('-'),
         },
       ],
     },
