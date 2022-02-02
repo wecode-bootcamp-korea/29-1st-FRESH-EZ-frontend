@@ -6,8 +6,8 @@ const SubsOptData = [
     selectOpt: {
       queryKey: 'size',
       optList: [
-        { id: 1, value: 'Medium' },
-        { id: 2, value: 'Large' },
+        { id: 1, content: 'Medium' },
+        { id: 2, content: 'Large' },
       ],
     },
   },
@@ -19,8 +19,8 @@ const SubsOptData = [
     selectOpt: {
       queryKey: 'food_day_count',
       optList: [
-        { id: 1, value: '1회' },
-        { id: 2, value: '2회' },
+        { id: 1, content: '1회' },
+        { id: 2, content: '2회' },
       ],
     },
   },
@@ -32,10 +32,10 @@ const SubsOptData = [
     selectOpt: {
       queryKey: 'food_week_count',
       optList: [
-        { id: 1, value: '주 3일' },
-        { id: 2, value: '주 4일' },
-        { id: 3, value: '주 5일' },
-        { id: 4, value: '주 6일' },
+        { id: 1, content: '주 3일' },
+        { id: 2, content: '주 4일' },
+        { id: 3, content: '주 5일' },
+        { id: 4, content: '주 6일' },
       ],
     },
   },
@@ -48,7 +48,7 @@ const SubsOptData = [
       optList: [
         {
           id: 0,
-          value: [
+          content: [
             '구독 주기를 선택해주세요',
             '2주',
             '3주',
@@ -71,7 +71,7 @@ const SubsOptData = [
       optList: [
         {
           id: 1,
-          value: [
+          content: [
             new Date().getFullYear(),
             new Date().getMonth() + 1,
             new Date().getDate(),
@@ -87,8 +87,8 @@ const SubsOptData = [
     selectOpt: {
       queryKey: 'product',
       optList: [
-        { id: 1, value: '네! 추천해주세요' },
-        { id: 2, value: '아니요, 직접 고를래요' },
+        { id: 1, content: '네! 추천해주세요' },
+        { id: 2, content: '아니요, 직접 고를래요' },
       ],
     },
   },

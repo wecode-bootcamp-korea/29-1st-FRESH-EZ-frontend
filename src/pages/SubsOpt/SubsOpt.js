@@ -34,7 +34,7 @@ function SubsOpt({ modalState, closeModal }) {
             key={list.id}
             optType={data.optType}
             queryKey={data.selectOpt.queryKey}
-            value={list.value}
+            content={list.content}
           />
         ))}
         subsOptPrice={<SubsOptPrice />}

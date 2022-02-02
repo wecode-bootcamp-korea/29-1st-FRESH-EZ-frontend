@@ -1,26 +1,30 @@
 import React from 'react';
 
 function SubsOptSelect(props) {
-  const { optType, queryKey, value } = props;
+  const { optType, queryKey, content } = props;
   const type = {
     radio: (
       <>
-        <input type="radio" name={queryKey} value={value} />
-        <label>{value}</label>
+        <input type="radio" name={queryKey} value={content} />
+        <label>{content}</label>
       </>
     ),
-    dropdown: (
-      <select name={queryKey}>
-        {value.map(content => (
-          <option key={content} value={content}>
-            {content}
-          </option>
-        ))}
-      </select>
-    ),
-    datepicker: <input type="date" value={value} />,
-    button: <button value={value}>{value}</button>,
+
+    datepicker: <input type="date" value={content} />,
+    button: <button value={content}>{content}</button>,
   };
+  if (optType === 'dropdown')
+    return (
+      <form className="subsOptSelect">
+        <select name={queryKey}>
+          {content.map(data => (
+            <option key={data} value={data}>
+              {data}
+            </option>
+          ))}
+        </select>
+      </form>
+    );
   return <form className="subsOptSelect">{type[optType]}</form>;
 }
 
