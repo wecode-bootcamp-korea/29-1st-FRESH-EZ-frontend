@@ -1,3 +1,5 @@
+import { integer } from 'check-types';
+
 const SubsOptData = [
   {
     optStep: 1,
@@ -73,8 +75,8 @@ const SubsOptData = [
           id: 1,
           content: [
             new Date().getFullYear(),
-            new Date().getMonth() + 1,
-            new Date().getDate(),
+            (new Date().getMonth() + 1).toString().padStart(2, '0'),
+            new Date().getDate().toString().padStart(2, '0'),
           ].join('-'),
         },
       ],
