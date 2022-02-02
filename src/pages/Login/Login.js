@@ -11,24 +11,40 @@ function Login() {
     password: '',
   });
   const { email, password } = inputs;
+  const checkValidation = email.includes('@') && password.length > 6;
   // const email = inputs.email;
   // const password = inputs.password;
   // const [isActive, setIsActive] = useState(false);
 
-  const goToMain = () => {
-    email.includes('@') && password.length > 6
-      ? navigate('/main')
-      : alert('제대로 입력되지 않았습니다. 다시 시도해주세요');
-  };
+  // const goToMain = () => {
+  //   checkValidation
+  //     ? navigate('/main')
+  //     : alert('제대로 입력되지 않았습니다. 다시 시도해주세요');
+  // };
 
   const handleInput = e => {
     const { name, value } = e.target;
 
     setInputs({ ...inputs, [name]: value });
   };
-
-  const checkValidation = email.includes('@') && password.length > 6;
-
+  function signIn() {
+    fetch('http://208.82.62.99:8000/user/signin', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'SUCCESS') {
+          navigate('/main');
+        } else {
+          alert('다시 입력해주세요:)');
+        }
+        // console.log('결과 : ', res.message, res.jwt);
+      });
+  }
   // const isPassedLogin = () => {
   //   checkValidation ? setIsActive(true) : setIsActive(false);
   // };
@@ -70,7 +86,6 @@ function Login() {
               value={email}
               type="text"
               onChange={handleInput}
-              // onKeyUp={isPassedLogin}
               placeholder="이메일(아이디) 입력"
             />
             <input
@@ -78,19 +93,19 @@ function Login() {
               value={password}
               type="password"
               onChange={handleInput}
-              // onKeyUp={isPassedLogin}
               placeholder="비밀번호 입력"
             />
           </div>
 
           <div className="autoLogin">
-            <input type="checkbox" />
+            <input type="checkbox" id="auto" />
+            <label for="auto" />
             <span>자동로그인</span>
           </div>
 
           {/* 체크 했을 때, 안했을때 css변화, usestate 적용 */}
           <button
-            onClick={goToMain}
+            onClick={signIn}
             className={checkValidation ? 'active' : 'unActive'}
             disabled={email === '' || password === '' ? true : false}
           >
