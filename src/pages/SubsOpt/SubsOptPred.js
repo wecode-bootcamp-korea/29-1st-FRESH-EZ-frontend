@@ -10,6 +10,36 @@ function SubsOptPred({ queryKey, selectedValue, selectedData }) {
     selectedData.size === 'Large'
       ? (price + 1500) * totalCount
       : price * totalCount;
+
+  if (queryKey === 'food_start') {
+    let date = new Date(selectedValue);
+    date.setDate(date.getDate() + 7 * /\d/.exec(selectedData.food_period));
+    return (
+      <div className="subsOptPred">
+        구독 만료 예정일
+        <p>
+          {date.toLocaleDateString('ko-kr', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            weekday: 'long',
+          })}{' '}
+        </p>
+      </div>
+    );
+  }
+  if (queryKey === 'product') {
+    return (
+      <div className="subsOptPred">
+        <span>현재 선택된 옵션으로</span>
+        <span>추천식단 구독시 예상 구독료</span>
+        <p>{totalPrice.toLocaleString()}원</p>
+        <span className="subsOptFinalCaution">
+          직접 식단 구성시 구독료 상이
+        </span>
+      </div>
+    );
+  }
   return (
     <div className="subsOptPred">
       <div className="subsOptSize">
@@ -47,5 +77,4 @@ function SubsOptPred({ queryKey, selectedValue, selectedData }) {
     </div>
   );
 }
-
 export default SubsOptPred;

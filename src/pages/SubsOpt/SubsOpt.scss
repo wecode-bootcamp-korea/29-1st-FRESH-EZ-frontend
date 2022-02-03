@@ -137,6 +137,17 @@
       .subsOptSize {
         margin-bottom: 5px;
       }
+
+      :nth-child(2) {
+        margin-bottom: 10px;
+      }
+
+      .subsOptFinalCaution {
+        margin-top: 15px;
+        font-size: 1vw;;
+        color: $theme-green;
+      }
+
       .emphasize {
         font-weight: bold;
         color: $theme-green;
