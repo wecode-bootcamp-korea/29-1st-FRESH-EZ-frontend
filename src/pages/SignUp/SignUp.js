@@ -107,42 +107,52 @@ const SignUp = () => {
           <div className="allergy">
             <span className="afterElementAdd">알러지 옵션</span>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck1" />
+              <label for="allergyCheck1" />
               대두
             </div>
             <div>
-              <input type="checkbox" />밀
+              <input type="checkbox" id="allergyCheck2" />
+              <label for="allergyCheck2" />밀
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck3" />
+              <label for="allergyCheck3" />
               아황산
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck4" />
+              <label for="allergyCheck4" />
               우유
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck5" />
+              <label for="allergyCheck5" />
               계란
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck6" />
+              <label for="allergyCheck6" />
               토마토
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck7" />
+              <label for="allergyCheck7" />
               메밀
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck8" />
+              <label for="allergyCheck8" />
               돼지고기
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck9" />
+              <label for="allergyCheck9" />
               메추리알
             </div>
             <div>
-              <input type="checkbox" />
+              <input type="checkbox" id="allergyCheck10" />
+              <label for="allergyCheck10" />
               땅콩
             </div>
 

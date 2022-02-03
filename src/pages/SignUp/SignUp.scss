@@ -232,15 +232,34 @@
     margin-bottom: 35px;
     width: 380px;
 
+    input[type='checkbox'] {
+      display: none;
+
+      + label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        margin-right: 7px;
+        cursor: pointer;
+        border: 1px solid $border-gray;
+        border-radius: 3px;
+      }
+      &:checked + label {
+        background: url(../../../public/images/checked.png) $theme-green
+          no-repeat center/20px 20px;
+      }
+    }
     div {
       color: $font-gray;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
     }
 
     span {
-      margin-bottom: 10px;
-    }
-    input {
-      margin-top: 10px;
+      display: inline-block;
+      margin-bottom: 13px;
     }
   }
 }
