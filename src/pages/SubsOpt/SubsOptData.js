@@ -1,5 +1,3 @@
-import { integer } from 'check-types';
-
 const SubsOptData = [
   {
     optStep: 1,

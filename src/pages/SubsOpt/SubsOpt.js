@@ -77,7 +77,7 @@ function SubsOpt({ modalState, closeModal }) {
     fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
       .then(res => res.json())
       .then(res => {
-        console.log(`${res.products} ----> 잘나왔음!`);
+        console.log(`${res} ----> 잘나왔음!`);
       });
   };
 
@@ -101,7 +101,13 @@ function SubsOpt({ modalState, closeModal }) {
             moveToNext={moveToNext}
           />
         ))}
-        subsOptPrice={<SubsOptPrice />}
+        subsOptPrice={
+          <SubsOptPrice
+            queryKey={data.selectOpt.queryKey}
+            selectedValue={selectedData[data.selectOpt.queryKey]}
+            selectedData={selectedData}
+          />
+        }
         subsOptStepBtn={
           <SubsOptStepBtn
             step={step}
