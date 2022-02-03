@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.main {
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: hidden;
+    height: 493px;
+    padding-top: 143px;
+    img {
+      width: 100%;
+    }
+  }
+}
