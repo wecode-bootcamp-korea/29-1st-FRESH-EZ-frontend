@@ -76,10 +76,12 @@ function SubsOpt({ modalState, closeModal }) {
   const moveToNext = () => {
     alert('식단 구성 단계로 넘어가시겠습니까?');
     navigate('/subsOptSelf');
-    fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
+    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
       .then(res => res.json())
       .then(res => {
-        window.localStorage.setItem('productsInfo', res.products);
+        window.localStorage.setItem('products', res.products);
+        window.localStorage.setItem('image_list', res.image_list);
+        window.localStorage.setItem('price', res.price);
       });
   };
 
