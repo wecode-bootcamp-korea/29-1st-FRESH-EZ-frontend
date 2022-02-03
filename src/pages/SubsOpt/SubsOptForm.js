@@ -6,7 +6,7 @@ function SubsOptForm(props) {
     subsStep,
     subsOptQuery,
     subsOptSelect,
-    subsOptPrice,
+    subsOptPred,
     subsOptStepBtn,
   } = props;
   return (
@@ -28,7 +28,7 @@ function SubsOptForm(props) {
         <div className="subsOptSelectList">{subsOptSelect}</div>
       </div>
       <div className="subsOptFooter">
-        {subsOptPrice}
+        {subsOptPred}
         {subsOptStepBtn}
       </div>
     </div>

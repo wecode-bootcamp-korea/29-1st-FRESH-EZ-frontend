@@ -1,15 +1,17 @@
 import React from 'react';
 
-function SubsOptPrice({ queryKey, selectedValue, selectedData }) {
+function SubsOptPred({ queryKey, selectedValue, selectedData }) {
   const [value, price] = [selectedValue, 6700];
-  const productCounts =
+  const totalCount =
     /\d/.exec(selectedData.food_day_count) *
     /\d/.exec(selectedData.food_week_count) *
     /\d/.exec(selectedData.food_period);
-  const totalPrice = price * productCounts;
-  console.log(queryKey);
+  const totalPrice =
+    selectedData.size === 'Large'
+      ? (price + 1500) * totalCount
+      : price * totalCount;
   return (
-    <div className="subsOptPrice">
+    <div className="subsOptPred">
       <div className="subsOptSize">
         <span>추천식단 샐러드</span>
         <span className={queryKey === 'size' ? 'emphasize' : 'normal'}>
@@ -41,9 +43,9 @@ function SubsOptPrice({ queryKey, selectedValue, selectedData }) {
         </span>
         <span> 구독하실 경우 </span>
       </div>
-      <p className="subsPredictedPrice">{totalPrice}원</p>
+      <p className="subsPredictedPrice">{totalPrice.toLocaleString()}원</p>
     </div>
   );
 }
 
-export default SubsOptPrice;
+export default SubsOptPred;

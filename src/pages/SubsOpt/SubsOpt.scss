@@ -128,12 +128,15 @@
     @include flex-column();
     width: 100%;
 
-    .subsOptPrice {
+    .subsOptPred {
       @include flex-center;
       flex-direction: column;
       font-size: 1.4vw;
       color: $font-gray;
 
+      .subsOptSize {
+        margin-bottom: 5px;
+      }
       .emphasize {
         font-weight: bold;
         color: $theme-green;
