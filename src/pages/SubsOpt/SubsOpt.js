@@ -11,7 +11,7 @@ import './SubsOpt.scss';
 
 // modal창에서 옵션 선택 안 한 경우에도 esc 키 누를때 모달창 꺼지는 기능 추가
 
-function SubsOpt({ modalState, closeModal }) {
+function SubsOpt({ modalState, closeModal, openModal }) {
   const testJwt =
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6M30.niNmVRTCz9yD_B5BjBhfyVaDVAKyboSxAUxRmOOnvJg';
   const prodCategory = '1';
@@ -65,25 +65,27 @@ function SubsOpt({ modalState, closeModal }) {
   };
 
   const moveToBasket = () => {
-    alert('장바구니로 이동하시겠습니까?');
-    navigate('/basket');
-    fetch('http://208.82.62.99:8000/product/subscribe-option', {
-      method: 'post',
-      body: JSON.stringify(preprocessUserData(selectedData)),
-    });
-    window.localStorage.clear();
+    if (window.confirm('장바구니로 이동하시겠습니까?')) {
+      navigate('/basket');
+      fetch('http://208.82.62.99:8000/product/subscribe-option', {
+        method: 'post',
+        body: JSON.stringify(preprocessUserData(selectedData)),
+      });
+      window.localStorage.clear();
+    }
   };
 
   const moveToNext = () => {
-    alert('식단 구성 단계로 넘어가시겠습니까?');
-    navigate('/subsOptSelf');
-    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
-      .then(res => res.json())
-      .then(res => {
-        window.localStorage.setItem('products', res.products);
-        window.localStorage.setItem('image_list', res.image_list);
-        window.localStorage.setItem('price', res.price);
-      });
+    if (window.confirm('식단 구성 단계로 넘어가시겠습니까?')) {
+      navigate('/subsOptSelf');
+      fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
+        .then(res => res.json())
+        .then(res => {
+          window.localStorage.setItem('products', res.products);
+          window.localStorage.setItem('image_list', res.image_list);
+          window.localStorage.setItem('price', res.price);
+        });
+    }
   };
 
   if (!modalState) return null;
