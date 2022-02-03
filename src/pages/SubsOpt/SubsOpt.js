@@ -71,6 +71,7 @@ function SubsOpt({ modalState, closeModal }) {
       method: 'post',
       body: JSON.stringify(preprocessUserData(selectedData)),
     });
+    window.localStorage.clear();
   };
 
   const moveToNext = () => {
