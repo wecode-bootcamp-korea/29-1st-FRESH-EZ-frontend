@@ -87,46 +87,66 @@ const SignUp = () => {
 
             <div className="genderCheck">
               <div className="femaleCheck">
-                <input type="radio" />
+                <input type="radio" id="check1" />
+                <label for="check1" />
                 <div>여성</div>
               </div>
               <div className="maleCheck">
-                <input type="radio" />
+                <input type="radio" id="check2" />
+                <label for="check2" />
                 <div>남성</div>
               </div>
               <div className="nobodyCheck">
-                <input type="radio" />
+                <input type="radio" id="check3" />
+                <label for="check3" />
                 <div>선택 안 함</div>
               </div>
             </div>
           </div>
 
           <div className="allergy">
+            <span className="afterElementAdd">알러지 옵션</span>
             <div>
-              <span className="afterElementAdd">알러지 옵션</span>
+              <input type="checkbox" />
+              대두
             </div>
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유
-            <input type="checkbox" />
-            우유 ㅎㅎ..맵돌려라^^..
+            <div>
+              <input type="checkbox" />밀
+            </div>
+            <div>
+              <input type="checkbox" />
+              아황산
+            </div>
+            <div>
+              <input type="checkbox" />
+              우유
+            </div>
+            <div>
+              <input type="checkbox" />
+              계란
+            </div>
+            <div>
+              <input type="checkbox" />
+              토마토
+            </div>
+            <div>
+              <input type="checkbox" />
+              메밀
+            </div>
+            <div>
+              <input type="checkbox" />
+              돼지고기
+            </div>
+            <div>
+              <input type="checkbox" />
+              메추리알
+            </div>
+            <div>
+              <input type="checkbox" />
+              땅콩
+            </div>
+
+            {/* 맵돌려라.. */}
           </div>
 
           <button className="signUpButton">가입하기</button>
