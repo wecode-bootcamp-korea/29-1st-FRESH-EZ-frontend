@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SignUp.scss';
 import Nav from '../../../src/components/Nav/Nav';
 
 const SignUp = () => {
+  const [inputs, setInputs] = useState({
+    email: '',
+    password: '',
+    rePassword: '',
+    personalName: '',
+    nickname: '',
+    phoneNumber: '',
+  });
+  const { email, password, rePassword, personalName, nickname, phoneNumber } =
+    inputs;
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+
   return (
     <>
       <Nav />
@@ -24,7 +41,14 @@ const SignUp = () => {
                 <span className="afterElementAdd">이메일(아이디)</span>
               </div>
               <div>
-                <input type="text" placeholder="이메일 입력" />
+                <input
+                  type="text"
+                  placeholder="이메일 입력"
+                  name="email"
+                  value={email}
+                  onChange={handleInput}
+                  onChange={handleInput}
+                />
                 <button>중복 확인</button>
               </div>
             </div>
@@ -37,13 +61,22 @@ const SignUp = () => {
                 type="password"
                 placeholder="비밀번호 8자 이상 입력(영문 대/소문자,
           숫자포함)"
+                name="password"
+                value={password}
+                onChange={handleInput}
               />
             </div>
             <div className="accountRePw">
               <div>
                 <span className="afterElementAdd">비밀번호 재확인</span>
               </div>
-              <input type="password" placeholder="비밀번호 재입력" />
+              <input
+                type="password"
+                placeholder="비밀번호 재입력"
+                name="rePassword"
+                value={rePassword}
+                onChange={handleInput}
+              />
             </div>
 
             <div className="userInfo">개인 정보</div>
@@ -51,7 +84,13 @@ const SignUp = () => {
               <div>
                 <span className="afterElementAdd">이름</span>
               </div>
-              <input type="text" placeholder="이름 입력" />
+              <input
+                type="text"
+                placeholder="이름 입력"
+                name="personalName"
+                value={personalName}
+                onChange={handleInput}
+              />
             </div>
             <div className="personalNickName">
               <div>
@@ -60,6 +99,9 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="닉네임 입력(미입력시 이름 자동 입력)"
+                name="nickname"
+                value={nickname}
+                onChange={handleInput}
               />
             </div>
 
@@ -68,7 +110,13 @@ const SignUp = () => {
                 <span className="afterElementAdd">휴대폰 번호</span>
               </div>
               <div>
-                <input type="text" placeholder="휴대폰 번호 입력(-제외)" />
+                <input
+                  type="text"
+                  placeholder="휴대폰 번호 입력(-제외)"
+                  name="phoneNumber"
+                  value={phoneNumber}
+                  onChange={handleInput}
+                />
                 <button>인증 요청</button>
               </div>
             </div>
@@ -77,9 +125,15 @@ const SignUp = () => {
                 <span>생년월일</span>
               </div>
               <div className="birthdayList">
-                <div>YYYY</div>
-                <div>MM</div>
-                <div>DD</div>
+                <select>
+                  <option>YYYY</option>
+                </select>
+                <select>
+                  <option>MM</option>
+                </select>
+                <select>
+                  <option>DD</option>
+                </select>
               </div>
             </div>
 
@@ -87,17 +141,17 @@ const SignUp = () => {
 
             <div className="genderCheck">
               <div className="femaleCheck">
-                <input type="radio" id="check1" />
+                <input type="radio" id="check1" name="gender" />
                 <label for="check1" />
                 <div>여성</div>
               </div>
               <div className="maleCheck">
-                <input type="radio" id="check2" />
+                <input type="radio" id="check2" name="gender" />
                 <label for="check2" />
                 <div>남성</div>
               </div>
               <div className="nobodyCheck">
-                <input type="radio" id="check3" />
+                <input type="radio" id="check3" name="gender" />
                 <label for="check3" />
                 <div>선택 안 함</div>
               </div>
@@ -109,7 +163,7 @@ const SignUp = () => {
             <div>
               <input type="checkbox" id="allergyCheck1" />
               <label for="allergyCheck1" />
-              대두
+              대두 (두유, 두부 등)
             </div>
             <div>
               <input type="checkbox" id="allergyCheck2" />

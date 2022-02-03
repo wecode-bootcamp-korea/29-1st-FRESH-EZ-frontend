@@ -65,7 +65,7 @@
         margin-top: 10px;
         width: 250px;
         padding: 12px 15px;
-        border: 1px solid $border-gray;
+        border: 1px solid #c9cacc;
         border-radius: 3px;
         margin-right: 10px;
         &:focus {
@@ -93,7 +93,7 @@
       margin-top: 10px;
       width: 380px;
       padding: 12px 15px;
-      border: 1px solid $border-gray;
+      border: 1px solid #c9cacc;
       border-radius: 3px;
       &:focus {
         outline: 1px solid $theme-green;
@@ -107,7 +107,7 @@
       margin-top: 10px;
       width: 380px;
       padding: 12px 15px;
-      border: 1px solid $border-gray;
+      border: 1px solid #c9cacc;
       border-radius: 3px;
       &:focus {
         outline: 1px solid $theme-green;
@@ -120,7 +120,7 @@
       margin-top: 10px;
       width: 380px;
       padding: 12px 15px;
-      border: 1px solid $border-gray;
+      border: 1px solid #c9cacc;
       border-radius: 3px;
       &:focus {
         outline: 1px solid $theme-green;
@@ -133,7 +133,7 @@
       margin-top: 10px;
       width: 380px;
       padding: 12px 15px;
-      border: 1px solid $border-gray;
+      border: 1px solid #c9cacc;
       border-radius: 3px;
       &:focus {
         outline: 1px solid $theme-green;
@@ -147,7 +147,7 @@
         margin-top: 10px;
         width: 250px;
         padding: 12px 15px;
-        border: 1px solid $border-gray;
+        border: 1px solid #c9cacc;
         border-radius: 3px;
         margin-right: 10px;
         &:focus {
@@ -226,6 +226,17 @@
     margin-bottom: 35px;
     .birthdayList {
       margin-top: 10px;
+      select {
+        margin-right: 10px;
+        padding-left: 10px;
+        width: 120px;
+        height: 40px;
+        border: 1px solid #c9cacc;
+        border-radius: 3px;
+        &:focus {
+          outline: 1px solid $theme-green;
+        }
+      }
     }
   }
   .allergy {
@@ -242,7 +253,7 @@
         background-color: white;
         margin-right: 7px;
         cursor: pointer;
-        border: 1px solid $border-gray;
+        border: 1px solid #c9cacc;
         border-radius: 3px;
       }
       &:checked + label {
@@ -267,6 +278,6 @@
 // @mixin input-layer {
 //   width: 380px;
 //   padding: 10px;
-//   border: 1px solid $border-gray;
+//   border: 1px solid #C9CACC;
 //   border-radius: 3px;
 // }
