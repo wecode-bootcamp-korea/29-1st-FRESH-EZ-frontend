@@ -31,8 +31,8 @@ function Login() {
     fetch('http://208.82.62.99:8000/user/signin', {
       method: 'POST',
       body: JSON.stringify({
-        email: 'email',
-        password: 'password',
+        email: email,
+        password: password,
       }),
     })
       .then(res => res.json())
