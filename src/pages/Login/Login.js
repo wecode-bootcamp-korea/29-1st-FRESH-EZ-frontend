@@ -11,7 +11,7 @@ function Login() {
     password: '',
   });
   const { email, password } = inputs;
-  const checkValidation = email.includes('@') && password.length > 6;
+  const checkValidation = email.includes('@') && password.length > 3;
   // const email = inputs.email;
   // const password = inputs.password;
   // const [isActive, setIsActive] = useState(false);
@@ -31,8 +31,8 @@ function Login() {
     fetch('http://208.82.62.99:8000/user/signin', {
       method: 'POST',
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email: 'email',
+        password: 'password',
       }),
     })
       .then(res => res.json())
