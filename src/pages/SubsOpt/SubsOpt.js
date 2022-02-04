@@ -4,7 +4,8 @@ import SubsOptForm from './SubsOptForm';
 import SubsStep from './SubsStep';
 import SubsOptQuery from './SubsOptQuery';
 import SubsOptSelect from './SubsOptSelect';
-import SubsOptPred from './SubsOptPred';
+// import SubsOptPred from './SubsOptPred';
+import SubsOptPred_serverCalc from './SubsOptPred_serverCalc';
 import SubsOptStepBtn from './SubsOptStepBtn';
 import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
@@ -36,6 +37,30 @@ function SubsOpt({ modalState, closeModal, openModal }) {
     ].join('-'),
     product: [],
   });
+
+  const [predictedValue, setPredictedValue] = useState({
+    totalCount: 6,
+    totalPrice: 40700,
+  });
+
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/product/subscribe-totalprice', {
+      method: 'post',
+      body: JSON.stringify({
+        category_id: prodCategory,
+        food_day_count: /\d/.exec(selectedData.food_day_count).toString(),
+        food_week_count: /\d/.exec(selectedData.food_week_count).toString(),
+        food_period: /\d/.exec(selectedData.food_period).toString(),
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        setPredictedValue({
+          totalCount: res.food_count,
+          totalPrice: res.total_price,
+        });
+      });
+  }, [prodCategory, selectedData]);
 
   let data = SubsOptData[step - 1];
   const selectHandler = e => {
@@ -109,8 +134,8 @@ function SubsOpt({ modalState, closeModal, openModal }) {
           />
         ))}
         subsOptPred={
-          <SubsOptPred
-            prodCategory={prodCategory}
+          <SubsOptPred_serverCalc
+            predictedValue={predictedValue}
             queryKey={data.selectOpt.queryKey}
             selectedValue={selectedData[data.selectOpt.queryKey]}
             selectedData={selectedData}
