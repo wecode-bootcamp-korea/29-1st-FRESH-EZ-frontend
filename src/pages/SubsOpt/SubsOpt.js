@@ -110,6 +110,7 @@ function SubsOpt({ modalState, closeModal, openModal }) {
         ))}
         subsOptPred={
           <SubsOptPred
+            prodCategory={prodCategory}
             queryKey={data.selectOpt.queryKey}
             selectedValue={selectedData[data.selectOpt.queryKey]}
             selectedData={selectedData}

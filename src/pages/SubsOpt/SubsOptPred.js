@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-function SubsOptPred({ queryKey, selectedValue, selectedData }) {
-  const [value, price] = [selectedValue, 6700];
+function SubsOptPred(props) {
+  const { prodCategory, queryKey, selectedValue, selectedData } = props;
+  useEffect(() => {
+    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
+      .then(res => res.json())
+      .then(res => {
+        window.localStorage.setItem('rec_price', res.price);
+      });
+  });
+  const productPrices = window.localStorage
+    .getItem('rec_price')
+    .split(',')
+    .slice(0, 5)
+    .map(x => parseInt(x));
+
   const totalCount =
     /\d/.exec(selectedData.food_day_count) *
     /\d/.exec(selectedData.food_week_count) *
     /\d/.exec(selectedData.food_period);
-  const totalPrice =
-    selectedData.size === 'Large'
-      ? (price + 1500) * totalCount
-      : price * totalCount;
+
+  const add = (prev, curr) => prev + curr;
+  const calcTotalPrice = productPrices => {
+    if (totalCount % 5 === 0)
+      return productPrices.reduce(add) * (totalCount / 5);
+    else
+      return (
+        productPrices.reduce(add) * (totalCount / 5) +
+        productPrices.slice(0, totalCount % 5).reduce(add)
+      );
+  };
+  const checkSize = totalPrice =>
+    selectedData.size === 'Large' ? totalPrice + 1000 * totalCount : totalPrice;
 
   if (queryKey === 'food_start') {
     let date = new Date(selectedValue);
@@ -33,7 +55,7 @@ function SubsOptPred({ queryKey, selectedValue, selectedData }) {
       <div className="subsOptPred">
         <span>현재 선택된 옵션으로</span>
         <span>추천식단 구독시 예상 구독료</span>
-        <p>{totalPrice.toLocaleString()}원</p>
+        <p>{checkSize(calcTotalPrice(productPrices)).toLocaleString()}원</p>
         <span className="subsOptFinalCaution">
           직접 식단 구성시 구독료 상이
         </span>
@@ -46,7 +68,7 @@ function SubsOptPred({ queryKey, selectedValue, selectedData }) {
         <span>추천식단 샐러드</span>
         <span className={queryKey === 'size' ? 'emphasize' : 'normal'}>
           {' '}
-          {queryKey === 'size' ? value : selectedData.size}{' '}
+          {queryKey === 'size' ? selectedValue : selectedData.size}{' '}
         </span>
         <span>사이즈</span>
       </div>
@@ -56,24 +78,32 @@ function SubsOptPred({ queryKey, selectedValue, selectedData }) {
         >
           {' '}
           하루{' '}
-          {queryKey === 'food_day_count' ? value : selectedData.food_day_count},
+          {queryKey === 'food_day_count'
+            ? selectedValue
+            : selectedData.food_day_count}
+          ,
         </span>
         <span
           className={queryKey === 'food_week_count' ? 'emphasize' : 'normal'}
         >
           {' '}
           {queryKey === 'food_week_count'
-            ? value
+            ? selectedValue
             : selectedData.food_week_count}
           ,
         </span>
         <span className={queryKey === 'food_period' ? 'emphasize' : 'normal'}>
           {' '}
-          {queryKey === 'food_period' ? value : selectedData.food_period} 간
+          {queryKey === 'food_period'
+            ? selectedValue
+            : selectedData.food_period}{' '}
+          간
         </span>
         <span> 구독하실 경우 </span>
       </div>
-      <p className="subsPredictedPrice">{totalPrice.toLocaleString()}원</p>
+      <p className="subsPredictedPrice">
+        {checkSize(calcTotalPrice(productPrices)).toLocaleString()}원
+      </p>
     </div>
   );
 }
