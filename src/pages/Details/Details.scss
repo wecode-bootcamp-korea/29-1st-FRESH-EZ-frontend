@@ -72,6 +72,9 @@
               height: 40px;
               padding: 12px;
               border: 1px solid #3d3d3d;
+              &:hover {
+                cursor: pointer;
+              }
 
               summary {
                 font-size: 13px;
@@ -82,6 +85,7 @@
                 margin-top: 13px;
                 // border-bottom: #3d3d3d;
               }
+
               div {
                 border: 1px solid #3d3d3d;
                 border-top: 0;
@@ -109,6 +113,9 @@
                 .checkboxAndOption {
                   @include flex-center;
                   justify-content: flex-start;
+                  // input {
+                  //  &:checked {
+                  //   color:green;}}
                 }
               }
 
@@ -119,6 +126,43 @@
                 border: 1px solid #ddd;
                 background-color: #fff;
                 margin-right: 8px;
+              }
+            }
+          }
+        }
+
+        .selectedDetailModal {
+          .selectedDetailWrapper {
+            .selectedDetailTitle {
+              @include flex-center;
+              justify-content: space-between;
+              padding: 20px 0;
+
+              img {
+                width: 25px;
+                &:hover {
+                  cursor: pointer;
+                }
+              }
+            }
+
+            .selectedDetailInputWrap {
+              .formNumber {
+                @include flex-center;
+                // border: 1px solid;
+                width: 150px;
+
+                button,
+                input {
+                  // border: none;
+                  @include flex-center;
+                  justify-content: center;
+                }
+                input {
+                  width: 100px;
+                  // border-left: none;
+                  // border-right: none;
+                }
               }
             }
           }
@@ -137,11 +181,9 @@
           button {
             border: 1px solid $theme-green;
             height: 50px;
-            opacity: 1;
-            &:disabled {
-              opacity: 0.85;
-            }
+            opacity: 0.8;
             &:hover {
+              opacity: 1;
               cursor: pointer;
             }
           }

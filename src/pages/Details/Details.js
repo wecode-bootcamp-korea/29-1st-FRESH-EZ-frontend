@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
-// import RECOMMEND_LIST from './recommendData';
 import './Details.scss';
 
 function Details() {
@@ -9,7 +8,7 @@ function Details() {
       id: 1,
       menuName: '프렌치 발사믹 훈제연어 샐러드',
       content: '부드러운 훈제연어에 트러플오일과 프렌지 발사믹의 깊은 풍미',
-      price: '8,900원',
+      price: '8900',
     },
   ]);
 
@@ -17,15 +16,19 @@ function Details() {
   // console.log(recommendProducts);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/recommendData.json', { method: 'GET' })
+    fetch('data/recommendData.json', { method: 'GET' })
       .then(res => res.json())
-      // json으로 받은걸 object 형식으로 바꿔준다
       .then(res => {
-        // console.log(res);
         setRecommendProducts(res);
       });
-    // object로 받아온걸 console.log로 찍어본다
   }, []);
+
+  const sizeMedium = '미디움 (M)';
+  const sizeLarge = '라지 (L)';
+  const totalPrice = menuName[0].price;
+  const sizeUpCost = 1500;
+  // 가격들 array에 담고 값들을 숫자로 변환한뒤 총합을 구하는것도 방법
+  // 아니면 백틱 사용
 
   return (
     <div className="menuDetails">
@@ -47,7 +50,7 @@ function Details() {
             <div className="menuName">
               <h2>{menuName[0].menuName}</h2>
               <p>{menuName[0].content}</p>
-              <p className="price">{menuName[0].price}</p>
+              <p className="price">{menuName[0].price}원</p>
             </div>
 
             <div className="productExplanation">
@@ -73,8 +76,8 @@ function Details() {
                 <h3>상품선택</h3>
                 <details>
                   <summary>사이즈 선택</summary>
-                  <div className="medium">미디움 (M)</div>
-                  <div className="large">라지 (L)</div>
+                  <div className="medium">{sizeMedium}</div>
+                  <div className="large">{sizeLarge}</div>
                 </details>
               </div>
               <div className="selectAddition">
@@ -82,7 +85,6 @@ function Details() {
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
                   {ADDITIONS_LIST.map(list => {
-                    // console.log(list);
                     return (
                       <AdditionalOptionList
                         key={list.id}
@@ -95,18 +97,49 @@ function Details() {
               </div>
             </div>
 
+            <div className="selectedDetailModal">
+              <div className="selectedDetailWrapper">
+                <SelectedSizeModal sizeLarge={sizeLarge} />
+                <SelectedMDModal />
+
+                <div className="selectedDetailTitle">
+                  <div>
+                    <span>{menuName[0].menuName}</span>
+                    <span> / </span>
+                    <span>{sizeLarge}</span>
+                  </div>
+                  <div>
+                    <img
+                      alt="선택 삭제"
+                      src="https://www.freshcode.me/images/exit@2x.png"
+                    />
+                  </div>
+                </div>
+
+                <div className="selectedDetailInputWrap">
+                  <nav className="formNumber">
+                    <button>
+                      <i className="fas fa-minus"></i>
+                    </button>
+                    <input type="number" />
+                    <button>
+                      <i className="fas fa-plus"></i>
+                    </button>
+                  </nav>
+                </div>
+              </div>
+            </div>
+
             <div className="productPrice">
               <p>상품 금액</p>
               <p>
-                <span>11,900</span>
+                <span>{`${+totalPrice + 1500 + 3000}`}</span>
                 <span>원</span>
               </p>
             </div>
             <div className="makeAnOrder">
               <button className="buttonBasket">장바구니 담기</button>
-              <button className="buttonOrder" disabled>
-                주문하기
-              </button>
+              <button className="buttonOrder">주문하기</button>
             </div>
           </div>
         </div>
@@ -120,7 +153,6 @@ function Details() {
           <ul className="recommendationList">
             {recommendProducts && // 이 데이터가 있을때만 그려준다
               recommendProducts.map(list => {
-                // console.log(list);
                 return (
                   <RecommendWrap
                     key={list.id}
@@ -131,7 +163,6 @@ function Details() {
                   />
                 );
               })}
-            {/* {RECOMMEND_LIST.map(list => {})} */}
           </ul>
         </article>
 
@@ -147,6 +178,40 @@ function Details() {
 }
 
 export default Details;
+
+function SelectedSizeModal({ sizeLarge }) {
+  return (
+    <div className="selectedDetailTitle">
+      <div>
+        <span>프렌치 발사믹 훈제연어 샐러드</span>
+        <span> / </span>
+        <span>{sizeLarge}</span>
+      </div>
+      <div>
+        <img
+          alt="선택 삭제"
+          src="https://www.freshcode.me/images/exit@2x.png"
+        />
+      </div>
+    </div>
+  );
+}
+
+function SelectedMDModal() {
+  return (
+    <div className="selectedDetailTitle">
+      <div>
+        <span>계란 2개</span>
+      </div>
+      <div>
+        <img
+          alt="선택 삭제"
+          src="https://www.freshcode.me/images/exit@2x.png"
+        />
+      </div>
+    </div>
+  );
+}
 
 const AdditionalOptionList = ({ id, name, price }) => {
   return (
@@ -164,7 +229,6 @@ const AdditionalOptionList = ({ id, name, price }) => {
 };
 
 function RecommendWrap({ id, menuName, price, content, src }) {
-  // console.log(props);
   return (
     <li key={id} className="recommendationWrap">
       <img alt="recommendproduct" src={src} />
@@ -175,5 +239,3 @@ function RecommendWrap({ id, menuName, price, content, src }) {
     </li>
   );
 }
-
-// 현재 안쓰고있음
