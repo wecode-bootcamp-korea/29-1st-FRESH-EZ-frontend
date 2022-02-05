@@ -13,7 +13,6 @@ function Details() {
   ]);
 
   const [recommendProducts, setRecommendProducts] = useState([]);
-  // console.log(recommendProducts);
 
   const [showModalSize, setShowModalSize] = useState(false);
   const [showModalMD, setShowModalMD] = useState(true);
