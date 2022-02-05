@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
+import SelectedSizeModal from './SelectedSizeModal';
+import SelectedMDModal from './SelectedMDModal';
+import AdditionalOptionList from './AdditionalOptionList';
+import RecommendWrap from './RecommendWrap';
 import './Details.scss';
 
 function Details() {
@@ -112,10 +116,27 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                <SelectedSizeModal sizeLarge={sizeLarge} />
+                <SelectedSizeModal isClickedSize={isClickedSize} />
 
                 {showModalMD === true ? (
                   <SelectedMDModal isClickedMD={isClickedMD} />
+                ) : null}
+
+                {showModalSize === true ? (
+                  <div className="selectedDetailTitle">
+                    <div>
+                      <span>{menuName[0].menuName}</span>
+                      <span> / </span>
+                      <span>{sizeMedium}</span>
+                    </div>
+                    <div>
+                      <img
+                        alt="선택 삭제"
+                        src="https://www.freshcode.me/images/exit@2x.png"
+                        onClick={isClickedSize}
+                      />
+                    </div>
+                  </div>
                 ) : null}
 
                 {showModalSize === true ? (
@@ -197,65 +218,3 @@ function Details() {
 }
 
 export default Details;
-
-function SelectedSizeModal({ sizeLarge }) {
-  return (
-    <div className="selectedDetailTitle">
-      <div>
-        <span>프렌치 발사믹 훈제연어 샐러드</span>
-        <span> / </span>
-        <span>{sizeLarge}</span>
-      </div>
-      <div>
-        <img
-          alt="선택 삭제"
-          src="https://www.freshcode.me/images/exit@2x.png"
-        />
-      </div>
-    </div>
-  );
-}
-
-function SelectedMDModal({ isClickedMD }) {
-  return (
-    <div className="selectedDetailTitle">
-      <div>
-        <span>계란 2개</span>
-      </div>
-      <div>
-        <img
-          alt="선택 삭제"
-          src="https://www.freshcode.me/images/exit@2x.png"
-          onClick={isClickedMD}
-        />
-      </div>
-    </div>
-  );
-}
-
-const AdditionalOptionList = ({ id, name, price }) => {
-  return (
-    <div key={id} className="additionalOption">
-      <div className="checkboxAndOption">
-        <input type="checkbox" name={name} className="optionCheckbox" />
-        <span>{name}</span>
-      </div>
-      <div>
-        <span className="price">{price}</span>
-        <span>원</span>
-      </div>
-    </div>
-  );
-};
-
-function RecommendWrap({ id, menuName, price, content, src }) {
-  return (
-    <li key={id} className="recommendationWrap">
-      <img alt="recommendproduct" src={src} />
-      <h3>{menuName}</h3>
-      <span>{price}</span>
-      <span>~</span>
-      <p>{content}</p>
-    </li>
-  );
-}
