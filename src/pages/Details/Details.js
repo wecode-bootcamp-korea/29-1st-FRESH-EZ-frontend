@@ -15,6 +15,16 @@ function Details() {
   const [recommendProducts, setRecommendProducts] = useState([]);
   // console.log(recommendProducts);
 
+  const [showModalSize, setShowModalSize] = useState(false);
+  const [showModalMD, setShowModalMD] = useState(true);
+
+  const isClickedSize = () => {
+    setShowModalSize(!showModalSize);
+  };
+  const isClickedMD = () => {
+    setShowModalMD(!showModalMD);
+  };
+
   useEffect(() => {
     fetch('data/recommendData.json', { method: 'GET' })
       .then(res => res.json())
@@ -75,9 +85,13 @@ function Details() {
               <div className="selectSize">
                 <h3>상품선택</h3>
                 <details>
-                  <summary>사이즈 선택</summary>
-                  <div className="medium">{sizeMedium}</div>
-                  <div className="large">{sizeLarge}</div>
+                  <summary>사이즈 선택 (필수)</summary>
+                  <div className="medium" onClick={isClickedSize}>
+                    {sizeMedium}
+                  </div>
+                  <div className="large" onClick={isClickedSize}>
+                    {sizeLarge}
+                  </div>
                 </details>
               </div>
               <div className="selectAddition">
@@ -100,23 +114,29 @@ function Details() {
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
                 <SelectedSizeModal sizeLarge={sizeLarge} />
-                <SelectedMDModal />
 
-                <div className="selectedDetailTitle">
-                  <div>
-                    <span>{menuName[0].menuName}</span>
-                    <span> / </span>
-                    <span>{sizeLarge}</span>
-                  </div>
-                  <div>
-                    <img
-                      alt="선택 삭제"
-                      src="https://www.freshcode.me/images/exit@2x.png"
-                    />
-                  </div>
-                </div>
+                {showModalMD === true ? (
+                  <SelectedMDModal isClickedMD={isClickedMD} />
+                ) : null}
 
-                <div className="selectedDetailInputWrap">
+                {showModalSize === true ? (
+                  <div className="selectedDetailTitle">
+                    <div>
+                      <span>{menuName[0].menuName}</span>
+                      <span> / </span>
+                      <span>{sizeLarge}</span>
+                    </div>
+                    <div>
+                      <img
+                        alt="선택 삭제"
+                        src="https://www.freshcode.me/images/exit@2x.png"
+                        onClick={isClickedSize}
+                      />
+                    </div>
+                  </div>
+                ) : null}
+
+                {/* <div className="selectedDetailInputWrap">
                   <nav className="formNumber">
                     <button>
                       <i className="fas fa-minus"></i>
@@ -126,7 +146,7 @@ function Details() {
                       <i className="fas fa-plus"></i>
                     </button>
                   </nav>
-                </div>
+                </div> */}
               </div>
             </div>
 
@@ -197,7 +217,7 @@ function SelectedSizeModal({ sizeLarge }) {
   );
 }
 
-function SelectedMDModal() {
+function SelectedMDModal({ isClickedMD }) {
   return (
     <div className="selectedDetailTitle">
       <div>
@@ -207,6 +227,7 @@ function SelectedMDModal() {
         <img
           alt="선택 삭제"
           src="https://www.freshcode.me/images/exit@2x.png"
+          onClick={isClickedMD}
         />
       </div>
     </div>
