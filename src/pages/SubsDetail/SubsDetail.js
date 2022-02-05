@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './SubsDetail.scss';
 
 function SubsDetail() {
@@ -6,37 +6,71 @@ function SubsDetail() {
     {
       id: 1,
       image:
-        'https://media.istockphoto.com/photos/picture-frame-isolated-on-white-picture-id182177931?b=1&k=20&m=182177931&s=170667a&w=0&h=5sBtit9b1_dKsZuyZFLxCX_0j8KuN2ZxpnkGgnbHOt4=',
-      name: 'blah',
+        'https://upload.wikimedia.org/wikipedia/commons/d/de/Windows_live_square.JPG',
+      name: '두툼한 스테이크 샐러드',
       price: '8990',
     },
     {
       id: 2,
       image:
         'https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3',
+      name: '랍스터 샐러드',
+      price: '8990',
     },
     {
       id: 3,
       image:
         'https://media-exp1.licdn.com/dms/image/C4E0BAQHikN6EXPd23Q/company-logo_200_200/0/1595359131127?e=2159024400&v=beta&t=S5MNjBDjiH433VCWzjPeiopNDhxGwmfcMk4Zf1P_m_s',
+      name: '대게 샐러드',
+      price: '8990',
     },
   ];
+
+  const [xValue, setXValue] = useState(0);
+
+  const goLeft = () => {
+    if (xValue < 0) {
+      setXValue(prev => prev + 486);
+    }
+  };
+
+  const goRight = () => {
+    if (xValue > -(486 * (imageLists.length - 1))) {
+      setXValue(prev => prev - 486);
+    }
+  };
+
+  useEffect(() => {
+    console.log('divider');
+    console.log(xValue);
+    console.log(imageLists.length);
+  });
 
   return (
     <div className="subsDetail">
       <section className="imgAndInfo">
         <section className="carousel">
-          <img
-            alt="salad"
-            src="https://images.squarespace-cdn.com/content/v1/57b346cf5016e16882adfc1a/1542871739671-RNO52NR5YVOFMURF08VR/salad-square.jpg"
-          />
-          <div className="imgNameAndPrice">
-            <div className="imgName">샐러드 이름</div>
-            <div className="imgPrice">샐러드... 가격</div>
+          <div
+            className="carouselContents"
+            style={{ transform: `translateX(${xValue}px)` }}
+          >
+            {imageLists.map(salads => {
+              return (
+                <div className="separateCarouselContents" key={salads.id}>
+                  <img alt="salad" src={salads.image} />
+                  <div className="imgNameAndPrice">
+                    <div className="imgName">{salads.name}</div>
+                    <div className="imgPrice">{salads.price}원</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
           <div className="carouselControls">
-            <i className="fas fa-angle-left" />
-            <i className="fas fa-angle-right" />
+            <div className="leftRightArrow">
+              <i className="fas fa-angle-left" onClick={goLeft} />
+              <i className="fas fa-angle-right" onClick={goRight} />
+            </div>
           </div>
         </section>
         <section className="information">

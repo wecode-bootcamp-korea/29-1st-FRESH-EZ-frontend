@@ -12,33 +12,53 @@
     max-width: 1200px;
     .carousel {
       width: 486px;
+      overflow: hidden;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
 
-      img {
-        width: 486px;
-        height: 486px;
-      }
-      .imgNameAndPrice {
-        margin: 8px 0 0 0;
-        color: #666;
-        font-size: 16px;
+      .carouselContents {
         display: flex;
-        justify-content: space-between;
+        flex-direction: row;
+        transition: all 0.3s ease;
+
+        .separateCarouselContents {
+          img {
+            width: 486px;
+            height: 486px;
+          }
+          .imgNameAndPrice {
+            height: 24px;
+            margin: -24px 0 0 0;
+            padding: 0 12px;
+            color: #fff;
+            background-color: rgba(33, 33, 33, 0.5);
+
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+          }
+        }
       }
+
       .carouselControls {
         width: 486px;
         height: 486px;
         padding: 18px;
         position: absolute;
-        display: flex;
-        justify-content: space-between;
-        background-color: rgba(33, 33, 103, 0.4);
 
-        .fas {
-          top: 50%;
-          font-size: 24px;
-          color: #fff;
+        .leftRightArrow {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid red;
+          align-items: center;
+
+          .fas {
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+          }
         }
       }
     }
