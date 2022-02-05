@@ -2,10 +2,30 @@ import React from 'react';
 import './SubsDetail.scss';
 
 function SubsDetail() {
+  const imageLists = [
+    {
+      id: 1,
+      image:
+        'https://media.istockphoto.com/photos/picture-frame-isolated-on-white-picture-id182177931?b=1&k=20&m=182177931&s=170667a&w=0&h=5sBtit9b1_dKsZuyZFLxCX_0j8KuN2ZxpnkGgnbHOt4=',
+      name: 'blah',
+      price: '8990',
+    },
+    {
+      id: 2,
+      image:
+        'https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3',
+    },
+    {
+      id: 3,
+      image:
+        'https://media-exp1.licdn.com/dms/image/C4E0BAQHikN6EXPd23Q/company-logo_200_200/0/1595359131127?e=2159024400&v=beta&t=S5MNjBDjiH433VCWzjPeiopNDhxGwmfcMk4Zf1P_m_s',
+    },
+  ];
+
   return (
     <div className="subsDetail">
       <section className="imgAndInfo">
-        <section className="img">
+        <section className="carousel">
           <img
             alt="salad"
             src="https://images.squarespace-cdn.com/content/v1/57b346cf5016e16882adfc1a/1542871739671-RNO52NR5YVOFMURF08VR/salad-square.jpg"
@@ -13,6 +33,10 @@ function SubsDetail() {
           <div className="imgNameAndPrice">
             <div className="imgName">샐러드 이름</div>
             <div className="imgPrice">샐러드... 가격</div>
+          </div>
+          <div className="carouselControls">
+            <i className="fas fa-angle-left" />
+            <i className="fas fa-angle-right" />
           </div>
         </section>
         <section className="information">
