@@ -53,16 +53,13 @@ function ProductList({ title, subnav, productData, children }) {
             </section>
           </header>
           <article className="productCardWrap">
-            {productData.map((input, idx) => (
+            {productData.map(input => (
               <ProductCard
-                key={idx}
-                image={input.image}
+                key={input.id}
+                image={input.image_url}
                 name={input.name}
                 price={input.price}
-                description={input.description}
-                score={input.score}
-                comments={input.review_count}
-                vegetarian="페스코베지테리언"
+                description={input.small_desc}
               />
             ))}
           </article>

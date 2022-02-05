@@ -1,15 +1,7 @@
 import React from 'react';
 import './ProductCard.scss';
 
-export default function ProductCard({
-  image,
-  name,
-  price,
-  description,
-  score,
-  comments,
-  vegetarian,
-}) {
+export default function ProductCard({ image, name, price, description }) {
   return (
     <section className="productCard">
       <figure className="imgWrapper">
@@ -22,14 +14,14 @@ export default function ProductCard({
         <div className="scoreComment">
           <div className="score">
             <i className="far fa-star" />
-            <div className="scoreNumber">{score}</div>
+            <div className="scoreNumber">4.8</div>
           </div>
           <div className="comment">
             <i className="far fa-comment-dots" />
-            <div className="commentNumber">{comments}</div>
+            <div className="commentNumber">1762</div>
           </div>
         </div>
-        <div className="vegeterianOptions">{vegetarian}</div>
+        <div className="vegeterianOptions">페스코베지테리언</div>
       </div>
     </section>
   );
