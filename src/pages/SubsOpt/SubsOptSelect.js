@@ -12,7 +12,7 @@ function SubsOptSelect(props) {
   } = props;
   const type = {
     radio: (
-      <>
+      <div className="radioBtn">
         <input
           type="radio"
           name={queryKey}
@@ -21,7 +21,7 @@ function SubsOptSelect(props) {
           onChange={selectHandler}
         />
         <label>{content}</label>
-      </>
+      </div>
     ),
 
     datepicker: (
@@ -34,6 +34,7 @@ function SubsOptSelect(props) {
     ),
     button: (
       <button
+        className="dietOptBtn"
         value={content}
         onClick={content === '네! 추천해주세요' ? moveToCart : moveToNext}
       >
