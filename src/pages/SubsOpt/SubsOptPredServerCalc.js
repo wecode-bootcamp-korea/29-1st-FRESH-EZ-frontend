@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SubsOptPred_serverCalc(props) {
+function SubsOptPredServerCalc(props) {
   const { predictedValue, queryKey, selectedValue, selectedData } = props;
 
   const checkSize = totalPrice =>
@@ -82,4 +82,4 @@ function SubsOptPred_serverCalc(props) {
     </div>
   );
 }
-export default SubsOptPred_serverCalc;
+export default SubsOptPredServerCalc;

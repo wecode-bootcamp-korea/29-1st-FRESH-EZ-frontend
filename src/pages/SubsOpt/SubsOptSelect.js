@@ -7,7 +7,7 @@ function SubsOptSelect(props) {
     content,
     selectHandler,
     selectedValue,
-    moveToBasket,
+    moveToCart,
     moveToNext,
   } = props;
   const type = {
@@ -35,7 +35,7 @@ function SubsOptSelect(props) {
     button: (
       <button
         value={content}
-        onClick={content === '네! 추천해주세요' ? moveToBasket : moveToNext}
+        onClick={content === '네! 추천해주세요' ? moveToCart : moveToNext}
       >
         {content}
       </button>

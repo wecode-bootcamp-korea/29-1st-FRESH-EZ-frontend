@@ -1,14 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 function SubsOptPred(props) {
-  const { prodCategory, queryKey, selectedValue, selectedData } = props;
-  useEffect(() => {
-    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
-      .then(res => res.json())
-      .then(res => {
-        window.localStorage.setItem('rec_price', res.price);
-      });
-  });
+  const { queryKey, selectedValue, selectedData } = props;
   const productPrices = window.localStorage
     .getItem('rec_price')
     .split(',')
