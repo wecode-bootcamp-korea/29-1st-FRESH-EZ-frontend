@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUp.scss';
 import Nav from '../../../src/components/Nav/Nav';
 
 const SignUp = () => {
+  const navigate = useNavigate('');
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
@@ -34,20 +36,42 @@ const SignUp = () => {
       .then(res => {
         if (res.MESSAGE === 'ERROR : EMAIL_DUPLICATE') {
           alert('가입 되어있는 이메일 입니다.');
+        } else {
+          alert('사용가능한 이메일 입니다.');
         }
       });
   };
 
-  fetch('208.82.62.99:8000', {
-    method: 'POST',
-    body: JSON.stringify({
-      email: email,
-      password: password,
-      name: name,
-      nickname: nickname,
-      phone: 'phone',
-    }),
-  });
+  const signUpCheck = () => {
+    fetch('208.82.62.99:8000', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        name: name,
+        nickname: nickname,
+        phone: 'phone',
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res.message === 'ERROR : INVALID_VALUE (email)') {
+            alert('이메일 입력 시 @와 .com이 필수로 포함되어야 합니다');
+          } else if (res.message === 'ERROR : INVALID_VALUE (password)') {
+            alert(
+              '비밀번호 입력 시 문자 8자 이상, 소문자, 대문자, 숫자, 특수기호 포함되어야 합니다'
+            );
+          } else {
+            navigate('/main');
+          }
+        }),
+    });
+  };
+
+  const year = () => {
+    for (let i = 1930; i < 2010; i++) {
+      <option>i</option>;
+    }
+  };
   return (
     <>
       <Nav />
@@ -154,6 +178,7 @@ const SignUp = () => {
               <div className="birthdayList">
                 <select>
                   <option>YYYY</option>
+                  {year}
                 </select>
                 <select>
                   <option>MM</option>
@@ -258,7 +283,15 @@ const SignUp = () => {
             {/* 맵돌려라.. */}
           </div>
 
-          <button className="signUpButton">가입하기</button>
+          <button
+            className={
+              emailVaildCheck && passwordVaildCheck ? 'signUpButton' : 'failure'
+            }
+            onClick={signUpCheck}
+            disabled={emailVaildCheck || passwordVaildCheck}
+          >
+            가입하기
+          </button>
         </div>
       </div>
     </>
