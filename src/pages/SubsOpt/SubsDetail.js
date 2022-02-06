@@ -23,7 +23,7 @@ function SubsDetail() {
     >
       <h3>SubsDetail page</h3>
       <button onClick={() => setModalState(true)}>구독하기</button>
-      <SubsOptServeCalc
+      <SubsOpt
         modalState={modalState}
         closeModal={() => setModalState(false)}
         testJWT={testJWT}

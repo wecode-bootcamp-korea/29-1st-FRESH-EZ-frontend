@@ -20,7 +20,7 @@ function SubsOptSelect(props) {
           checked={content === selectedValue}
           onChange={selectHandler}
         />
-        <label>{content}</label>
+        <label onClick={selectHandler}>{content}</label>
       </div>
     ),
 

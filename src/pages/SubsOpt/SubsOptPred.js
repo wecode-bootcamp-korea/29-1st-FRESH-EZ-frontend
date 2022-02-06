@@ -16,10 +16,10 @@ function SubsOptPred(props) {
   const add = (prev, curr) => prev + curr;
   const calcTotalPrice = productPrices => {
     if (totalCount % 5 === 0)
-      return productPrices.reduce(add) * (totalCount / 5);
+      return productPrices.reduce(add) * parseInt(totalCount / 5);
     else
       return (
-        productPrices.reduce(add) * (totalCount / 5) +
+        productPrices.reduce(add) * parseInt(totalCount / 5) +
         productPrices.slice(0, totalCount % 5).reduce(add)
       );
   };
