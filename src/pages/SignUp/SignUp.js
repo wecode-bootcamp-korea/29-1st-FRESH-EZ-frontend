@@ -6,13 +6,16 @@ const SignUp = () => {
   const [inputs, setInputs] = useState({
     email: '',
     password: '',
-    rePassword: '',
-    personalName: '',
+    name: '',
     nickname: '',
-    phoneNumber: '',
+    phone: '',
   });
-  const { email, password, rePassword, personalName, nickname, phoneNumber } =
-    inputs;
+  const { email, password, name, nickname, phone } = inputs;
+
+  const emailVaildCheck = email.includes('@') && email.includes('.com');
+  const passwordVaildCheck = password.search(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$'
+  );
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -20,6 +23,31 @@ const SignUp = () => {
     setInputs({ ...inputs, [name]: value });
   };
 
+  const emailDuplicateCheck = () => {
+    fetch('208.82.62.99:8000', {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.MESSAGE === 'ERROR : EMAIL_DUPLICATE') {
+          alert('가입 되어있는 이메일 입니다.');
+        }
+      });
+  };
+
+  fetch('208.82.62.99:8000', {
+    method: 'POST',
+    body: JSON.stringify({
+      email: email,
+      password: password,
+      name: name,
+      nickname: nickname,
+      phone: 'phone',
+    }),
+  });
   return (
     <>
       <Nav />
@@ -38,7 +66,7 @@ const SignUp = () => {
 
             <div className="accountId">
               <div>
-                <span className="afterElementAdd">이메일(아이디)</span>
+                <span className="necessary">이메일(아이디)</span>
               </div>
               <div>
                 <input
@@ -47,15 +75,14 @@ const SignUp = () => {
                   name="email"
                   value={email}
                   onChange={handleInput}
-                  onChange={handleInput}
                 />
-                <button>중복 확인</button>
+                <button onClick={emailDuplicateCheck}>중복 확인</button>
               </div>
             </div>
 
             <div className="accountPw">
               <div>
-                <span className="afterElementAdd">비밀번호</span>
+                <span className="necessary">비밀번호</span>
               </div>
               <input
                 type="password"
@@ -68,27 +95,27 @@ const SignUp = () => {
             </div>
             <div className="accountRePw">
               <div>
-                <span className="afterElementAdd">비밀번호 재확인</span>
+                <span className="necessary">비밀번호 재확인</span>
               </div>
               <input
                 type="password"
                 placeholder="비밀번호 재입력"
                 name="rePassword"
-                value={rePassword}
-                onChange={handleInput}
+                // value={rePassword}
+                // onChange={handleInput}
               />
             </div>
 
             <div className="userInfo">개인 정보</div>
             <div className="personalId">
               <div>
-                <span className="afterElementAdd">이름</span>
+                <span className="necessary">이름</span>
               </div>
               <input
                 type="text"
                 placeholder="이름 입력"
-                name="personalName"
-                value={personalName}
+                name="name"
+                value={name}
                 onChange={handleInput}
               />
             </div>
@@ -105,16 +132,16 @@ const SignUp = () => {
               />
             </div>
 
-            <div className="phoneNumber">
+            <div className="phone">
               <div>
-                <span className="afterElementAdd">휴대폰 번호</span>
+                <span className="necessary">휴대폰 번호</span>
               </div>
               <div>
                 <input
                   type="text"
                   placeholder="휴대폰 번호 입력(-제외)"
-                  name="phoneNumber"
-                  value={phoneNumber}
+                  name="phone"
+                  value={phone}
                   onChange={handleInput}
                 />
                 <button>인증 요청</button>
@@ -137,29 +164,47 @@ const SignUp = () => {
               </div>
             </div>
 
-            <span className="gender">성별</span>
+            <span className="sex">성별</span>
 
-            <div className="genderCheck">
+            <div className="sexCheck">
               <div className="femaleCheck">
-                <input type="radio" id="check1" name="gender" />
-                <label for="check1" />
+                <input
+                  type="radio"
+                  id="female"
+                  name="sex"
+                  // value={sex}
+                  // onClick={handleInput}
+                />
+                <label for="female" />
                 <div>여성</div>
               </div>
               <div className="maleCheck">
-                <input type="radio" id="check2" name="gender" />
-                <label for="check2" />
+                <input
+                  type="radio"
+                  id="male"
+                  name="sex"
+                  // value={sex}
+                  // onClick={handleInput}
+                />
+                <label for="male" />
                 <div>남성</div>
               </div>
               <div className="nobodyCheck">
-                <input type="radio" id="check3" name="gender" />
-                <label for="check3" />
+                <input
+                  type="radio"
+                  id="nobody"
+                  name="sex"
+                  // value={sex}
+                  // onClick={handleInput}
+                />
+                <label for="nobody" />
                 <div>선택 안 함</div>
               </div>
             </div>
           </div>
 
           <div className="allergy">
-            <span className="afterElementAdd">알러지 옵션</span>
+            <span className="necessary">알러지 옵션</span>
             <div>
               <input type="checkbox" id="allergyCheck1" />
               <label for="allergyCheck1" />

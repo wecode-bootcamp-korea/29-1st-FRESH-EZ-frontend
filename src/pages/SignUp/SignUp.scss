@@ -52,7 +52,7 @@
     margin-bottom: 20px;
   }
 
-  .afterElementAdd::after {
+  .necessary::after {
     content: '*';
     // display: inline-block;
     color: red;
@@ -140,7 +140,7 @@
       }
     }
   }
-  .phoneNumber {
+  .phone {
     margin-bottom: 35px;
     div {
       &:last-child input {
@@ -181,11 +181,11 @@
       cursor: pointer;
     }
   }
-  .gender {
+  .sex {
     display: inline-block;
     margin-bottom: 10px;
   }
-  .genderCheck {
+  .sexCheck {
     display: flex;
     margin-bottom: 35px;
     font-size: 20px;
@@ -210,7 +210,7 @@
           cursor: pointer;
         }
         &:checked + label {
-          background: url('../../../public/images/gendercheck.png') no-repeat
+          background: url('../../../public/images/sexcheck.png') no-repeat
             center/17px auto;
         }
       }
