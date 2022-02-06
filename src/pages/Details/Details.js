@@ -35,9 +35,7 @@ function Details() {
     fetch('http://208.82.62.99:8000/product/product-detail/19')
       .then(res => res.json())
       .then(res => {
-        // console.log(res);
         setMenuName(res);
-        // console.log(res);
       });
   }, []);
   console.log(menuName);
@@ -65,14 +63,15 @@ function Details() {
     <div className="menuDetails">
       <div className="menuBody">
         <div className="menuHeader">
-          <img alt="productImage" src={menuName.title_image_url} />
+          {/* <img alt="productImage" src={menuName.title_image_url} /> */}
 
-          {/* <picture> */}
-          {/* <source
+          <picture className="picture">
+            <img alt="productImage" src={menuName.title_image_url} />
+            {/* <source
               srcset="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
-              media="(min-width: 900px)"
+              media="(min-width: 300px)"
             /> */}
-          {/* </picture> */}
+          </picture>
 
           <div className="menuInfo">
             <div className="menuName">
