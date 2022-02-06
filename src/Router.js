@@ -14,13 +14,13 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
-        <Route path="/productAll" element={<ProductAll />} />
-        <Route path="/productSalad" element={<ProductSalad />} />
-        <Route path="/productSandwich" element={<ProductSandwich />} />
-        <Route path="/productBento" element={<ProductBento />} />
-        <Route path="/productSoup" element={<ProductSoup />} />
-        <Route path="/productSnack" element={<ProductSnack />} />
-        <Route path="/productDrink" element={<ProductDrink />} />
+        <Route path="/products/all" element={<ProductAll />} />
+        <Route path="/products/salad" element={<ProductSalad />} />
+        <Route path="/products/sandwich" element={<ProductSandwich />} />
+        <Route path="/products/bento" element={<ProductBento />} />
+        <Route path="/products/soup" element={<ProductSoup />} />
+        <Route path="/products/snack" element={<ProductSnack />} />
+        <Route path="/products/drink" element={<ProductDrink />} />
       </Routes>
     </BrowserRouter>
   );

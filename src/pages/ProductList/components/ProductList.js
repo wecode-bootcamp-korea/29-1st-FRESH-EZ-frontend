@@ -56,7 +56,7 @@ function ProductList({ title, subnav, productData, children }) {
             {productData.map(input => (
               <ProductCard
                 key={input.id}
-                image={input.image_url}
+                image={input.product_image}
                 name={input.name}
                 price={input.price}
                 description={input.small_desc}

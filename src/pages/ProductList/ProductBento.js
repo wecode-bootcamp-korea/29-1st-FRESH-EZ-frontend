@@ -48,7 +48,7 @@ export default function ProductAll() {
   //request body: filter_off드리면 됨... filter_on(로그인)
   //로그인을 했는지 안했는지 확인하는 방법. -> 토큰이 있는지 없는지 확인하면 될 것 같은데...
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/menu/3', {
+    fetch('http://208.82.62.99:8000/product/menu/3', {
       method: 'post',
     })
       .then(res => res.json())
