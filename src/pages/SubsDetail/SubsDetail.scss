@@ -20,6 +20,8 @@
         display: flex;
         flex-direction: row;
         transition: all 0.3s ease;
+        width: 486px;
+        height: 486px;
 
         .separateCarouselContents {
           img {
@@ -27,37 +29,41 @@
             height: 486px;
           }
           .imgNameAndPrice {
-            height: 24px;
-            margin: -24px 0 0 0;
+            position: relative;
+            top: -40px;
+            height: 36px;
             padding: 0 12px;
             color: #fff;
             background-color: rgba(33, 33, 33, 0.5);
-
-            font-size: 16px;
+            font-size: $body;
             display: flex;
+            align-items: center;
             justify-content: space-between;
-            z-index: 2;
           }
         }
       }
 
       .carouselControls {
         width: 486px;
-        height: 486px;
-        padding: 18px;
+        padding: 0 18px;
         position: absolute;
+        top: calc(50% - 44px);
 
         .leftRightArrow {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border: 1px solid red;
           align-items: center;
 
           .fas {
             font-size: 24px;
             color: #fff;
             cursor: pointer;
+            opacity: 0.5;
+
+            &:hover {
+              opacity: 1;
+            }
           }
         }
       }
@@ -127,8 +133,11 @@
     top: 52px;
     display: flex;
     justify-content: flex-start;
+    background-color: #fff;
+    padding: 20px 0 0 0;
     margin: 0 0 30px 0;
     z-index: 1;
+
     button {
       border-radius: 0px;
       width: 198px;
@@ -175,7 +184,7 @@
         padding: 20px 16px;
         display: flex;
         position: sticky;
-        top: 144px;
+        top: 164px;
 
         flex-direction: column;
 

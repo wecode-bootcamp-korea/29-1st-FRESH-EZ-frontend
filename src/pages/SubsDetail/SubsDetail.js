@@ -59,8 +59,8 @@ function SubsDetail() {
                 <div className="separateCarouselContents" key={salads.id}>
                   <img alt="salad" src={salads.image} />
                   <div className="imgNameAndPrice">
-                    <div className="imgName">{salads.name}</div>
-                    <div className="imgPrice">{salads.price}원</div>
+                    <div>{salads.name}</div>
+                    <div>{salads.price}원</div>
                   </div>
                 </div>
               );
