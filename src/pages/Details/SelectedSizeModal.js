@@ -1,10 +1,10 @@
 import React from 'react';
 
-function SelectedSizeModal({ sizeLarge }) {
+function SelectedSizeModal({ sizeLarge, menu, isClickedSize }) {
   return (
     <div className="selectedDetailTitle">
       <div>
-        <span>프렌치 발사믹 훈제연어 샐러드</span>
+        <span>{menu}</span>
         <span> / </span>
         <span>{sizeLarge}</span>
       </div>
@@ -12,6 +12,7 @@ function SelectedSizeModal({ sizeLarge }) {
         <img
           alt="선택 삭제"
           src="https://www.freshcode.me/images/exit@2x.png"
+          onClick={isClickedSize}
         />
       </div>
     </div>

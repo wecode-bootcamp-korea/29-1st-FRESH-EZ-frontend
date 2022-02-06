@@ -113,19 +113,20 @@
                 .checkboxAndOption {
                   @include flex-center;
                   justify-content: flex-start;
-                  // input {
-                  //  &:checked {
-                  //   color:green;}}
-                }
-              }
 
-              .optionCheckbox {
-                width: 20px;
-                height: 20px;
-                border-radius: 2px;
-                border: 1px solid #ddd;
-                background-color: #fff;
-                margin-right: 8px;
+                  input[type='checkbox'] {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 2px;
+                    border: 1px solid #ddd;
+                    background-color: #fff;
+                    margin-right: 8px;
+
+                    &:checked {
+                      background-color: $theme-green;
+                    }
+                  }
+                }
               }
             }
           }

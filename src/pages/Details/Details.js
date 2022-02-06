@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
+
 import SelectedSizeModal from './SelectedSizeModal';
 import SelectedMDModal from './SelectedMDModal';
 import AdditionalOptionList from './AdditionalOptionList';
@@ -7,14 +8,16 @@ import RecommendWrap from './RecommendWrap';
 import './Details.scss';
 
 function Details() {
-  const [menuName, setMenuName] = useState([
-    {
-      id: 1,
-      menuName: '프렌치 발사믹 훈제연어 샐러드',
-      content: '부드러운 훈제연어에 트러플오일과 프렌지 발사믹의 깊은 풍미',
-      price: '8900',
-    },
-  ]);
+  const [menuName, setMenuName] = useState({
+    id: 1,
+    name: '프렌치 발사믹 훈제연어 샐러드',
+    small_desc: '부드러운 훈제연어에 트러플오일과 프렌지 발사믹의 깊은 풍미',
+    price: '8900',
+    desc: '긴 설명',
+    category: '카테고리',
+    allergy: '알러지',
+    title_image_url: '사진',
+  });
 
   const [recommendProducts, setRecommendProducts] = useState([]);
 
@@ -29,6 +32,18 @@ function Details() {
   };
 
   useEffect(() => {
+    fetch('http://208.82.62.99:8000/product/product-detail/19')
+      .then(res => res.json())
+      .then(res => {
+        // console.log(res);
+        setMenuName(res);
+        // console.log(res);
+      });
+  }, []);
+  console.log(menuName);
+
+  useEffect(() => {
+    // 목데이터
     fetch('data/recommendData.json', { method: 'GET' })
       .then(res => res.json())
       .then(res => {
@@ -36,9 +51,12 @@ function Details() {
       });
   }, []);
 
+  const menu = menuName.name;
+  console.log('menu', menu);
+
   const sizeMedium = '미디움 (M)';
   const sizeLarge = '라지 (L)';
-  const totalPrice = menuName[0].price;
+  // const totalPrice = menuName.price;
   const sizeUpCost = 1500;
   // 가격들 array에 담고 값들을 숫자로 변환한뒤 총합을 구하는것도 방법
   // 아니면 백틱 사용
@@ -47,10 +65,7 @@ function Details() {
     <div className="menuDetails">
       <div className="menuBody">
         <div className="menuHeader">
-          <img
-            alt="productImage"
-            src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
-          />
+          <img alt="productImage" src={menuName.title_image_url} />
 
           {/* <picture> */}
           {/* <source
@@ -61,18 +76,19 @@ function Details() {
 
           <div className="menuInfo">
             <div className="menuName">
-              <h2>{menuName[0].menuName}</h2>
-              <p>{menuName[0].content}</p>
-              <p className="price">{menuName[0].price}원</p>
+              <h2>{menuName.name}</h2>
+              <p>{menuName.small_desc}</p>
+              <p className="price">{menuName.price}원</p>
             </div>
 
             <div className="productExplanation">
               <h3>상품설명</h3>
               <div>
                 <p>
-                  은은한 연어의 훈연향에 트러플 오일과 프렌치발사믹 드레싱의
+                  {menuName.desc}
+                  {/* 은은한 연어의 훈연향에 트러플 오일과 프렌치발사믹 드레싱의
                   풍미를 더해 고급스럽게 즐길 수 있는 샐러드예요. 통밀빵으로
-                  포만감까지 더했답니다.
+                  포만감까지 더했답니다. */}
                 </p>
                 <ul>
                   <li>
@@ -116,7 +132,13 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                <SelectedSizeModal isClickedSize={isClickedSize} />
+                {showModalSize === true ? (
+                  <SelectedSizeModal
+                    isClickedSize={isClickedSize}
+                    menu={menu}
+                    sizeLarge={sizeLarge}
+                  />
+                ) : null}
 
                 {showModalMD === true ? (
                   <SelectedMDModal isClickedMD={isClickedMD} />
@@ -125,7 +147,7 @@ function Details() {
                 {showModalSize === true ? (
                   <div className="selectedDetailTitle">
                     <div>
-                      <span>{menuName[0].menuName}</span>
+                      <span>{menuName.name}</span>
                       <span> / </span>
                       <span>{sizeMedium}</span>
                     </div>
@@ -142,7 +164,7 @@ function Details() {
                 {showModalSize === true ? (
                   <div className="selectedDetailTitle">
                     <div>
-                      <span>{menuName[0].menuName}</span>
+                      <span>{menuName.name}</span>
                       <span> / </span>
                       <span>{sizeLarge}</span>
                     </div>
@@ -173,7 +195,7 @@ function Details() {
             <div className="productPrice">
               <p>상품 금액</p>
               <p>
-                <span>{`${+totalPrice + 1500 + 3000}`}</span>
+                <span>{`${menuName.price + 1500 + 3000}`}</span>
                 <span>원</span>
               </p>
             </div>
