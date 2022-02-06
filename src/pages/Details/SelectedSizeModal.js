@@ -1,6 +1,7 @@
 import React from 'react';
 
-function SelectedSizeModal({ sizeLarge, menu, isClickedSize }) {
+function SelectedSizeModal(props) {
+  const { sizeLarge, menu, isClickedSize } = props;
   return (
     <div className="selectedDetailTitle">
       <div>
