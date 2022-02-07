@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignUp.scss';
 import Nav from '../../../src/components/Nav/Nav';
+import './SignUp.scss';
 
 const SignUp = () => {
   const navigate = useNavigate('');
@@ -15,9 +15,10 @@ const SignUp = () => {
   const { email, password, name, nickname, phone } = inputs;
 
   const emailVaildCheck = email.includes('@') && email.includes('.com');
-  const passwordVaildCheck = password.search(
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@$!%*?&])[A-Za-zd@$!%*?&]{8,}$'
-  );
+  const passwordVaildCheck =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  passwordVaildCheck.test(password);
 
   const handleInput = e => {
     const { name, value } = e.target;

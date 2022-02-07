@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './PreSignUp.scss';
 import Nav from '../../components/Nav/Nav';
+import './PreSignUp.scss';
 
 function PreSignUp() {
   return (
@@ -49,7 +49,6 @@ function PreSignUp() {
 
           {/* 이거 내용이 다 안들어가서 width값을 다 바꿔야 했는데
         그러지않고 쓸 수 있는 더 좋은 방법을 생각하자 */}
-          {/* 공통 scss border-gray #c9cacc 이걸로 바꿔야함 */}
         </div>
       </div>
     </>
