@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
 
-import SelectedSizeModal from './SelectedSizeModal';
+import Large from './Large';
+import Medium from './Medium';
 import SelectedMDModal from './SelectedMDModal';
 import AdditionalOptionList from './AdditionalOptionList';
 import RecommendWrap from './RecommendWrap';
@@ -21,12 +22,26 @@ function Details() {
 
   const [recommendProducts, setRecommendProducts] = useState([]);
 
-  const [showModalSize, setShowModalSize] = useState(false);
+  // const [showModalSize, setShowModalSize] = useState(false);
+  //  const [selectedSize, setSelectedSize] = useState(0);
+  // const sizeHandler = id => {
+  //   setSelectedSize(id);
+  // };
+  const [showMedium, setShowMedium] = useState(false);
+  const [showLarge, setShowLarge] = useState(false);
+
   const [showModalMD, setShowModalMD] = useState(true);
 
-  const isClickedSize = () => {
-    setShowModalSize(!showModalSize);
+  // const isClickedSize = () => {
+  //   setShowModalSize(!showModalSize);
+  // };
+  const isClickedMedium = () => {
+    setShowMedium(!showMedium);
   };
+  const isClickedLarge = () => {
+    setShowLarge(!showLarge);
+  };
+
   const isClickedMD = () => {
     setShowModalMD(!showModalMD);
   };
@@ -56,8 +71,6 @@ function Details() {
   const sizeLarge = '라지 (L)';
   // const totalPrice = menuName.price;
   const sizeUpCost = 1500;
-  // 가격들 array에 담고 값들을 숫자로 변환한뒤 총합을 구하는것도 방법
-  // 아니면 백틱 사용
 
   return (
     <div className="menuDetails">
@@ -104,10 +117,10 @@ function Details() {
                 <h3>상품선택</h3>
                 <details>
                   <summary>사이즈 선택 (필수)</summary>
-                  <div className="medium" onClick={isClickedSize}>
+                  <div className="medium" onClick={isClickedMedium}>
                     {sizeMedium}
                   </div>
-                  <div className="large" onClick={isClickedSize}>
+                  <div className="large" onClick={isClickedLarge}>
                     {sizeLarge}
                   </div>
                 </details>
@@ -131,9 +144,18 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                {showModalSize === true ? (
-                  <SelectedSizeModal
-                    isClickedSize={isClickedSize}
+                {/* {SIZE_OBJ[selectedSize]} */}
+                {showMedium === true ? (
+                  <Medium
+                    isClickedMedium={isClickedMedium}
+                    menu={menu}
+                    sizeMedium={sizeMedium}
+                  />
+                ) : null}
+
+                {showLarge === true ? (
+                  <Large
+                    isClickedLarge={isClickedLarge}
                     menu={menu}
                     sizeLarge={sizeLarge}
                   />
@@ -141,40 +163,6 @@ function Details() {
 
                 {showModalMD === true ? (
                   <SelectedMDModal isClickedMD={isClickedMD} />
-                ) : null}
-
-                {showModalSize === true ? (
-                  <div className="selectedDetailTitle">
-                    <div>
-                      <span>{menuName.name}</span>
-                      <span> / </span>
-                      <span>{sizeMedium}</span>
-                    </div>
-                    <div>
-                      <img
-                        alt="선택 삭제"
-                        src="https://www.freshcode.me/images/exit@2x.png"
-                        onClick={isClickedSize}
-                      />
-                    </div>
-                  </div>
-                ) : null}
-
-                {showModalSize === true ? (
-                  <div className="selectedDetailTitle">
-                    <div>
-                      <span>{menuName.name}</span>
-                      <span> / </span>
-                      <span>{sizeLarge}</span>
-                    </div>
-                    <div>
-                      <img
-                        alt="선택 삭제"
-                        src="https://www.freshcode.me/images/exit@2x.png"
-                        onClick={isClickedSize}
-                      />
-                    </div>
-                  </div>
                 ) : null}
 
                 {/* <div className="selectedDetailInputWrap">
@@ -239,3 +227,8 @@ function Details() {
 }
 
 export default Details;
+
+const SIZE_OBJ = {
+  0: <Medium />,
+  1: <Large />,
+};
