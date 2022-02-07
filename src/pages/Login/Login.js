@@ -11,16 +11,8 @@ function Login() {
     password: '',
   });
   const { email, password } = inputs;
-  const checkValidation = email.includes('@') && password.length > 3;
-  // const email = inputs.email;
-  // const password = inputs.password;
-  // const [isActive, setIsActive] = useState(false);
-
-  // const goToMain = () => {
-  //   checkValidation
-  //     ? navigate('/main')
-  //     : alert('제대로 입력되지 않았습니다. 다시 시도해주세요');
-  // };
+  const checkValidation =
+    email.includes('@') && email.includes('.') && password.length > 8;
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -42,12 +34,8 @@ function Login() {
         } else {
           alert('다시 입력해주세요:)');
         }
-        // console.log('결과 : ', res.message, res.jwt);
       });
   }
-  // const isPassedLogin = () => {
-  //   checkValidation ? setIsActive(true) : setIsActive(false);
-  // };
 
   return (
     <>
@@ -103,15 +91,13 @@ function Login() {
             <span>자동로그인</span>
           </div>
 
-          {/* 체크 했을 때, 안했을때 css변화, usestate 적용 */}
           <button
             onClick={signIn}
-            className={checkValidation ? 'active' : 'unActive'}
+            className={checkValidation ? 'active' : 'sunActive'}
             disabled={email === '' || password === '' ? true : false}
           >
             로그인
           </button>
-          {/* 입력된 정보에 따라서 활성화,비활성화 css, useState 적용 */}
 
           <button className="appleConnect">
             <i className="fab fa-apple" />
