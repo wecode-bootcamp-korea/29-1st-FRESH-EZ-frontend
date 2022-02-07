@@ -11,8 +11,12 @@ function Login() {
     password: '',
   });
   const { email, password } = inputs;
-  const checkValidation =
-    email.includes('@') && email.includes('.') && password.length > 8;
+
+  const checkValidation = email.includes('@') && email.includes('.com');
+  const passwordVaildCheck =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  // /꼭 써줘야함
+  const allVaildCheck = checkValidation && passwordVaildCheck.test(password);
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -93,7 +97,7 @@ function Login() {
 
           <button
             onClick={signIn}
-            className={checkValidation ? 'active' : 'sunActive'}
+            className={allVaildCheck ? 'active' : 'unActive'}
             disabled={email === '' || password === '' ? true : false}
           >
             로그인
