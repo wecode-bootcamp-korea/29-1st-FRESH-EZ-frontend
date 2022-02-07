@@ -1,17 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
   return (
     <div className="nav">
       <div className="navFirstLine">
-        <img
-          className="navFirstLeft"
-          src="/images/Logo.png"
-          alt="잠시만 기다려주세요"
-        />
-        {/* 이게 누르면 메인페이지 가게끔 링크 걸기 */}
+        <Link to="/main">
+          <img
+            className="navFirstLeft"
+            src="/images/Logo.png"
+            alt="잠시만 기다려주세요"
+          />
+        </Link>
+
         <ul className="navFirstLineRight">
           <li className="signUpBtn">
             <NavLink className="themeColor" to="/">
