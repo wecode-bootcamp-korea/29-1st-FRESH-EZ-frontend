@@ -26,7 +26,7 @@ const SignUp = () => {
   };
 
   const emailDuplicateCheck = () => {
-    fetch('208.82.62.99:8000', {
+    fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
       body: JSON.stringify({
         email: email,
@@ -34,7 +34,7 @@ const SignUp = () => {
     })
       .then(res => res.json())
       .then(res => {
-        if (res.MESSAGE === 'ERROR : EMAIL_DUPLICATE') {
+        if (res.message === 'ERROR : EMAIL_DUPLICATE') {
           alert('가입 되어있는 이메일 입니다.');
         } else {
           alert('사용가능한 이메일 입니다.');
