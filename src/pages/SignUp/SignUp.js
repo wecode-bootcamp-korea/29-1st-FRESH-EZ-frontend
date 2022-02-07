@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Nav from '../../../src/components/Nav/Nav';
 import './SignUp.scss';
 
+// presignup page scss가 망가졌는데 머지하면 괜찮지 않을까해서 안고쳤는데 어떻게 생각하시는지..?
+
 const SignUp = () => {
   const navigate = useNavigate('');
   const [inputs, setInputs] = useState({
@@ -12,6 +14,19 @@ const SignUp = () => {
     nickname: '',
     phone: '',
   });
+  const [rePwCheck, setRePwCheck] = useState('');
+  const handleInput2 = e => {
+    setRePwCheck(e.target.value);
+  };
+  // 위아래 함수 합쳐서 온체인지 하나에만 넣거나 온블러 하나에만 넣거나 하면 입력자체가 안됨
+  // 따로 분리해서 해야함
+
+  const checkError = () => {
+    if (password !== rePwCheck) {
+      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+    }
+  };
+
   const { email, password, name, nickname, phone } = inputs;
 
   const emailVaildCheck = email.includes('@') && email.includes('.com');
@@ -68,11 +83,6 @@ const SignUp = () => {
     });
   };
 
-  const year = () => {
-    for (let i = 1930; i < 2010; i++) {
-      <option>i</option>;
-    }
-  };
   return (
     <>
       <Nav />
@@ -118,6 +128,7 @@ const SignUp = () => {
                 onChange={handleInput}
               />
             </div>
+
             <div className="accountRePw">
               <div>
                 <span className="necessary">비밀번호 재확인</span>
@@ -125,9 +136,10 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="비밀번호 재입력"
-                name="rePassword"
-                // value={rePassword}
-                // onChange={handleInput}
+                value={rePwCheck}
+                onChange={handleInput2}
+                onBlur={checkError}
+                // 새로배움
               />
             </div>
 
@@ -179,7 +191,6 @@ const SignUp = () => {
               <div className="birthdayList">
                 <select>
                   <option>YYYY</option>
-                  {year}
                 </select>
                 <select>
                   <option>MM</option>
