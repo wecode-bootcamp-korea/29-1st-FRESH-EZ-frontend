@@ -39,14 +39,12 @@ function Main() {
   return (
     <div className="main">
       <Nav />
-
+      <i className="fas fa-angle-left" onClick={goLeft} />
+      <i className="fas fa-angle-right" onClick={goRight} />
       <div
         className="container"
         style={{ transform: `translatex(${xValue}px)` }}
       >
-        <i className="fas fa-angle-left" onClick={goLeft} />
-        <i className="fas fa-angle-right" onClick={goRight} />
-
         {imageLists.map(img => {
           return (
             <div className="img" key={img}>

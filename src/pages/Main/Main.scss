@@ -16,17 +16,22 @@
       bottom: 130px;
       left: 153px;
       font-size: 40px;
-      color: white;
-      opacity: 0.5;
+      color: #fff;
+      opacity: 0.3;
+      &:hover {
+        opacity: 0.5;
+      }
     }
     .fa-angle-right {
-      // 왜 라스트 차일드는 안먹지..?
       font-size: 40px;
       color: white;
-      opacity: 0.5;
       position: absolute;
       bottom: 130px;
       left: 1260px;
+      opacity: 0.3;
+      &:hover {
+        opacity: 0.5;
+      }
     }
 
     div {
@@ -38,38 +43,3 @@
     }
   }
 }
-
-// .leftBtn {
-//       &::after {
-//         content: '<';
-//         font-size: 30px;
-//         color: white;
-//       }
-//       position: absolute;
-//       bottom: 130px;
-//       left: 153px;
-//       background-color: black;
-//       opacity: 0.1;
-//       width: 50px;
-//       height: 50px;
-//       border-radius: 100%;
-//       border: 0;
-//     }
-//     .rightBtn {
-//       &::after {
-//         content: '>';
-//         font-size: 30px;
-//         color: white;
-//       }
-//       position: absolute;
-//       bottom: 130px;
-//       left: 1188px;
-//       background-color: blue;
-//       width: 50px;
-//       height: 50px;
-//       border-radius: 100%;
-//       background-color: black;
-//       opacity: 0.1;
-//       border: 0;
-//     }
-//   }
