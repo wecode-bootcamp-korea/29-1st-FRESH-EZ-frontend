@@ -30,10 +30,12 @@ const SignUp = () => {
     fetch('http://208.82.62.99:8000/user/allergy')
       .then(res => res.json())
       .then(res => {
-        const allegyList = res.allergies_list;
+        const allergyList = res.allergies_list;
       });
   });
   // get일때는 주소만 적으면 됌
+
+  const allergyArr = ...allergyList;
 
   const [rePwCheck, setRePwCheck] = useState('');
   const handleInput2 = e => {
