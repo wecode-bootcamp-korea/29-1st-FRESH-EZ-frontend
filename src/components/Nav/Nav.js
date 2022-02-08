@@ -78,35 +78,46 @@ const Nav = () => {
           </ul>
         </div>
       </div>
+      <div className="menuContainer">
+        <ul className="menuFirstList">
+          <li>정기구독</li>
+          <li>단품구매</li>
+        </ul>
+        <ul className="menuFirstOfFirst">
+          <li>
+            <Link to="/">샐러드</Link>
+          </li>
+          <li>
+            <Link to="/">샌드위치</Link>
+          </li>
+          <li>
+            <Link to="/">도시락</Link>
+          </li>
+        </ul>
+
+        <ul className="menuFirstOfSecond">
+          <li>
+            <Link to="/">샐러드</Link>
+          </li>
+          <li>
+            <Link to="/">샌드위치 · 랩</Link>
+          </li>
+          <li>
+            <Link to="/">도시락 · 간편식</Link>
+          </li>
+          <li>
+            <Link to="/">죽 · 스프</Link>
+          </li>
+          <li>
+            <Link to="/">간식</Link>
+          </li>
+          <li>
+            <Link to="/">음료</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
 
-/* {<ul className="menuFirstList">
-              <li>정기구독</li>
-              <li>단품구매</li>
-            </ul>
-            <ul className="menuSecondList">
-              <li>
-                <Link to="/" activeClassName="active">
-                  샐러드
-                </Li>
-              </li>
-              <li>
-                <NavLink to="/">샌드위치 · 랩</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">도시락 · 간편식</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">죽 · 스프</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">간식</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">음료</NavLink>
-              </li>
-            </ul> */
-// }
 export default Nav;

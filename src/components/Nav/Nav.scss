@@ -128,4 +128,83 @@
       text-decoration: none;
     }
   }
+  .menuContainer {
+    display: flex;
+
+    .menuFirstList {
+      width: 160px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid $border-gray;
+      // 이건 지워도 됨
+
+      li {
+        color: black;
+        &:first-child {
+          padding: 25px 15px 15px 15px;
+          // background-color: #dff9ec;
+          // 이건 호버했을 떄 변할 값
+        }
+        &:last-child {
+          padding: 25px 15px 15px 15px;
+          // background-color: #dff9ec;
+          // 이건 호버했을 떄 변할 값
+        }
+      }
+    }
+    .menuFirstOfFirst {
+      width: 160px;
+      height: 300px;
+      background-color: #dff9ec;
+
+      a {
+        text-decoration: none;
+        color: black;
+        // color: #27b06e;
+        // 데코레이션 뺴고 컬러 바꾸면 됨. 호버 적용할때 값
+      }
+      li {
+        &:nth-child(1) {
+          padding: 25px 15px 15px 15px;
+        }
+        &:nth-child(2) {
+          padding: 15px;
+        }
+        &:nth-child(3) {
+          padding: 15px;
+        }
+      }
+    }
+    .menuFirstOfSecond {
+      width: 160px;
+      height: 300px;
+      background-color: #dff9ec;
+
+      a {
+        text-decoration: none;
+        color: black;
+        // color: #27b06e;
+      }
+      li {
+        &:nth-child(1) {
+          padding: 25px 15px 15px 15px;
+        }
+        &:nth-child(2) {
+          padding: 15px;
+        }
+        &:nth-child(3) {
+          padding: 15px;
+        }
+        &:nth-child(4) {
+          padding: 15px;
+        }
+        &:nth-child(5) {
+          padding: 15px;
+        }
+        &:nth-child(6) {
+          padding: 15px;
+        }
+      }
+    }
+  }
 }
