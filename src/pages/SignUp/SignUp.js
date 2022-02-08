@@ -16,14 +16,25 @@ const SignUp = () => {
     year: '',
     month: '',
     day: '',
+    sex: '',
   });
 
-  const submit = () => {
-    fetch('', {
-      email: inputs.email,
-      birthday: `${inputs.year}-${inputs.month}-${inputs.day}`,
-    });
-  };
+  // const submit = () => {
+  //   fetch('', {
+  //     email: inputs.email,
+  //     birthday: `${inputs.year}-${inputs.month}-${inputs.day}`,
+  //   });
+  // };
+
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/user/allergy')
+      .then(res => res.json())
+      .then(res => {
+        const allegyList = res.allergies_list;
+      });
+  });
+  // get일때는 주소만 적으면 됌
+
   const [rePwCheck, setRePwCheck] = useState('');
   const handleInput2 = e => {
     setRePwCheck(e.target.value);
@@ -37,7 +48,7 @@ const SignUp = () => {
     }
   };
 
-  const { email, password, name, nickname, phone } = inputs;
+  const { email, password, name, nickname, phone, sex } = inputs;
 
   const emailVaildCheck = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
@@ -68,6 +79,7 @@ const SignUp = () => {
 
   const handleInput = e => {
     const { name, value } = e.target;
+    console.log(value);
 
     setInputs({ ...inputs, [name]: value });
   };
@@ -220,7 +232,7 @@ const SignUp = () => {
                 <span>생년월일</span>
               </div>
               <div className="birthdayList">
-                <select>
+                <select name="year" onChange={handleInput}>
                   <option>YYYY</option>
                   {yearDataArr.map(year => (
                     <option key={year} value={year}>
@@ -228,7 +240,7 @@ const SignUp = () => {
                     </option>
                   ))}
                 </select>
-                <select>
+                <select name="month" onChange={handleInput}>
                   <option>MM</option>
                   {monthArr.map(month => (
                     <option key={month} value={month}>
@@ -236,7 +248,7 @@ const SignUp = () => {
                     </option>
                   ))}
                 </select>
-                <select>
+                <select name="day" onChange={handleInput}>
                   <option>DD</option>
                   {dayDataArr.map(day => (
                     <option key={day} value={day}>
@@ -254,7 +266,10 @@ const SignUp = () => {
                 <input
                   type="radio"
                   id="female"
+                  value="female"
                   name="sex"
+                  onClick={handleInput}
+
                   // value={sex}
                   // onClick={handleInput}
                 />
@@ -266,22 +281,17 @@ const SignUp = () => {
                   type="radio"
                   id="male"
                   name="sex"
+                  value="male"
+                  // 다른것처럼 중괄호 넣어서 했는데 안됐음 근데 따옴표 넣으니까 됐음
+                  // 추측하건데 변하지 않는 값이니까 스트링으로 해줘서 되었던 건지 궁금
+                  onClick={handleInput}
+                  // onclick, onChange 둘 다 가능인데 왜?
+                  // 둘 다 가능하다면 뭘 쓰는게 더 맞는 건지
                   // value={sex}
                   // onClick={handleInput}
                 />
                 <label for="male" />
                 <div>남성</div>
-              </div>
-              <div className="nobodyCheck">
-                <input
-                  type="radio"
-                  id="nobody"
-                  name="sex"
-                  // value={sex}
-                  // onClick={handleInput}
-                />
-                <label for="nobody" />
-                <div>선택 안 함</div>
               </div>
             </div>
           </div>
