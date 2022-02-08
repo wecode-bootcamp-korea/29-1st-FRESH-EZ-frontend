@@ -1,7 +1,8 @@
+import { react } from '@babel/types';
 import React from 'react';
 
 function SubsOptPred(props) {
-  const { queryKey, selectedValue, selectedData } = props;
+  const { prodCategory, queryKey, selectedValue, selectedData } = props;
   const productPrices = window.localStorage
     .getItem('rec_price')
     .split(',')
@@ -31,7 +32,7 @@ function SubsOptPred(props) {
     date.setDate(date.getDate() + 7 * /\d/.exec(selectedData.food_period));
     return (
       <div className="subsOptPred">
-        구독 만료 예정일
+        <span>구독 만료 예정일</span>
         <p>
           {date.toLocaleDateString('ko-kr', {
             year: 'numeric',
@@ -55,43 +56,42 @@ function SubsOptPred(props) {
       </div>
     );
   }
+
+  const categoryName = {
+    1: ' 샐러드',
+    2: ' 샌드위치',
+    3: ' 도시락',
+    4: ' 반반메뉴',
+  };
+
+  const predictionDesc = [
+    { id: 'size', text1: ' ', text2: ' 사이즈,' },
+    { id: 'food_day_count', text1: ' 하루 ', text2: ',' },
+    { id: 'food_week_count', text1: ' ', text2: ',' },
+    { id: 'food_period', text1: ' ', text2: ' 동안' },
+  ];
+
   return (
     <div className="subsOptPred">
-      <div className="subsOptSize">
-        <span>추천식단 샐러드</span>
-        <span className={queryKey === 'size' ? 'emphasize' : 'normal'}>
-          {' '}
-          {queryKey === 'size' ? selectedValue : selectedData.size}{' '}
-        </span>
-        <span>사이즈</span>
-      </div>
-      <div className="subsOptPeriod">
-        <span
-          className={queryKey === 'food_day_count' ? 'emphasize' : 'normal'}
-        >
-          {' '}
-          하루{' '}
-          {queryKey === 'food_day_count'
-            ? selectedValue
-            : selectedData.food_day_count}
-          ,
-        </span>
-        <span
-          className={queryKey === 'food_week_count' ? 'emphasize' : 'normal'}
-        >
-          {' '}
-          {queryKey === 'food_week_count'
-            ? selectedValue
-            : selectedData.food_week_count}
-          ,
-        </span>
-        <span className={queryKey === 'food_period' ? 'emphasize' : 'normal'}>
-          {' '}
-          {queryKey === 'food_period'
-            ? selectedValue
-            : selectedData.food_period}{' '}
-          간
-        </span>
+      <div className="subsPredictionDesc">
+        <span>추천식단</span>
+        <span>{categoryName[prodCategory]}</span>
+        {(prodCategory === '1'
+          ? predictionDesc
+          : predictionDesc.slice(1, 4)
+        ).map(desc => {
+          return (
+            <React.Fragment key={desc.id}>
+              <span className={queryKey === desc.id ? 'emphasize' : 'normal'}>
+                {desc.text1}
+                {queryKey === desc.id
+                  ? selectedValue
+                  : selectedData[`${desc.id}`]}
+              </span>
+              <span>{desc.text2}</span>
+            </React.Fragment>
+          );
+        })}
         <span> 구독하실 경우 </span>
       </div>
       <p className="subsPredictedPrice">

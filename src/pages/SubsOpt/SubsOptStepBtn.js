@@ -1,7 +1,8 @@
 import React from 'react';
 
 function SubsOptStepBtn(props) {
-  const { step, postStep, nextStep } = props;
+  const { prodCategory, step, postStep, nextStep } = props;
+  const stepLimit = prodCategory === '1' ? 6 : 5;
 
   return (
     <div className="subsOptBottom">
@@ -15,7 +16,7 @@ function SubsOptStepBtn(props) {
       <button
         className="nextButton"
         onClick={nextStep}
-        disabled={step === 6 ? true : false}
+        disabled={step === stepLimit ? true : false}
       >
         {'다음 >'}
       </button>

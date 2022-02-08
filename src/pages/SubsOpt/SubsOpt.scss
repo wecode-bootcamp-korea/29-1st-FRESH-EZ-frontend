@@ -131,7 +131,7 @@
           padding: 0.4vw;
           border: 1px solid $font-gray;
           border-radius: $radio-size;
-          color: $font-gray;
+          color: black;
           text-align: center;
 
           &:focus {
@@ -170,16 +170,17 @@
       font-size: 1.4vw;
       color: $font-gray;
 
-      .subsOptSize {
-        margin-bottom: 5px;
-      }
+      .subsPredictionDesc {
+        text-align: center;
 
-      :nth-child(2) {
-        margin-bottom: 10px;
+        :nth-child(4)::after {
+            content: '\A';
+            white-space: pre;
+        }
       }
 
       .subsOptFinalCaution {
-        margin-top: 15px;
+        margin-top: 1.2vw;
         font-size: 1vw;;
         color: $theme-green;
       }
@@ -190,7 +191,7 @@
       }
     
       p {
-        margin-top: 5px;
+        margin-top: 1.2vw;
         font-size: 2vw;
         font-weight: bold;
         color: black;

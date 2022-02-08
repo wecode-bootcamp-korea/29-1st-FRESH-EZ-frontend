@@ -9,9 +9,6 @@ import SubsOptStepBtn from './SubsOptStepBtn';
 import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
 
-// modal창에서 옵션 선택 안 한 경우에도 esc 키 누를때 모달창 꺼지는 기능 추가
-// prodCategory 값에 따라 SubsOptData에서 가져올 array수를 [인덱스로] 갖고오기 >> salad만 첨부터
-
 function SubsOpt(props) {
   const { modalState, closeModal, testJWT, prodCategory } = props;
   const navigate = useNavigate();
@@ -36,7 +33,8 @@ function SubsOpt(props) {
     product_list: [],
   });
 
-  let data = SubsOptData[step - 1];
+  const data = prodCategory === '1' ? SubsOptData[step - 1] : SubsOptData[step];
+
   const selectHandler = e => {
     setSelectedData({
       ...selectedData,
@@ -48,7 +46,6 @@ function SubsOpt(props) {
     window.localStorage.setItem('selectedData', JSON.stringify(selectedData));
   }, [selectedData]);
 
-  // client 단에서 preprocessing하는 것 vs server에서 받을 때 하는 것 효율?
   const preprocessUserData = userData => {
     let sizeNum = userData.size === 'Medium' ? '1' : '2';
     return {
@@ -92,7 +89,7 @@ function SubsOpt(props) {
       <div className="subsOptOverlay" onClick={closeModal} />
       <SubsOptForm
         closeModal={closeModal}
-        subsStep={<SubsStep step={step} />}
+        subsStep={<SubsStep prodCategory={prodCategory} step={step} />}
         subsOptQuery={<SubsOptQuery questions={data.questions} />}
         subsOptSelect={data.selectOpt.optList.map(list => (
           <SubsOptSelect
@@ -108,6 +105,7 @@ function SubsOpt(props) {
         ))}
         subsOptPred={
           <SubsOptPred
+            prodCategory={prodCategory}
             queryKey={data.selectOpt.queryKey}
             selectedValue={selectedData[data.selectOpt.queryKey]}
             selectedData={selectedData}
@@ -115,9 +113,10 @@ function SubsOpt(props) {
         }
         subsOptStepBtn={
           <SubsOptStepBtn
+            prodCategory={prodCategory}
             step={step}
-            postStep={() => setStep(step - 1)}
-            nextStep={() => setStep(step + 1)}
+            postStep={() => setStep(step => step - 1)}
+            nextStep={() => setStep(step => step + 1)}
           />
         }
       />
