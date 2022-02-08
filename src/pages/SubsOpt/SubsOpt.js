@@ -10,6 +10,7 @@ import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
 
 // modal창에서 옵션 선택 안 한 경우에도 esc 키 누를때 모달창 꺼지는 기능 추가
+// prodCategory 값에 따라 SubsOptData에서 가져올 array수를 [인덱스로] 갖고오기 >> salad만 첨부터
 
 function SubsOpt(props) {
   const { modalState, closeModal, testJWT, prodCategory } = props;
