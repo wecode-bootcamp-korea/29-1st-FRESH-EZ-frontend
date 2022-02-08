@@ -5,10 +5,10 @@ export default function ProductCard({ image, name, price, description }) {
   return (
     <section className="productCard">
       <figure className="imgWrapper">
-        <img src={image} alt="salad" />
+        <img src={image} alt="food" />
       </figure>
       <div className="productName">{name}</div>
-      <div className="price">{price}원~</div>
+      <div className="price">{price.toLocaleString()}원~</div>
       <div className="description">{description}</div>
       <div className="cardFooter">
         <div className="scoreComment">

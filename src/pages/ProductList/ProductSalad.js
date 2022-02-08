@@ -27,8 +27,7 @@ export default function ProductAll() {
     fetch('http://208.82.62.99:8000/product/menu?category=1')
       .then(res => res.json())
       .then(products => {
-        console.log(products);
-        setData(prev => ({ ...prev, product: products }));
+        setData(prev => ({ ...prev, product: products.products_list }));
       });
 
     fetch('http://localhost:3000/data/SUB_CATEGORY.json')

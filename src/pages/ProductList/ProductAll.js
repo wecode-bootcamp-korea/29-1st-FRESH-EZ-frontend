@@ -4,7 +4,7 @@ import ProductList from './components/ProductList';
 export default function ProductAll() {
   const [data, setData] = useState({
     category: [],
-    products_list: {},
+    product: [],
     allergiesFilterValue: '나에게 안전한 메뉴 보기',
   });
 
@@ -27,7 +27,8 @@ export default function ProductAll() {
     fetch('http://208.82.62.99:8000/product/menu')
       .then(res => res.json())
       .then(products => {
-        setData(prev => ({ ...prev, product: products }));
+        //console.log(products.products_list);
+        setData(prev => ({ ...prev, product: products.products_list }));
       });
 
     fetch('http://localhost:3000/data/SUB_CATEGORY.json')
