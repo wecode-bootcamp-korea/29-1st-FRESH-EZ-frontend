@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Nav from '../../../src/components/Nav/Nav';
 import './SignUp.scss';
 
-// presignup page scss가 망가졌는데 머지하면 괜찮지 않을까해서 안고쳤는데 어떻게 생각하시는지..?
-
 const SignUp = () => {
   const navigate = useNavigate('');
   const [inputs, setInputs] = useState({
@@ -20,31 +18,6 @@ const SignUp = () => {
     allergy: [],
   });
 
-  const [allergyData, setAllergyData] = useState([]);
-
-  useEffect(() => {
-    fetch('http://208.82.62.99:8000/user/allergy')
-      .then(res => res.json())
-      .then(res => {
-        setAllergyData(res.allergies_list);
-        // setAllergyData(prev => [res.allergies_list, ...prev]);
-      });
-  }, []);
-  // get일때는 주소만 적으면 됌
-
-  const [rePwCheck, setRePwCheck] = useState('');
-  const handleInput2 = e => {
-    setRePwCheck(e.target.value);
-  };
-  // 위아래 함수 합쳐서 온체인지 하나에만 넣거나 온블러 하나에만 넣거나 하면 입력자체가 안됨
-  // 따로 분리해서 해야함
-
-  const checkError = () => {
-    if (password !== rePwCheck) {
-      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-    }
-  };
-
   const {
     email,
     password,
@@ -58,18 +31,17 @@ const SignUp = () => {
     day,
   } = inputs;
 
-  const handleInput = e => {
-    const { name, value } = e.target;
+  const [rePwCheck, setRePwCheck] = useState('');
 
-    setInputs({ ...inputs, [name]: value });
-  };
-
-  const handleAllergy = e => {
-    // inputs.allergy 배열에 e.target.value 추가하고 싶어
-    setInputs(prev => ({
-      allergy: [...prev.allergy, e.target.value],
-    }));
-  };
+  const [allergyData, setAllergyData] = useState([]);
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/user/allergy')
+      .then(res => res.json())
+      .then(res => {
+        setAllergyData(res.allergies_list);
+        // setAllergyData(prev => [res.allergies_list, ...prev]);
+      });
+  }, []);
 
   const emailVaildCheck = email.includesincludes('@') && email.includes('.com');
   const passwordVaildCheck =
@@ -98,6 +70,27 @@ const SignUp = () => {
   };
   const dayDataArr = dayData();
 
+  const checkError = () => {
+    if (password !== rePwCheck) {
+      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+    }
+  };
+
+  const handleInput = e => {
+    const { name, value } = e.target;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+  const handleRePwInput = e => {
+    setRePwCheck(e.target.value);
+  };
+
+  const handleAllergy = e => {
+    setInputs(prev => ({
+      allergy: [...prev.allergy, e.target.value],
+    }));
+  };
+
   const emailDuplicateCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
@@ -114,7 +107,8 @@ const SignUp = () => {
         }
       });
   };
-  console.log(inputs);
+  // console.log(inputs);
+
   const signUpCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
@@ -182,7 +176,7 @@ const SignUp = () => {
               <input
                 type="password"
                 placeholder="비밀번호 8자 이상 입력(영문 대/소문자,
-          숫자포함)"
+          숫자, 특수문자 포함)"
                 name="password"
                 value={password}
                 onChange={handleInput}
@@ -197,9 +191,8 @@ const SignUp = () => {
                 type="password"
                 placeholder="비밀번호 재입력"
                 value={rePwCheck}
-                onChange={handleInput2}
+                onChange={handleRePwInput}
                 onBlur={checkError}
-                // 새로배움
               />
             </div>
 
@@ -286,9 +279,6 @@ const SignUp = () => {
                   value="female"
                   name="sex"
                   onClick={handleInput}
-
-                  // value={sex}
-                  // onClick={handleInput}
                 />
                 <label for="female" />
                 <div>여성</div>
@@ -299,13 +289,7 @@ const SignUp = () => {
                   id="male"
                   name="sex"
                   value="male"
-                  // 다른것처럼 중괄호 넣어서 했는데 안됐음 근데 따옴표 넣으니까 됐음
-                  // 추측하건데 변하지 않는 값이니까 스트링으로 해줘서 되었던 건지 궁금
                   onClick={handleInput}
-                  // onclick, onChange 둘 다 가능인데 왜?
-                  // 둘 다 가능하다면 뭘 쓰는게 더 맞는 건지
-                  // value={sex}
-                  // onClick={handleInput}
                 />
                 <label for="male" />
                 <div>남성</div>
@@ -318,7 +302,6 @@ const SignUp = () => {
             {allergyData.map((allergy, idx) => {
               return (
                 <div key={idx}>
-                  {/* key값은 가장 바깥 태그에다가 써야함 */}
                   <input
                     type="checkbox"
                     id={allergy.allergy_id}
@@ -331,58 +314,6 @@ const SignUp = () => {
                 </div>
               );
             })}
-
-            {/* <div>
-              <input type="checkbox" id="allergyCheck1" />
-              <label for="allergyCheck1" />
-              대두 (두유, 두부 등)
-            </div> */}
-            {/* <div>
-              <input type="checkbox" id="allergyCheck2" />
-              <label for="allergyCheck2" />밀
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck3" />
-              <label for="allergyCheck3" />
-              아황산
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck4" />
-              <label for="allergyCheck4" />
-              우유
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck5" />
-              <label for="allergyCheck5" />
-              계란
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck6" />
-              <label for="allergyCheck6" />
-              토마토
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck7" />
-              <label for="allergyCheck7" />
-              메밀
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck8" />
-              <label for="allergyCheck8" />
-              돼지고기
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck9" />
-              <label for="allergyCheck9" />
-              메추리알
-            </div>
-            <div>
-              <input type="checkbox" id="allergyCheck10" />
-              <label for="allergyCheck10" />
-              땅콩
-            </div> */}
-
-            {/* 맵돌려라.. */}
           </div>
 
           <button
