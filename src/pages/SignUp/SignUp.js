@@ -17,25 +17,20 @@ const SignUp = () => {
     month: '',
     day: '',
     sex: '',
+    allergy: [],
   });
 
-  // const submit = () => {
-  //   fetch('', {
-  //     email: inputs.email,
-  //     birthday: `${inputs.year}-${inputs.month}-${inputs.day}`,
-  //   });
-  // };
+  const [allergyData, setAllergyData] = useState([]);
 
   useEffect(() => {
     fetch('http://208.82.62.99:8000/user/allergy')
       .then(res => res.json())
       .then(res => {
-        const allergyList = res.allergies_list;
+        setAllergyData(res.allergies_list);
+        // setAllergyData(prev => [res.allergies_list, ...prev]);
       });
-  });
+  }, []);
   // get일때는 주소만 적으면 됌
-
-  const allergyArr = ...allergyList;
 
   const [rePwCheck, setRePwCheck] = useState('');
   const handleInput2 = e => {
@@ -50,9 +45,33 @@ const SignUp = () => {
     }
   };
 
-  const { email, password, name, nickname, phone, sex } = inputs;
+  const {
+    email,
+    password,
+    name,
+    nickname,
+    phone,
+    sex,
+    allergy,
+    year,
+    month,
+    day,
+  } = inputs;
 
-  const emailVaildCheck = email.includes('@') && email.includes('.com');
+  const handleInput = e => {
+    const { name, value } = e.target;
+
+    setInputs({ ...inputs, [name]: value });
+  };
+
+  const handleAllergy = e => {
+    // inputs.allergy 배열에 e.target.value 추가하고 싶어
+    setInputs(prev => ({
+      allergy: [...prev.allergy, e.target.value],
+    }));
+  };
+
+  const emailVaildCheck = email.includesincludes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -79,13 +98,6 @@ const SignUp = () => {
   };
   const dayDataArr = dayData();
 
-  const handleInput = e => {
-    const { name, value } = e.target;
-    console.log(value);
-
-    setInputs({ ...inputs, [name]: value });
-  };
-
   const emailDuplicateCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
@@ -102,16 +114,19 @@ const SignUp = () => {
         }
       });
   };
-
+  console.log(inputs);
   const signUpCheck = () => {
-    fetch('208.82.62.99:8000', {
+    fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
       body: JSON.stringify({
+        name: name,
         email: email,
         password: password,
-        name: name,
         nickname: nickname,
-        phone: 'phone',
+        phone: phone,
+        birth: `${year}-${month}-${day}`,
+        sex: sex,
+        allergy_id: allergy,
       })
         .then(res => res.json())
         .then(res => {
@@ -300,12 +315,29 @@ const SignUp = () => {
 
           <div className="allergy">
             <span className="necessary">알러지 옵션</span>
-            <div>
+            {allergyData.map((allergy, idx) => {
+              return (
+                <div key={idx}>
+                  {/* key값은 가장 바깥 태그에다가 써야함 */}
+                  <input
+                    type="checkbox"
+                    id={allergy.allergy_id}
+                    name="allergy"
+                    value={allergy.allergy_id}
+                    onChange={handleAllergy}
+                  />
+                  <label for={allergy.allergy_id} />
+                  {allergy.allergy_name}
+                </div>
+              );
+            })}
+
+            {/* <div>
               <input type="checkbox" id="allergyCheck1" />
               <label for="allergyCheck1" />
               대두 (두유, 두부 등)
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <input type="checkbox" id="allergyCheck2" />
               <label for="allergyCheck2" />밀
             </div>
@@ -348,7 +380,7 @@ const SignUp = () => {
               <input type="checkbox" id="allergyCheck10" />
               <label for="allergyCheck10" />
               땅콩
-            </div>
+            </div> */}
 
             {/* 맵돌려라.. */}
           </div>
