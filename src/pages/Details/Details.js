@@ -2,41 +2,24 @@ import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
 
 import SelectedProduct from './SelectedProduct';
-import SelectedMDModal from './SelectedMDModal';
 import AdditionalOptionList from './AdditionalOptionList';
 import RecommendWrap from './RecommendWrap';
 import './Details.scss';
 
 function Details() {
-  const [menuData, setMenuData] = useState({
-    id: 1,
-    name: '프렌치 발사믹 훈제연어 샐러드',
-    small_desc: '부드러운 훈제연어에 트러플오일과 프렌지 발사믹의 깊은 풍미',
-    price: '8900',
-    desc: '긴 설명',
-    category: '카테고리',
-    allergy: '알러지',
-    title_image_url: '사진',
-  });
-
+  const [menuData, setMenuData] = useState({});
+  const [selectedData, setSelectedData] = useState([]);
+  const [showSelection, setShowSelection] = useState(true);
   const [recommendProducts, setRecommendProducts] = useState([]);
 
-  const [selectSize, setSelectSize] = useState('medium');
-
-  const [showModalMD, setShowModalMD] = useState(true);
-
-  // const isClickedMedium = () => {
-  //   setShowMedium(!showMedium);
-  // };
-  // const isClickedLarge = () => {
-  //   setShowLarge(!showLarge);
-  // };
-  const switchMediumLarge = e => {
-    setSelectSize(e.target.value);
+  const getSelectedDataInfo = e => {
+    const { name, price } = e.target;
+    setSelectedData(prev => [...prev, { name: name, price: price }]);
+    console.log(e.target);
   };
 
-  const isClickedMD = () => {
-    setShowModalMD(!showModalMD);
+  const isSelected = () => {
+    setShowSelection(!showSelection);
   };
 
   useEffect(() => {
@@ -46,7 +29,6 @@ function Details() {
         setMenuData(res);
       });
   }, []);
-  console.log(menuData);
 
   useEffect(() => {
     // 목데이터
@@ -58,13 +40,12 @@ function Details() {
   }, []);
 
   const menu = menuData.name;
-  console.log('menu', menu);
+  // console.log(menu);
 
-  const sizeMedium = '미디움 (M)';
-  const sizeLarge = '라지 (L)';
-  const sizeList = ['medium', 'large'];
-  // const totalPrice = menuData.price;
-  const sizeUpCost = 1500;
+  const productSizeList = [
+    { name: menu, size: 'Large', price: 1000 },
+    { name: menu, size: 'Medium', price: 0 },
+  ];
 
   return (
     <div className="menuDetails">
@@ -89,36 +70,23 @@ function Details() {
               <h3>상품설명</h3>
               <div>
                 <p>{menuData.desc}</p>
-                <ul>
-                  <li>
-                    파우치 드레싱은 샐러드 용기 위에 스티커 부착 되어
-                    제공되어요. 기존의 '양념 감자'의 수급 불안정으로 인하여
-                  </li>
-                  <li>한시적으로 ' 큐브 고구마'로 대체되어 배송되어요.</li>
-                </ul>
               </div>
             </div>
 
             <div className="productSelect">
               <div className="selectSize">
                 <h3>상품선택</h3>
-
-                <select defaultValue="medium" onChange={switchMediumLarge}>
-                  {sizeList.map(size => (
-                    <option key={size} value={size}>
-                      {size}
+                <select defaultValue="test" onChange={getSelectedDataInfo}>
+                  {productSizeList.map((productSize, idx) => (
+                    <option
+                      key={idx}
+                      value={productSize.size}
+                      price={productSize.price}
+                      name={productSize.name}
+                    >
+                      {productSize.size}
                     </option>
                   ))}
-                  {/* <summary>
-                    사이즈 선택 (필수)
-                    {/* <option></option> // 속성/기능 value - 선택시 state변경 */
-                  /* <div className="medium" onClick={isClickedMedium}>
-                      {sizeMedium}
-                    </div>
-                    <div className="large" onClick={isClickedLarge}>
-                      {sizeLarge}
-                    </div>
-                  </summary> */}
                 </select>
               </div>
               <div className="selectAddition">
@@ -130,6 +98,7 @@ function Details() {
                         key={list.id}
                         name={list.name}
                         price={list.price}
+                        getSelectedDataInfo={getSelectedDataInfo}
                       />
                     );
                   })}
@@ -139,23 +108,15 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                <SelectedProduct menu={menu} selectSize={selectSize} />
-
-                {showModalMD === true ? (
-                  <SelectedMDModal isClickedMD={isClickedMD} />
-                ) : null}
-
-                {/* <div className="selectedDetailInputWrap">
-                  <nav className="formNumber">
-                    <button>
-                      <i className="fas fa-minus"></i>
-                    </button>
-                    <input type="number" />
-                    <button>
-                      <i className="fas fa-plus"></i>
-                    </button>
-                  </nav>
-                </div> */}
+                {selectedData.map(productInfo => (
+                  <SelectedProduct
+                    key={productInfo.name}
+                    name={productInfo.name}
+                    size={productInfo.size}
+                    price={productInfo.price}
+                    isSelected={isSelected}
+                  />
+                ))}
               </div>
             </div>
 

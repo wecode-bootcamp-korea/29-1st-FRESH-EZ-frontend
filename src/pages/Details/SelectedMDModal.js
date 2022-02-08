@@ -1,16 +1,17 @@
 import React from 'react';
 
-function SelectedMDModal({ isClickedMD }) {
+function SelectedMDModal(props) {
+  const { product, isSelected } = props;
   return (
     <div className="selectedDetailTitle">
       <div>
-        <span>계란 2개</span>
+        <span>{product}</span>
       </div>
       <div>
         <img
           alt="선택 삭제"
           src="https://www.freshcode.me/images/exit@2x.png"
-          onClick={isClickedMD}
+          onClick={isSelected}
         />
       </div>
     </div>

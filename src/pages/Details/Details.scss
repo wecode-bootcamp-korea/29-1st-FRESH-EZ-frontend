@@ -153,6 +153,9 @@
               border-top: 1px solid $border-gray;
               border-bottom: 1px solid $border-gray;
 
+              .selectedPrice {
+              }
+
               img {
                 width: 25px;
                 &:hover {
