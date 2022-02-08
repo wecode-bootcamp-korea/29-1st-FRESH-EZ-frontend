@@ -15,7 +15,8 @@ const SignUp = () => {
     month: '',
     day: '',
     sex: '',
-    allergy: [],
+    allergy: '',
+    // allergy: [],
   });
 
   const {
@@ -43,12 +44,17 @@ const SignUp = () => {
       });
   }, []);
 
-  const emailVaildCheck = email.includesincludes('@') && email.includes('.com');
+  const emailVaildCheck = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  const passwordVaildCheck2 =
+    passwordVaildCheck.test(password) && passwordVaildCheck.test(rePwCheck);
 
-  passwordVaildCheck.test(password);
-
+  const goPwCheck = () => {
+    if (passwordVaildCheck.test(password) === false) {
+      alert('비밀번호 조건에 맞춰 다시 작성해주세요.');
+    }
+  };
   const yearData = () => {
     const year = [];
     for (let i = 2009; i > 1930; i--) {
@@ -85,11 +91,11 @@ const SignUp = () => {
     setRePwCheck(e.target.value);
   };
 
-  const handleAllergy = e => {
-    setInputs(prev => ({
-      allergy: [...prev.allergy, e.target.value],
-    }));
-  };
+  // const handleAllergy = e => {
+  //   setInputs(prev => ({
+  //     allergy: [...prev.allergy, e.target.value],
+  //   }));
+  // };
 
   const emailDuplicateCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
@@ -180,6 +186,7 @@ const SignUp = () => {
                 name="password"
                 value={password}
                 onChange={handleInput}
+                onBlur={goPwCheck}
               />
             </div>
 
@@ -307,7 +314,8 @@ const SignUp = () => {
                     id={allergy.allergy_id}
                     name="allergy"
                     value={allergy.allergy_id}
-                    onChange={handleAllergy}
+                    onChange={handleInput}
+                    // onChange={handleAllergy}
                   />
                   <label for={allergy.allergy_id} />
                   {allergy.allergy_name}
@@ -318,10 +326,12 @@ const SignUp = () => {
 
           <button
             className={
-              emailVaildCheck && passwordVaildCheck ? 'signUpButton' : 'failure'
+              emailVaildCheck && passwordVaildCheck2
+                ? 'signUpButton'
+                : 'failure'
             }
             onClick={signUpCheck}
-            disabled={emailVaildCheck || passwordVaildCheck}
+            disabled={emailVaildCheck || passwordVaildCheck2}
           >
             가입하기
           </button>
