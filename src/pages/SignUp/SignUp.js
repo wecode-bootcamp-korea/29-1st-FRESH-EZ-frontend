@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../../../src/components/Nav/Nav';
 import './SignUp.scss';
@@ -13,7 +13,17 @@ const SignUp = () => {
     name: '',
     nickname: '',
     phone: '',
+    year: '',
+    month: '',
+    day: '',
   });
+
+  const submit = () => {
+    fetch('', {
+      email: inputs.email,
+      birthday: `${inputs.year}-${inputs.month}-${inputs.day}`,
+    });
+  };
   const [rePwCheck, setRePwCheck] = useState('');
   const handleInput2 = e => {
     setRePwCheck(e.target.value);
@@ -34,6 +44,27 @@ const SignUp = () => {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
   passwordVaildCheck.test(password);
+
+  const yearData = () => {
+    const year = [];
+    for (let i = 2009; i > 1930; i--) {
+      year.push(i);
+    }
+    return year;
+  };
+
+  const yearDataArr = yearData();
+
+  const monthArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  const dayData = () => {
+    const day = [];
+    for (let i = 1; i < 32; i++) {
+      day.push(i);
+    }
+    return day;
+  };
+  const dayDataArr = dayData();
 
   const handleInput = e => {
     const { name, value } = e.target;
@@ -191,12 +222,27 @@ const SignUp = () => {
               <div className="birthdayList">
                 <select>
                   <option>YYYY</option>
+                  {yearDataArr.map(year => (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  ))}
                 </select>
                 <select>
                   <option>MM</option>
+                  {monthArr.map(month => (
+                    <option key={month} value={month}>
+                      {month}
+                    </option>
+                  ))}
                 </select>
                 <select>
                   <option>DD</option>
+                  {dayDataArr.map(day => (
+                    <option key={day} value={day}>
+                      {day}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>
