@@ -27,6 +27,7 @@ function Main() {
   const goLeft = () => {
     if (xValue < 0) {
       setXValue(prev => prev + 1500);
+
       // 100vw를 어떻게 담아야할 지 모르겠음.
     }
   };
@@ -39,8 +40,7 @@ function Main() {
   return (
     <div className="main">
       <Nav />
-      <i className="fas fa-angle-left" onClick={goLeft} />
-      <i className="fas fa-angle-right" onClick={goRight} />
+
       <div
         className="container"
         style={{ transform: `translatex(${xValue}px)` }}
@@ -55,6 +55,8 @@ function Main() {
           );
         })}
       </div>
+      <i className="fas fa-angle-left" onClick={goLeft} />
+      <i className="fas fa-angle-right" onClick={goRight} />
     </div>
   );
 }

@@ -2,37 +2,36 @@
 
 .main {
   overflow: hidden;
-
+  position: relative;
+  .fa-angle-left {
+    position: absolute;
+    bottom: 130px;
+    left: 153px;
+    font-size: 40px;
+    color: red;
+    opacity: 0.3;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  .fa-angle-right {
+    font-size: 40px;
+    color: red;
+    position: absolute;
+    bottom: 130px;
+    left: 1500px;
+    opacity: 0.3;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
   .container {
     display: flex;
-    position: relative;
+    // position: relative;
     width: 400vw;
     height: 450px;
     padding-top: 143px;
     transition: transform 0.5s;
-
-    .fa-angle-left {
-      position: absolute;
-      bottom: 130px;
-      left: 153px;
-      font-size: 40px;
-      color: #fff;
-      opacity: 0.3;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-    .fa-angle-right {
-      font-size: 40px;
-      color: white;
-      position: absolute;
-      bottom: 130px;
-      left: 1260px;
-      opacity: 0.3;
-      &:hover {
-        opacity: 0.5;
-      }
-    }
 
     div {
       width: 100vw;
