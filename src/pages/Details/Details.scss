@@ -76,19 +76,17 @@
             justify-content: space-between;
             padding: 20px 0;
 
-            details {
-              // position: absolute; absolute쓰면 top,left px써야하는지
-              // @include flex-center;
-              // align-items: center;
+            select {
               width: 280px;
               height: 40px;
-              padding: 12px;
+              padding-left: 12px;
               border: 1px solid #3d3d3d;
+
               &:hover {
                 cursor: pointer;
               }
 
-              summary {
+              option {
                 font-size: 13px;
                 color: #979797;
               }
@@ -109,6 +107,7 @@
 
           .selectAddition {
             padding-top: 20px;
+
             h3 {
               padding-bottom: 20px;
             }
@@ -199,6 +198,7 @@
             border: 1px solid $theme-green;
             height: 50px;
             opacity: 0.8;
+
             &:hover {
               opacity: 1;
               cursor: pointer;
@@ -242,15 +242,19 @@
 
         .recommendationWrap {
           width: 250px;
+
           img {
             width: 100%;
           }
+
           h3 {
             padding: 5px 0;
           }
+
           span {
             color: $theme-green;
           }
+
           p {
             padding: 5px 0;
             font-size: 14px;
@@ -261,6 +265,7 @@
 
     .productInformation {
       padding-top: 100px;
+
       img {
         width: 700px;
       }

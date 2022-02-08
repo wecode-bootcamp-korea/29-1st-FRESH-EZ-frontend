@@ -64,6 +64,7 @@ function Details() {
 
   const sizeMedium = '미디움 (M)';
   const sizeLarge = '라지 (L)';
+  const sizeList = ['medium', 'large'];
   // const totalPrice = menuData.price;
   const sizeUpCost = 1500;
 
@@ -103,20 +104,24 @@ function Details() {
             <div className="productSelect">
               <div className="selectSize">
                 <h3>상품선택</h3>
-                <details>
-                  {/* <select>  */}
-                  <summary>
+
+                <select>
+                  {sizeList.map(size => (
+                    <option key={size} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                  {/* <summary>
                     사이즈 선택 (필수)
-                    {/* <option></option> // 미디움,라지를 배열에 넣고 map으로 돌리기 // 속성/기능 value - 선택시 state변경 */}
-                    <div className="medium" onClick={isClickedMedium}>
+                    {/* <option></option> // 속성/기능 value - 선택시 state변경 */
+                  /* <div className="medium" onClick={isClickedMedium}>
                       {sizeMedium}
                     </div>
                     <div className="large" onClick={isClickedLarge}>
                       {sizeLarge}
                     </div>
-                  </summary>
-                  {/* </select> */}
-                </details>
+                  </summary> */}
+                </select>
               </div>
               <div className="selectAddition">
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
