@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
 
-import Large from './Large';
-import Medium from './Medium';
+import SelectedProduct from './SelectedProduct';
 import SelectedMDModal from './SelectedMDModal';
 import AdditionalOptionList from './AdditionalOptionList';
 import RecommendWrap from './RecommendWrap';
@@ -22,19 +21,18 @@ function Details() {
 
   const [recommendProducts, setRecommendProducts] = useState([]);
 
-  const [showMedium, setShowMedium] = useState(false);
-  const [showLarge, setShowLarge] = useState(false);
+  const [selectSize, setSelectSize] = useState('medium');
 
   const [showModalMD, setShowModalMD] = useState(true);
 
-  // const isClickedSize = () => {
-  //   setShowModalSize(!showModalSize);
+  // const isClickedMedium = () => {
+  //   setShowMedium(!showMedium);
   // };
-  const isClickedMedium = () => {
-    setShowMedium(!showMedium);
-  };
-  const isClickedLarge = () => {
-    setShowLarge(!showLarge);
+  // const isClickedLarge = () => {
+  //   setShowLarge(!showLarge);
+  // };
+  const switchMediumLarge = e => {
+    setSelectSize(e.target.value);
   };
 
   const isClickedMD = () => {
@@ -105,7 +103,7 @@ function Details() {
               <div className="selectSize">
                 <h3>상품선택</h3>
 
-                <select>
+                <select defaultValue="medium" onChange={switchMediumLarge}>
                   {sizeList.map(size => (
                     <option key={size} value={size}>
                       {size}
@@ -141,21 +139,7 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                {showMedium === true ? (
-                  <Medium
-                    isClickedMedium={isClickedMedium}
-                    menu={menu}
-                    sizeMedium={sizeMedium}
-                  />
-                ) : null}
-
-                {showLarge === true ? (
-                  <Large
-                    isClickedLarge={isClickedLarge}
-                    menu={menu}
-                    sizeLarge={sizeLarge}
-                  />
-                ) : null}
+                <SelectedProduct menu={menu} selectSize={selectSize} />
 
                 {showModalMD === true ? (
                   <SelectedMDModal isClickedMD={isClickedMD} />
