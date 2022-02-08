@@ -9,7 +9,7 @@ import RecommendWrap from './RecommendWrap';
 import './Details.scss';
 
 function Details() {
-  const [menuName, setMenuName] = useState({
+  const [menuData, setMenuData] = useState({
     id: 1,
     name: '프렌치 발사믹 훈제연어 샐러드',
     small_desc: '부드러운 훈제연어에 트러플오일과 프렌지 발사믹의 깊은 풍미',
@@ -22,11 +22,6 @@ function Details() {
 
   const [recommendProducts, setRecommendProducts] = useState([]);
 
-  // const [showModalSize, setShowModalSize] = useState(false);
-  //  const [selectedSize, setSelectedSize] = useState(0);
-  // const sizeHandler = id => {
-  //   setSelectedSize(id);
-  // };
   const [showMedium, setShowMedium] = useState(false);
   const [showLarge, setShowLarge] = useState(false);
 
@@ -50,10 +45,10 @@ function Details() {
     fetch('http://208.82.62.99:8000/product/product-detail/19')
       .then(res => res.json())
       .then(res => {
-        setMenuName(res);
+        setMenuData(res);
       });
   }, []);
-  console.log(menuName);
+  console.log(menuData);
 
   useEffect(() => {
     // 목데이터
@@ -64,22 +59,20 @@ function Details() {
       });
   }, []);
 
-  const menu = menuName.name;
+  const menu = menuData.name;
   console.log('menu', menu);
 
   const sizeMedium = '미디움 (M)';
   const sizeLarge = '라지 (L)';
-  // const totalPrice = menuName.price;
+  // const totalPrice = menuData.price;
   const sizeUpCost = 1500;
 
   return (
     <div className="menuDetails">
       <div className="menuBody">
         <div className="menuHeader">
-          {/* <img alt="productImage" src={menuName.title_image_url} /> */}
-
           <picture className="picture">
-            <img alt="productImage" src={menuName.title_image_url} />
+            <img alt="productImage" src={menuData.title_image_url} />
             {/* <source
               srcset="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
               media="(min-width: 300px)"
@@ -87,21 +80,16 @@ function Details() {
           </picture>
 
           <div className="menuInfo">
-            <div className="menuName">
-              <h2>{menuName.name}</h2>
-              <p>{menuName.small_desc}</p>
-              <p className="price">{menuName.price}원</p>
+            <div className="menuData">
+              <h2>{menuData.name}</h2>
+              <p>{menuData.small_desc}</p>
+              <p className="price">{menuData.price}원</p>
             </div>
 
             <div className="productExplanation">
               <h3>상품설명</h3>
               <div>
-                <p>
-                  {menuName.desc}
-                  {/* 은은한 연어의 훈연향에 트러플 오일과 프렌치발사믹 드레싱의
-                  풍미를 더해 고급스럽게 즐길 수 있는 샐러드예요. 통밀빵으로
-                  포만감까지 더했답니다. */}
-                </p>
+                <p>{menuData.desc}</p>
                 <ul>
                   <li>
                     파우치 드레싱은 샐러드 용기 위에 스티커 부착 되어
@@ -116,17 +104,21 @@ function Details() {
               <div className="selectSize">
                 <h3>상품선택</h3>
                 <details>
-                  <summary>사이즈 선택 (필수)</summary>
-                  <div className="medium" onClick={isClickedMedium}>
-                    {sizeMedium}
-                  </div>
-                  <div className="large" onClick={isClickedLarge}>
-                    {sizeLarge}
-                  </div>
+                  {/* <select>  */}
+                  <summary>
+                    사이즈 선택 (필수)
+                    {/* <option></option> // 미디움,라지를 배열에 넣고 map으로 돌리기 // 속성/기능 value - 선택시 state변경 */}
+                    <div className="medium" onClick={isClickedMedium}>
+                      {sizeMedium}
+                    </div>
+                    <div className="large" onClick={isClickedLarge}>
+                      {sizeLarge}
+                    </div>
+                  </summary>
+                  {/* </select> */}
                 </details>
               </div>
               <div className="selectAddition">
-                {/* div 대신에 form 사용가능 */}
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
                   {ADDITIONS_LIST.map(list => {
@@ -144,7 +136,6 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                {/* {SIZE_OBJ[selectedSize]} */}
                 {showMedium === true ? (
                   <Medium
                     isClickedMedium={isClickedMedium}
@@ -182,7 +173,7 @@ function Details() {
             <div className="productPrice">
               <p>상품 금액</p>
               <p>
-                <span>{`${menuName.price + 1500 + 3000}`}</span>
+                <span>{`${menuData.price + 1500 + 3000}`}</span>
                 <span>원</span>
               </p>
             </div>
@@ -205,7 +196,7 @@ function Details() {
                 return (
                   <RecommendWrap
                     key={list.id}
-                    menuName={list.menuName}
+                    menuData={list.menuData}
                     price={list.price}
                     content={list.content}
                     src={list.src}
@@ -227,8 +218,3 @@ function Details() {
 }
 
 export default Details;
-
-const SIZE_OBJ = {
-  0: <Medium />,
-  1: <Large />,
-};
