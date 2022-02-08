@@ -25,7 +25,7 @@ function SubsDetail() {
       price: '8990',
     },
   ];
-
+  const [carouselData, setCarouselData] = useState({});
   const [xValue, setXValue] = useState(0);
 
   const goLeft = () => {
@@ -41,10 +41,10 @@ function SubsDetail() {
   };
 
   useEffect(() => {
-    console.log('divider');
-    console.log(xValue);
-    console.log(imageLists.length);
-  });
+    fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
+      .then(response => response.json())
+      .then(response => setCarouselData(response));
+  }, []);
 
   return (
     <div className="subsDetail">
