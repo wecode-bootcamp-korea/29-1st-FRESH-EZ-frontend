@@ -2,11 +2,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProductCard.scss';
 
-export default function ProductCard({ image, name, price, description, id }) {
+export default function ProductCard({ input }) {
+  const { image, name, price, description } = input;
   const navigate = useNavigate();
 
   const goToDetail = () => {
-    navigate(`/products/detail/${id}`);
+    navigate(`/products/detail/${input.product_id}`);
   };
 
   return (

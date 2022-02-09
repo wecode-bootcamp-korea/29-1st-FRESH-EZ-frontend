@@ -39,16 +39,9 @@ function ProductList({ title, subnav, productData, children }) {
             </section>
           </header>
           <article className="productCardWrap">
-            {productData.map(input => (
-              <ProductCard
-                key={input.id}
-                image={input.product_image}
-                name={input.name}
-                price={input.price}
-                description={input.small_desc}
-                id={input.id}
-              />
-            ))}
+            {productData.map(input => {
+              return <ProductCard key={input.product_id} input={input} />;
+            })}
           </article>
         </div>
       </div>

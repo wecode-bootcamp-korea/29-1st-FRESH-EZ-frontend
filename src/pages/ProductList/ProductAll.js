@@ -10,21 +10,30 @@ export default function ProductAll() {
   });
 
   const testJWT =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6M30.niNmVRTCz9yD_B5BjBhfyVaDVAKyboSxAUxRmOOnvJg';
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NH0.tciSp2r2HkiKdb5YLgBY8GRRMIGlfzfNDWXSBE420dg';
 
   const allergiesFilterToggle = () => {
     if (data.allergiesFilterValue === '모든 메뉴 보기') {
+      fetch('http://208.82.62.99:8000/product/menu')
+        .then(res => res.json())
+        .then(products => {
+          setData(prev => ({ ...prev, product: products.products_list }));
+        });
       setData(prev => ({
         ...prev,
         allergiesFilterValue: '나에게 안전한 메뉴 보기',
       }));
     } else {
-      fetch('', {
+      fetch('http://208.82.62.99:8000/product/menu/filter', {
         method: 'POST',
         header: JSON.stringify({
-          jwt: testJWT,
+          Authorization: testJWT,
         }),
-      });
+      })
+        .then(res => res.json())
+        .then(filtered => {
+          setData(prev => ({ ...prev, product: filtered.products_list }));
+        });
       setData(prev => ({
         ...prev,
         allergiesFilterValue: '모든 메뉴 보기',
@@ -36,7 +45,6 @@ export default function ProductAll() {
     fetch('http://208.82.62.99:8000/product/menu')
       .then(res => res.json())
       .then(products => {
-        //console.log(products.products_list);
         setData(prev => ({ ...prev, product: products.products_list }));
       });
 
