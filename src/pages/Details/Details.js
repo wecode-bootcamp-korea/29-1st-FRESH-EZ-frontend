@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import ADDITIONS_LIST from './additionalOptions';
 
-import SelectedProduct from './SelectedProduct';
+import MDModal from './MDModal';
+import SizeModal from './SizeModal';
 import AdditionalOptionList from './AdditionalOptionList';
-import RecommendWrap from './RecommendWrap';
+import SuggestionsWrap from './SuggestionsWrap';
 import './Details.scss';
 
 function Details() {
   const [menuData, setMenuData] = useState({});
-  const [selectedData, setSelectedData] = useState([]);
-  const [showSelection, setShowSelection] = useState(true);
-  const [recommendProducts, setRecommendProducts] = useState([]);
 
-  const getSelectedDataInfo = e => {
-    const { name, price } = e.target;
-    setSelectedData(prev => [...prev, { name: name, price: price }]);
-    console.log(e.target);
+  const [selectedSize, setSelectedSize] = useState([]);
+  const [selectedMD, setSelectedMD] = useState([]);
+  const [selectedList, setSelectedList] = useState([]);
+
+  const [showModal, setShowModal] = useState(true);
+
+  const [suggestionProducts, setSuggestionProducts] = useState([]);
+
+  const getSelectedSizeInfo = e => {
+    setSelectedSize([...selectedSize, e.target.value]);
   };
 
-  const isSelected = () => {
-    setShowSelection(!showSelection);
+  const getSelectedMDInfo = e => {
+    const { name, value } = e.target;
+    setSelectedMD([...selectedMD, { name: name, value: value }]);
+  };
+  console.log(selectedMD);
+
+  // const getSelectedMDInfo = e => {
+  //   const { name, value } = e.target;
+  //   setSelectedMD(prev => [...prev, { name: name, value: value }]);
+  // };
+
+  const toggleOption = () => {
+    setShowModal(!showModal);
   };
 
   useEffect(() => {
@@ -31,20 +46,20 @@ function Details() {
   }, []);
 
   useEffect(() => {
-    // 목데이터
     fetch('data/recommendData.json', { method: 'GET' })
       .then(res => res.json())
       .then(res => {
-        setRecommendProducts(res);
+        setSuggestionProducts(res);
       });
   }, []);
 
   const menu = menuData.name;
-  // console.log(menu);
+  // const totalPrice = `${menuData.price + 1500 + 3000}`
 
   const productSizeList = [
-    { name: menu, size: 'Large', price: 1000 },
-    { name: menu, size: 'Medium', price: 0 },
+    { name: '사이즈 선택', value: '' },
+    { name: 'Medium', value: 'Medium' },
+    { name: 'Large', value: 'Large' },
   ];
 
   return (
@@ -53,10 +68,6 @@ function Details() {
         <div className="menuHeader">
           <picture className="picture">
             <img alt="productImage" src={menuData.title_image_url} />
-            {/* <source
-              srcset="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
-              media="(min-width: 300px)"
-            /> */}
           </picture>
 
           <div className="menuInfo">
@@ -76,15 +87,10 @@ function Details() {
             <div className="productSelect">
               <div className="selectSize">
                 <h3>상품선택</h3>
-                <select defaultValue="test" onChange={getSelectedDataInfo}>
-                  {productSizeList.map((productSize, idx) => (
-                    <option
-                      key={idx}
-                      value={productSize.size}
-                      price={productSize.price}
-                      name={productSize.name}
-                    >
-                      {productSize.size}
+                <select defaultValue="test" onChange={getSelectedSizeInfo}>
+                  {productSizeList.map((data, idx) => (
+                    <option key={idx} name={data.name} value={data.value}>
+                      {data.name}
                     </option>
                   ))}
                 </select>
@@ -92,13 +98,13 @@ function Details() {
               <div className="selectAddition">
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
-                  {ADDITIONS_LIST.map(list => {
+                  {ADDITIONS_LIST.map((list, idx) => {
                     return (
                       <AdditionalOptionList
-                        key={list.id}
+                        key={idx}
                         name={list.name}
-                        price={list.price}
-                        getSelectedDataInfo={getSelectedDataInfo}
+                        value={list.value}
+                        getSelectedMDInfo={getSelectedMDInfo}
                       />
                     );
                   })}
@@ -108,13 +114,24 @@ function Details() {
 
             <div className="selectedDetailModal">
               <div className="selectedDetailWrapper">
-                {selectedData.map(productInfo => (
-                  <SelectedProduct
-                    key={productInfo.name}
-                    name={productInfo.name}
-                    size={productInfo.size}
-                    price={productInfo.price}
-                    isSelected={isSelected}
+                {selectedSize.map(
+                  (data, idx) => (
+                    // showModal === true ?
+                    <SizeModal
+                      key={idx}
+                      name={data}
+                      value={data}
+                      toggleOption={toggleOption}
+                    />
+                  ) // : null
+                )}
+
+                {selectedMD.map((data, idx) => (
+                  <MDModal
+                    key={idx}
+                    name={data.name}
+                    value={data.value}
+                    toggleOption={toggleOption}
                   />
                 ))}
               </div>
@@ -123,7 +140,7 @@ function Details() {
             <div className="productPrice">
               <p>상품 금액</p>
               <p>
-                <span>{`${menuData.price + 1500 + 3000}`}</span>
+                {/* <span>{totalPrice}</span> */}
                 <span>원</span>
               </p>
             </div>
@@ -141,12 +158,12 @@ function Details() {
           </div>
 
           <ul className="recommendationList">
-            {recommendProducts && // 이 데이터가 있을때만 그려준다
-              recommendProducts.map(list => {
+            {suggestionProducts && // 이 데이터가 있을때만 그려준다
+              suggestionProducts.map(list => {
                 return (
-                  <RecommendWrap
+                  <SuggestionsWrap
                     key={list.id}
-                    menuData={list.menuData}
+                    menuName={list.menuName}
                     price={list.price}
                     content={list.content}
                     src={list.src}

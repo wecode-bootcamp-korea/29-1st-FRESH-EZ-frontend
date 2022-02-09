@@ -1,7 +1,7 @@
 import React from 'react';
 
 // onClick시 네비게이트 작동 // url도 props로 받기
-function RecommendWrap({ id, menuName, price, content, src }) {
+function SuggestionsWrap({ id, menuName, price, content, src }) {
   return (
     <li key={id} className="recommendationWrap">
       <img alt="recommendproduct" src={src} />
@@ -13,4 +13,4 @@ function RecommendWrap({ id, menuName, price, content, src }) {
   );
 }
 
-export default RecommendWrap;
+export default SuggestionsWrap;
