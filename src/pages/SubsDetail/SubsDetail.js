@@ -25,7 +25,7 @@ function SubsDetail() {
       price: '8990',
     },
   ];
-  const [carouselData, setCarouselData] = useState({});
+  const [carouselData, setCarouselData] = useState([]);
   const [xValue, setXValue] = useState(0);
 
   const goLeft = () => {
@@ -43,7 +43,7 @@ function SubsDetail() {
   useEffect(() => {
     fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
       .then(response => response.json())
-      .then(response => setCarouselData(response));
+      .then(response => setCarouselData(prev => [...prev, response]));
   }, []);
 
   return (
