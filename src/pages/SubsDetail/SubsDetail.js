@@ -24,13 +24,14 @@ function SubsDetail() {
     fetch(`http://208.82.62.99:8000/product/subscribe-detail/${params.id}`)
       .then(response => response.json())
       .then(response => setCarouselData(response.product_list));
-    fetch('http://localhost:3000/data/SUBS_CATEGORY.json')
-      .then(res => res.json())
-      .then(res => setData(res));
-    console.log(data);
   }, []);
 
-  const detailCategory = data[0][params.id - 1];
+  useEffect(() => {
+    fetch('/data/SUBS_CATEGORY.json')
+      .then(res => res.json())
+      .then(res => setData(res));
+  }, []);
+  console.log(data);
 
   return (
     <div className="subsDetail">
@@ -40,9 +41,9 @@ function SubsDetail() {
             className="carouselContents"
             style={{ transform: `translateX(${xValue}px)` }}
           >
-            {carouselData.map(salads => {
+            {carouselData.map((salads, idx) => {
               return (
-                <div className="separateCarouselContents" key={salads.index}>
+                <div className="separateCarouselContents" key={idx}>
                   <img alt="salad" src={salads.url} />
                   <div className="imgNameAndPrice">
                     <div>{salads.name}</div>
@@ -60,7 +61,9 @@ function SubsDetail() {
           </div>
         </section>
         <section className="information">
-          <div className="header1">{detailCategory} 정기구독</div>
+          <div className="header1">
+            {data.length > 0 && data[params.id - 1].value} 정기구독
+          </div>
           <div className="header2">
             [기간] 1주-8주 / [배송] 주 1회-6회 / [사이즈] M/L Size
           </div>
@@ -78,13 +81,15 @@ function SubsDetail() {
           <div className="header1">36,000원 ~</div>
           <div className="infoDetail">
             <div className="header4">상품설명</div>
-            원하는 날에, 원하는 끼니에 먹는 {detailCategory} 식단
+            원하는 날에, 원하는 끼니에 먹는{' '}
+            {data.length > 0 && data[params.id - 1].value} 식단
             <br /> <br />
             ✔ 구성
             <br />
-            20종의 {detailCategory}
+            20종의 {data.length > 0 && data[params.id - 1].value}
             <br />
-            원하는 {detailCategory}로 변경 가능해요
+            원하는 {data.length > 0 && data[params.id - 1].value}로 변경
+            가능해요
             <br /> <br />
             ✔ 주문
             <br />

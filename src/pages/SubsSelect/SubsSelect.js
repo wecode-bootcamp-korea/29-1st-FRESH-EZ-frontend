@@ -5,7 +5,7 @@ export default function SubsSelect() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/data/SUBS_CATEGORY.json')
+    fetch('/data/SUBS_CATEGORY.json')
       .then(res => res.json())
       .then(res => setData(res));
   });
