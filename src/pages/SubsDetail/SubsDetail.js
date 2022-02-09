@@ -31,7 +31,6 @@ function SubsDetail() {
       .then(res => res.json())
       .then(res => setData(res));
   }, []);
-  console.log(data);
 
   return (
     <div className="subsDetail">
