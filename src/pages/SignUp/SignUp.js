@@ -15,8 +15,8 @@ const SignUp = () => {
     month: '',
     day: '',
     sex: '',
-    allergy: '',
-    // allergy: [],
+    // allergy: '',
+    allergy: [],
   });
 
   const {
@@ -44,7 +44,7 @@ const SignUp = () => {
       });
   }, []);
 
-  const emailVaildCheck = email.includes('@') && email.includes('.com');
+  // const emailVaildCheck = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const passwordVaildCheck2 =
@@ -83,19 +83,30 @@ const SignUp = () => {
   };
 
   const handleInput = e => {
+    console.log(inputs);
     const { name, value } = e.target;
 
-    setInputs({ ...inputs, [name]: value });
+    setInputs(prev => ({ ...prev, [name]: value }));
   };
   const handleRePwInput = e => {
     setRePwCheck(e.target.value);
   };
 
-  // const handleAllergy = e => {
-  //   setInputs(prev => ({
-  //     allergy: [...prev.allergy, e.target.value],
-  //   }));
-  // };
+  // useEffect(() => {
+  //   console.log(inputs);
+  // }, [inputs]);
+
+  const selectAllergy = e => {
+    if (e.target.checked) {
+      setInputs(prev => ({
+        allergy: [...prev.allergy, e.target.value],
+      }));
+    } else {
+      setInputs(prev => ({
+        allergy: inputs.allergy.filter(data => data !== e.target.value),
+      }));
+    }
+  };
 
   const emailDuplicateCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
@@ -113,7 +124,6 @@ const SignUp = () => {
         }
       });
   };
-  // console.log(inputs);
 
   const signUpCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
@@ -127,20 +137,32 @@ const SignUp = () => {
         birth: `${year}-${month}-${day}`,
         sex: sex,
         allergy_id: allergy,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === 'ERROR : INVALID_VALUE (email)') {
+          alert('이메일 입력 시 @와 .com이 필수로 포함되어야 합니다');
+        } else if (res.message === 'ERROR : INVALID_VALUE (password)') {
+          alert(
+            '비밀번호 입력 시 문자 8자 이상, 소문자, 대문자, 숫자, 특수기호 포함되어야 합니다'
+          );
+        } else {
+          navigate('/main');
+        }
+      });
+    console.log(
+      JSON.stringify({
+        name: name,
+        email: email,
+        password: password,
+        nickname: nickname,
+        phone: phone,
+        birth: `${year}-${month}-${day}`,
+        sex: sex,
+        allergy_id: allergy,
       })
-        .then(res => res.json())
-        .then(res => {
-          if (res.message === 'ERROR : INVALID_VALUE (email)') {
-            alert('이메일 입력 시 @와 .com이 필수로 포함되어야 합니다');
-          } else if (res.message === 'ERROR : INVALID_VALUE (password)') {
-            alert(
-              '비밀번호 입력 시 문자 8자 이상, 소문자, 대문자, 숫자, 특수기호 포함되어야 합니다'
-            );
-          } else {
-            navigate('/main');
-          }
-        }),
-    });
+    );
   };
 
   return (
@@ -314,8 +336,8 @@ const SignUp = () => {
                     id={allergy.allergy_id}
                     name="allergy"
                     value={allergy.allergy_id}
-                    onChange={handleInput}
-                    // onChange={handleAllergy}
+                    // onChange={handleInput}
+                    onClick={selectAllergy}
                   />
                   <label for={allergy.allergy_id} />
                   {allergy.allergy_name}
@@ -325,13 +347,13 @@ const SignUp = () => {
           </div>
 
           <button
-            className={
-              emailVaildCheck && passwordVaildCheck2
-                ? 'signUpButton'
-                : 'failure'
-            }
+            // className={
+            //   emailVaildCheck && passwordVaildCheck2
+            //     ? 'signUpButton'
+            //     : 'failure'
+            // }
+            // disabled={emailVaildCheck || passwordVaildCheck2}
             onClick={signUpCheck}
-            disabled={emailVaildCheck || passwordVaildCheck2}
           >
             가입하기
           </button>
