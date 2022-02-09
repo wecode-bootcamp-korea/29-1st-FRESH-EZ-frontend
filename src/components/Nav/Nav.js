@@ -3,6 +3,9 @@ import { NavLink, Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
+  // const [open, setOpen] = useState(false);
+  // const [hide, setHide] = useState(true);
+
   return (
     <div className="nav">
       <div className="navFirstLine">
@@ -43,7 +46,6 @@ const Nav = () => {
             <ul className="allOfMenu">
               <i className="fas fa-bars" />
               <li>전체 카테고리</li>
-              {/* 이거 누르면 상품목록(카테고리) 떠야함 */}
             </ul>
 
             <li className="subScriptionMenu">
