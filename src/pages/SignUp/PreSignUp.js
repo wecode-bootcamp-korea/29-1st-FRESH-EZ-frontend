@@ -25,7 +25,7 @@ function PreSignUp() {
           </div>
 
           <div className="advertiseBanner">
-            <Link to="/">
+            <Link to="/main">
               <img
                 src="images/SignUp/minibanner.png"
                 alt="잠시만 기다려주세요"
@@ -36,7 +36,7 @@ function PreSignUp() {
           <div className="orLine" />
           <div className="or">OR</div>
 
-          <Link to="/">
+          <Link to="/signUp">
             <button className="emailSignUpBtn">이메일로 가입하기</button>
           </Link>
 
