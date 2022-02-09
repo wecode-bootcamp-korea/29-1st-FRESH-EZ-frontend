@@ -2,29 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './SubsDetail.scss';
 
 function SubsDetail() {
-  const imageLists = [
-    {
-      id: 1,
-      image:
-        'https://upload.wikimedia.org/wikipedia/commons/d/de/Windows_live_square.JPG',
-      name: '두툼한 스테이크 샐러드',
-      price: '8990',
-    },
-    {
-      id: 2,
-      image:
-        'https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3',
-      name: '랍스터 샐러드',
-      price: '8990',
-    },
-    {
-      id: 3,
-      image:
-        'https://media-exp1.licdn.com/dms/image/C4E0BAQHikN6EXPd23Q/company-logo_200_200/0/1595359131127?e=2159024400&v=beta&t=S5MNjBDjiH433VCWzjPeiopNDhxGwmfcMk4Zf1P_m_s',
-      name: '대게 샐러드',
-      price: '8990',
-    },
-  ];
   const [carouselData, setCarouselData] = useState([]);
   const [xValue, setXValue] = useState(0);
 
@@ -35,7 +12,7 @@ function SubsDetail() {
   };
 
   const goRight = () => {
-    if (xValue > -(486 * (imageLists.length - 1))) {
+    if (xValue > -(486 * (carouselData.length - 1))) {
       setXValue(prev => prev - 486);
     }
   };
@@ -43,9 +20,9 @@ function SubsDetail() {
   useEffect(() => {
     fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
       .then(response => response.json())
-      .then(response => setCarouselData(prev => [...prev, response]));
+      .then(response => setCarouselData(response.product_list));
   }, []);
-
+  console.log(carouselData);
   return (
     <div className="subsDetail">
       <section className="imgAndInfo">
@@ -54,10 +31,10 @@ function SubsDetail() {
             className="carouselContents"
             style={{ transform: `translateX(${xValue}px)` }}
           >
-            {imageLists.map(salads => {
+            {carouselData.map(salads => {
               return (
-                <div className="separateCarouselContents" key={salads.id}>
-                  <img alt="salad" src={salads.image} />
+                <div className="separateCarouselContents" key={salads.index}>
+                  <img alt="salad" src={salads.url} />
                   <div className="imgNameAndPrice">
                     <div>{salads.name}</div>
                     <div>{salads.price}원</div>
