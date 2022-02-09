@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Nav.scss';
+import FirstCategory from './FirstCategory';
 
 const Nav = () => {
-  // const [open, setOpen] = useState(false);
-  // const [hide, setHide] = useState(true);
+  const [firstCateMode, setfirstCateMode] = useState(false);
 
   return (
     <div className="nav">
@@ -45,7 +45,20 @@ const Nav = () => {
           <ul className="navSecondLineLeft">
             <ul className="allOfMenu">
               <i className="fas fa-bars" />
-              <li>전체 카테고리</li>
+              <li
+                // className={`menuOpen${mode}`}
+                onMouseOver={() => setfirstCateMode(true)}
+                onMouseLeave={() => setfirstCateMode(false)}
+              >
+                {/* <li
+                className={`menuOpen${mode}`}
+                onMouseOver={() => setMode('Reveal')}
+                onMouseLeave={() => setMode('Disapper')}
+              > */}
+                전체 카테고리
+              </li>
+              {/* 마우스를 올리면 해당 카테고리의 백그라운드 색상도 변해야하고 하위
+              카테고리 목록도 떠야함. */}
             </ul>
 
             <li className="subScriptionMenu">
@@ -80,12 +93,26 @@ const Nav = () => {
           </ul>
         </div>
       </div>
-      <div className="menuContainer">
-        <ul className="menuFirstList">
-          <li>정기구독</li>
-          <li>단품구매</li>
-        </ul>
-        <ul className="menuFirstOfFirst">
+      <div
+        className="menuContainer"
+        onMouseOver={() => setfirstCateMode(true)}
+        onMouseLeave={() => setfirstCateMode(false)}
+      >
+        {firstCateMode && (
+          <ul
+            className="menuFirstList"
+            // onMouseOver={() => setfirstCateMode(true)}
+            // onMouseLeave={() => setfirstCateMode(false)}
+          >
+            <li>정기구독</li>
+            <li>단품구매</li>
+          </ul>
+        )}
+        <ul
+          className="menuFirstOfFirst"
+          onMouseOver={() => setfirstCateMode(true)}
+          onMouseLeave={() => setfirstCateMode(false)}
+        >
           <li>
             <Link to="/">샐러드</Link>
           </li>

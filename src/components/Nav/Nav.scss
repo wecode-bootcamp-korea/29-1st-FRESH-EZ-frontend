@@ -53,6 +53,15 @@
       }
 
       .allOfMenu {
+        .menuOpenReveal {
+          &:hover {
+            background-color: #dff9ec;
+          }
+          transition: transform 0.4s;
+        }
+        .menuOpenDisapper {
+          display: none;
+        }
         @include flex-center;
         font-size: 16px;
 
