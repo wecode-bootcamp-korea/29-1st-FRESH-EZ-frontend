@@ -1,14 +1,26 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SubsProd from './SubsProd';
-import SubsListData from './SubsListData';
 import './SubsList.scss';
 
 function SubsList() {
+  const [recommProdPrice, setRecommProdPrice] = useState([
+    47000, 53000, 55000, 62000,
+  ]);
+  const [subsListData, setSubsListData] = useState({});
+  const addPrice = (prev, curr) => prev + curr;
+
+  // useEffect(() => {
+  //   fetch('http://208.82.62.99:8000/product/subscribe-list')
+  //     .then(res => res.json())
+  //     .then(res => setRecommProdPrice(res.map(price => price.reduce(addPrice))));
+  // }, []);
+
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/product/subscribe-list')
+    fetch('/data/SUBSLIST_DATA.json')
       .then(res => res.json())
-      .then(res => console.log(res));
+      .then(res => setSubsListData(res));
   }, []);
+
   return (
     <ul className="subsList">
       <div className="subsListHead">
@@ -18,9 +30,14 @@ function SubsList() {
           <span> 내 맘대로</span>
         </p>
       </div>
-      {SubsListData.map(data => {
-        return <SubsProd key={data.id} data={data} />;
-      })}
+      {subsListData.length > 0 &&
+        subsListData.map(data => (
+          <SubsProd
+            key={data.id}
+            data={data}
+            price={recommProdPrice[data.id - 1]}
+          />
+        ))}
     </ul>
   );
 }

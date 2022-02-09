@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SubsProd.scss';
 
-function SubsProd({ data }) {
-  const { category, prod, desc, price_info, img_url, img_pos } = data;
+function SubsProd(props) {
+  const { data, price } = props;
+  const { id, prod, desc, img_url, img_pos } = data;
   const [buttonMode, setButtonMode] = useState('Default');
   const navigate = useNavigate();
 
@@ -11,7 +12,7 @@ function SubsProd({ data }) {
     <li
       className={`subsProd${buttonMode}`}
       position={img_pos}
-      onClick={() => navigate(`/subsDetail${category}`)}
+      onClick={() => navigate(`/subsDetail/${id}`)}
       onMouseEnter={() => setButtonMode('Emphasized')}
       onMouseLeave={() => setButtonMode('Default')}
     >
@@ -24,7 +25,9 @@ function SubsProd({ data }) {
           </p>
           <p className="subsProdDesc">{desc}</p>
         </div>
-        <div className="subsProdSub">{price_info}</div>
+        <div className="subsProdSub">
+          2주 구독 {price.toLocaleString()}원 ~{' '}
+        </div>
       </div>
     </li>
   );
