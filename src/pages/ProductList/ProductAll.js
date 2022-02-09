@@ -24,15 +24,15 @@ export default function ProductAll() {
         allergiesFilterValue: '나에게 안전한 메뉴 보기',
       }));
     } else {
-      fetch('http://208.82.62.99:8000/product/menu/filter', {
+      fetch(`http://208.82.62.99:8000/product/menu/filter${category}`, {
         method: 'POST',
-        header: JSON.stringify({
+        headers: {
           Authorization: testJWT,
-        }),
+        },
       })
         .then(res => res.json())
         .then(filtered => {
-          setData(prev => ({ ...prev, product: filtered.products_list }));
+          setData(prev => ({ ...prev, product: filtered.products_filtered }));
         });
       setData(prev => ({
         ...prev,
