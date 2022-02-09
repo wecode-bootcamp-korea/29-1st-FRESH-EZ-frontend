@@ -6,6 +6,7 @@ import SubsOpt from './pages/SubsOpt/SubsOpt';
 import SubsDetail from './pages/SubsOpt/SubsDetail';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+import Login from './pages/Login/Login';
 
 function Router() {
   return (
@@ -16,6 +17,7 @@ function Router() {
         <Route path="/subsOpt" element={<SubsOpt />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/nav" element={<Nav />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
