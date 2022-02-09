@@ -2,42 +2,58 @@
 
 .main {
   overflow: hidden;
-  position: relative;
-  .fa-angle-left {
-    position: absolute;
-    bottom: 130px;
-    left: 153px;
-    font-size: 40px;
-    color: red;
-    opacity: 0.3;
-    &:hover {
-      opacity: 0.5;
-    }
-  }
-  .fa-angle-right {
-    font-size: 40px;
-    color: red;
-    position: absolute;
-    bottom: 130px;
-    left: 1500px;
-    opacity: 0.3;
-    &:hover {
-      opacity: 0.5;
-    }
-  }
+
   .container {
     display: flex;
-    // position: relative;
-    width: 400vw;
+    position: relative;
     height: 450px;
     padding-top: 143px;
     transition: transform 0.5s;
 
-    div {
+    img {
       width: 100vw;
+      height: auto;
+    }
+  }
+  // .container {
+  //   display: flex;
+  //   position: relative;
+  //   height: 450px;
+  //   padding-top: 143px;
+  //   width: 400vw;
+  //   transition: transform 0.5s;
+  //   .img {
+  //     width: 100vw;
+  //     img {
+  //       width: 100%;
+  //       height: auto;
+  //     }
+  //   }
+  // }
+  .btnContainer {
+    width: 1130px;
+    height: 300px;
+    position: absolute;
+    // position: relative;
+    display: flex;
+    bottom: 160px;
+    left: 153px;
+    justify-content: space-between;
 
-      img {
-        width: 100%;
+    .fa-angle-left {
+      font-size: 40px;
+      color: gray;
+      opacity: 0.3;
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+    .fa-angle-right {
+      font-size: 40px;
+      color: gray;
+      opacity: 0.3;
+      &:hover {
+        opacity: 0.5;
       }
     }
   }
