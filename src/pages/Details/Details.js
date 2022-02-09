@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ADDITIONS_LIST from './additionalOptions';
-
 import SelectedProduct from './SelectedProduct';
+import ADDITIONS_LIST from './additionalOptions';
 import AdditionalOptionList from './AdditionalOptionList';
 import SuggestionsWrap from './SuggestionsWrap';
 import './Details.scss';
@@ -15,11 +14,28 @@ function Details() {
 
   const sizeInfo = [{ Medium: 0 }, { Large: 1000 }];
 
+  const calcTotalPrice = () => {
+    if (selectedProduct.message) {
+      const reducer = (preValue, curValue) => preValue + curValue;
+
+      const MDPriceArray = selectedMDProd.map(MDprod => MDprod.price);
+      const MDPrice =
+        MDPriceArray.length > 0 ? MDPriceArray.reduce(reducer) : 0;
+
+      const productsPrice =
+        (selectedProduct.price + (sizeState === 'Large' ? 1000 : 0)) *
+        productCount;
+
+      return productsPrice + MDPrice;
+    }
+  };
+
   const selectSize = e => setSizeState(e.target.value);
 
   const selectMDProd = e => {
     if (e.target.checked) {
       const { name, size, price } = ADDITIONS_LIST[e.target.name];
+      console.log(e.target);
       setSelectedMDProd(prev => [
         { name: name, size: size, price: price },
         ...prev,
@@ -31,17 +47,12 @@ function Details() {
     }
   };
 
-  const deleteData = () => {
-    if (productCount > 1) {
-      setProductCount(productCount - 1);
-    }
-  };
-
   useEffect(() => {
     fetch('http://208.82.62.99:8000/product/product-detail/19')
       .then(res => res.json())
       .then(res => {
         setSelectedProduct(res);
+        console.log(res);
       });
   }, []);
 
@@ -53,16 +64,14 @@ function Details() {
       });
   }, []);
 
+  console.log(calcTotalPrice());
+
   return (
     <div className="menuDetails">
       <div className="menuBody">
         <div className="menuHeader">
           <picture className="picture">
             <img alt="productImage" src={selectedProduct.title_image_url} />
-            {/* <source
-              srcset="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/origin/46_20220118112421"
-              media="(min-width: 300px)"
-            /> */}
           </picture>
 
           <div className="menuInfo">
@@ -84,15 +93,19 @@ function Details() {
                 <h3>수량 선택</h3>
                 <button
                   className="decBtn"
-                  // onClick={deleteData}
-                  disabled={productCount === 0}
+                  onClick={() => {
+                    setProductCount(productCount - 1);
+                  }}
+                  disabled={productCount <= 1}
                 >
                   {'<'}
                 </button>
                 <span>{productCount}</span>
                 <button
                   className="incBtn"
-                  // onClick={setProductCount(productCount + 1)}
+                  onClick={() => {
+                    setProductCount(productCount + 1);
+                  }}
                 >
                   {'>'}
                 </button>
@@ -115,6 +128,7 @@ function Details() {
                 <h3>함께 드시면 좋을 MD 추천 상품</h3>
                 <div className="additionalOptionList">
                   {ADDITIONS_LIST.map(list => {
+                    //console.log(list);
                     return (
                       <AdditionalOptionList
                         key={list.id}
@@ -125,6 +139,16 @@ function Details() {
                       />
                     );
                   })}
+
+                  {/* {ADDITIONS_LIST.map(list => (
+                    <AdditionalOptionList
+                      key={list.id}
+                      id={list.id}
+                      name={list.name}
+                      price={list.price}
+                      selectMDProd={selectMDProd}
+                    />
+                  ))} */}
                 </div>
               </div>
             </div>
@@ -148,8 +172,10 @@ function Details() {
             <div className="productPrice">
               <p>상품 금액</p>
               <p>
-                <span>{`${selectedProduct.price + 1500 + 3000}`}</span>
-                <span>원</span>
+                <span>
+                  {selectedProduct.message &&
+                    `${calcTotalPrice().toLocaleString()}원`}
+                </span>
               </p>
             </div>
             <div className="makeAnOrder">
