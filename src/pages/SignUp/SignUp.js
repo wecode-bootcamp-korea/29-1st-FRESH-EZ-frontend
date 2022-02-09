@@ -32,92 +32,16 @@ const SignUp = () => {
   } = inputs;
 
   const [rePwCheck, setRePwCheck] = useState('');
-
   const [allergyData, setAllergyData] = useState([]);
-  useEffect(() => {
-    fetch('http://208.82.62.99:8000/user/allergy')
-      .then(res => res.json())
-      .then(res => {
-        setAllergyData(res.allergies_list);
-        // setAllergyData(prev => [res.allergies_list, ...prev]);
-      });
-  }, []);
-
   const emailVaildCheck = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const passwordVaildCheck2 =
     passwordVaildCheck.test(password) && passwordVaildCheck.test(rePwCheck);
 
-  const goPwCheck = () => {
-    if (passwordVaildCheck.test(password) === false) {
-      alert('비밀번호 조건에 맞춰 다시 작성해주세요.');
-    } else if (password === 0) {
-      alert('값이 입력되지 않았습니다. 다시 입력해주세요:)');
-    }
-  };
-
-  const yearData = () => {
-    const year = [];
-    for (let i = 2009; i > 1930; i--) {
-      year.push(i);
-    }
-    return year;
-  };
-
-  const yearDataArr = yearData();
-
-  const monthArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-
-  const dayData = () => {
-    const day = [];
-    for (let i = 1; i < 32; i++) {
-      day.push(i);
-    }
-    return day;
-  };
-  const dayDataArr = dayData();
-
-  const checkError = () => {
-    if (password !== rePwCheck) {
-      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-    } else if (password === 0) {
-      alert('값이 입려되지 않았습니다. 다시 입력해주세요:)');
-    }
-  };
-
   const handleInput = e => {
     const { name, value } = e.target;
     setInputs({ ...inputs, [name]: value });
-  };
-
-  const handleRePwInput = e => {
-    setRePwCheck(e.target.value);
-  };
-
-  const selectAllergy = e => {
-    if (e.target.checked) {
-      // e를 콘솔찍어보면 엄청난 항목의 값을 전달해주는데 그중에서 체크박스 타입에서의 밸류는 checked 속성으로
-      // 불리언 타입으로 정해지기 떄문에 그 수많은 밸류 항목들 중에 checked의 값을 알기 위해 e.target.checked한거임.
-      // e.target은 수많은 이벤트의 항목중에 타겟을 정하는 것. 예를 들어서 input이 타겟이 되는 거임.
-      // 수많은 이벤트 항목죽에 input이라는 타겟을 정하는 것. 그 타겟에 있는 value가 알고 싶다고 하면 value값을 정의해줘서
-      // 그 값을 넘겨주는 것이 바로 e.target.value
-      // e 가지고 콘솔 많이 찍어보기
-      setInputs(prev => ({
-        ...prev,
-        allergy: [...prev.allergy, e.target.value],
-        // prev는 !함수안에서! prev를 쓰는데 함수를 실행되는 순간의&현재의 state 값을 참조하는 것. prev=>로 참조하면서
-        // (...prev)할 떄 비로소 진짜 값이 되 느낌.(...는 값을 복제하는 거니까)
-        // input으로 값을 할당하는 거는 변수에 지정해주는 느낌? 여기에 뭐가 들어감. 약간 이런 느낌. 지정해주는 느낌.
-        // 둘 다ㅏ 써도 작동 잘하는데... 흠...?
-      }));
-    } else {
-      setInputs(prev => ({
-        ...prev,
-        allergy: prev.allergy.filter(data => data !== e.target.value),
-        // filter(조건)은 조건을 남기는 함수 그래도 잘 모르니까 공부하기
-      }));
-    }
   };
 
   const emailDuplicateCheck = () => {
@@ -145,6 +69,69 @@ const SignUp = () => {
     }
   };
 
+  const goPwCheck = () => {
+    if (passwordVaildCheck.test(password) === false) {
+      alert('비밀번호 조건에 맞춰 다시 작성해주세요.');
+    } else if (password === 0) {
+      alert('값이 입력되지 않았습니다. 다시 입력해주세요:)');
+    }
+  };
+
+  const handleRePwInput = e => {
+    setRePwCheck(e.target.value);
+  };
+
+  const checkError = () => {
+    if (password !== rePwCheck) {
+      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+    } else if (password === 0) {
+      alert('값이 입려되지 않았습니다. 다시 입력해주세요:)');
+    }
+  };
+
+  const yearData = () => {
+    const year = [];
+    for (let i = 2009; i > 1930; i--) {
+      year.push(i);
+    }
+    return year;
+  };
+
+  const yearDataArr = yearData();
+
+  const monthArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+  const dayData = () => {
+    const day = [];
+    for (let i = 1; i < 32; i++) {
+      day.push(i);
+    }
+    return day;
+  };
+  const dayDataArr = dayData();
+
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/user/allergy')
+      .then(res => res.json())
+      .then(res => {
+        setAllergyData(res.allergies_list);
+      });
+  }, []);
+
+  const selectAllergy = e => {
+    if (e.target.checked) {
+      setInputs(prev => ({
+        ...prev,
+        allergy: [...prev.allergy, e.target.value],
+      }));
+    } else {
+      setInputs(prev => ({
+        ...prev,
+        allergy: prev.allergy.filter(data => data !== e.target.value),
+      }));
+    }
+  };
+
   const signUpCheck = () => {
     fetch('http://208.82.62.99:8000/user/signup', {
       method: 'POST',
@@ -157,7 +144,6 @@ const SignUp = () => {
         birth: `${year}-${month}-${day}`,
         sex: sex,
         allergy_ids: allergy,
-        // 보내는 데이터는 백엔드의 키값,밸류값 맞춰야함
       }),
     })
       .then(res => res.json())
@@ -193,7 +179,6 @@ const SignUp = () => {
                   name="email"
                   value={email}
                   onChange={handleInput}
-                  // 콘솔 찍어보다가 onKeyUp 적용해봤는데 입력조차도 안되서 .. 이론은 완벽한데 왜안되는지..?
                 />
                 <button onClick={emailDuplicateCheck}>중복 확인</button>
               </div>
@@ -312,7 +297,7 @@ const SignUp = () => {
                   onClick={handleInput}
                 />
                 <label for="female" />
-                <div>여성</div>
+                <p>여성</p>
               </div>
               <div className="maleCheck">
                 <input
@@ -323,7 +308,7 @@ const SignUp = () => {
                   onClick={handleInput}
                 />
                 <label for="male" />
-                <div>남성</div>
+                <p>남성</p>
               </div>
             </div>
           </div>
@@ -338,7 +323,6 @@ const SignUp = () => {
                     id={allergy.allergy_id}
                     name="allergy"
                     value={allergy.allergy_id}
-                    // onChange={handleInput}
                     onClick={selectAllergy}
                   />
                   <label for={allergy.allergy_id} />

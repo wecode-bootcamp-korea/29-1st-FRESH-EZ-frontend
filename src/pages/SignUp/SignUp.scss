@@ -1,11 +1,6 @@
 @import '../../styles/variables.scss';
 
 .signUp {
-  // display: flex;
-  // justify-content: center;
-  // @include flex-center;
-  // height: 100vh;
-
   span {
     font-size: $body;
     font-weight: 500;
@@ -14,10 +9,6 @@
   .signUpBox {
     @include flex-center;
     flex-direction: column;
-    // display: flex;
-    // justify-content: center;
-    // background-color: lightgray;
-    // margin: 200px 0;
 
     .signUpHeader {
       @include flex-center;
@@ -34,8 +25,8 @@
       }
 
       span {
-        font-size: $body;
         color: $font-gray;
+        font-size: $body;
       }
 
       .logo {
@@ -45,57 +36,63 @@
       }
     }
   }
+
   .userInfo {
+    margin-bottom: 20px;
     font-size: 21px;
     font-weight: 500;
-
-    margin-bottom: 20px;
   }
 
   .necessary::after {
     content: '*';
-    // display: inline-block;
-    color: red;
     margin-left: 3px;
+    color: red;
   }
+
   .accountId {
     margin-bottom: 35px;
+
     div {
       &:last-child input {
-        margin-top: 10px;
         width: 250px;
+        margin-top: 10px;
+        margin-right: 10px;
         padding: 12px 15px;
         border: 1px solid #c9cacc;
         border-radius: 3px;
-        margin-right: 10px;
+
         &:focus {
           outline: 1px solid $theme-green;
         }
       }
+
       &:last-child button {
-        &:hover {
-          cursor: pointer;
-          opacity: 1;
-        }
-        // 왜 전체 버튼태그에 걸면 안되는가
         width: 120px;
         padding: 12px 15px;
-        border: none;
-        background-color: $theme-green;
         color: white;
-        border-radius: 3px;
+        background-color: $theme-green;
         opacity: 0.9;
+        border: none;
+        border-radius: 3px;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
       }
     }
   }
+
   .accountPw {
     margin-bottom: 35px;
+
     input {
-      margin-top: 10px;
       width: 380px;
+      margin-top: 10px;
       padding: 12px 15px;
       border: 1px solid #c9cacc;
       border-radius: 3px;
+
       &:focus {
         outline: 1px solid $theme-green;
       }
@@ -104,12 +101,14 @@
 
   .accountRePw {
     margin-bottom: 50px;
+
     input {
-      margin-top: 10px;
       width: 380px;
+      margin-top: 10px;
       padding: 12px 15px;
       border: 1px solid #c9cacc;
       border-radius: 3px;
+
       &:focus {
         outline: 1px solid $theme-green;
       }
@@ -118,52 +117,62 @@
 
   .personalId {
     margin-bottom: 35px;
+
     input {
-      margin-top: 10px;
       width: 380px;
+      margin-top: 10px;
       padding: 12px 15px;
       border: 1px solid #c9cacc;
       border-radius: 3px;
+
       &:focus {
         outline: 1px solid $theme-green;
       }
     }
   }
+
   .personalNickName {
     margin-bottom: 35px;
+
     input {
-      margin-top: 10px;
       width: 380px;
+      margin-top: 10px;
       padding: 12px 15px;
       border: 1px solid #c9cacc;
       border-radius: 3px;
+
       &:focus {
         outline: 1px solid $theme-green;
       }
     }
   }
+
   .phone {
     margin-bottom: 35px;
+
     div {
       &:last-child input {
-        margin-top: 10px;
         width: 250px;
+        margin-top: 10px;
+        margin-right: 10px;
         padding: 12px 15px;
         border: 1px solid #c9cacc;
         border-radius: 3px;
-        margin-right: 10px;
+
         &:focus {
           outline: 1px solid $theme-green;
         }
       }
+
       &:last-child button {
         width: 120px;
         padding: 12px 15px;
-        border: none;
-        background-color: $theme-green;
         color: white;
-        border-radius: 3px;
+        background-color: $theme-green;
         opacity: 1;
+        border: none;
+        border-radius: 3px;
+
         &:hover {
           opacity: 0.9;
           cursor: pointer;
@@ -171,131 +180,133 @@
       }
     }
   }
+
   .signUpButton {
     width: 380px;
     padding: 15px;
-    border: none;
-    background-color: $theme-green;
-    color: white;
-    border-radius: 3px;
     margin-bottom: 50px;
+    color: white;
+    background-color: $theme-green;
+    border: none;
+    border-radius: 3px;
     opacity: 0.9;
+
     &:hover {
-      cursor: pointer;
-      opacity: 1;
       background-color: $theme-green;
+      opacity: 1;
+      cursor: pointer;
     }
   }
+
   .failure {
     width: 380px;
     padding: 15px;
-    border: none;
-    background-color: $theme-green;
-    color: white;
-    border-radius: 3px;
     margin-bottom: 50px;
+    color: white;
+    background-color: $theme-green;
+    border: none;
+    border-radius: 3px;
     opacity: 0.7;
+
     &:hover {
       cursor: pointer;
     }
   }
+
   .sex {
     display: inline-block;
     margin-bottom: 10px;
   }
+
   .sexCheck {
     display: flex;
     margin-bottom: 35px;
     font-size: 20px;
 
     .femaleCheck,
-    .maleCheck,
-    .nobodyCheck {
+    .maleCheck {
       display: flex;
       align-items: center;
+      color: $font-gray;
       font-size: 16px;
-      color: $font-gray;
-      // radio크기 키우는 법.. 알아오자...
+
       input[type='radio'] {
-        display: none;
-        + label {
-          display: inline-block;
-          width: 17px;
-          height: 17px;
-          background: #e7e7e7;
-          border-radius: 50px;
-          margin-right: 7px;
-          cursor: pointer;
-        }
-        &:checked + label {
-          background: url('../../../public/images/sexcheck.png') no-repeat
-            center/17px auto;
-        }
-      }
-    }
-    span {
-      color: $font-gray;
-    }
-    .maleCheck {
-      margin: 0 15px;
-    }
-  }
-  .birthday {
-    margin-bottom: 35px;
-    .birthdayList {
-      margin-top: 10px;
-      select {
-        margin-right: 10px;
-        padding-left: 10px;
-        width: 120px;
-        height: 40px;
-        border: 1px solid #c9cacc;
-        border-radius: 3px;
-        &:focus {
-          outline: 1px solid $theme-green;
-        }
-      }
-    }
-  }
-  .allergy {
-    margin-bottom: 35px;
-    width: 380px;
-
-    input[type='checkbox'] {
-      display: none;
-
-      + label {
-        display: inline-block;
         width: 20px;
         height: 20px;
-        background-color: white;
-        margin-right: 7px;
-        cursor: pointer;
-        border: 1px solid #c9cacc;
-        border-radius: 3px;
-      }
-      &:checked + label {
-        background: url(../../../public/images/checked.png) $theme-green
-          no-repeat center/20px 20px;
-      }
-    }
-    div {
-      color: $font-gray;
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
+        margin: 5px 8px 5px 0;
+        border: 1.5px solid $border-gray;
+        border-radius: 50%;
+        transition: 0.2s all linear;
+        appearance: none;
 
-    span {
-      display: inline-block;
-      margin-bottom: 13px;
+        &:checked {
+          border: 6px solid $theme-green;
+        }
+      }
+    }
+  }
+
+  span {
+    color: $font-gray;
+  }
+
+  .maleCheck {
+    margin: 0 15px;
+  }
+}
+
+.birthday {
+  margin-bottom: 35px;
+
+  .birthdayList {
+    margin-top: 10px;
+
+    select {
+      width: 120px;
+      height: 40px;
+      margin-right: 10px;
+      padding-left: 10px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
     }
   }
 }
 
-// @mixin input-layer {
-//   width: 380px;
-//   padding: 10px;
-//   border: 1px solid #C9CACC;
-//   border-radius: 3px;
-// }
+.allergy {
+  width: 380px;
+  margin-bottom: 35px;
+
+  input[type='checkbox'] {
+    display: none;
+
+    + label {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 7px;
+      background-color: white;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    &:checked + label {
+      background: url(../../../public/images/checked.png) $theme-green no-repeat
+        center/20px 20px;
+    }
+  }
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: $font-gray;
+  }
+
+  span {
+    display: inline-block;
+    margin-bottom: 13px;
+  }
+}

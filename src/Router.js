@@ -12,7 +12,7 @@ function Router() {
         <Route path="/main" element={<Main />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/nav" element={<Nav />} />
-        <Route path="/presignup" element={<PreSignUp />} />
+        <Route path="/preSignUp" element={<PreSignUp />} />
       </Routes>
     </BrowserRouter>
   );
