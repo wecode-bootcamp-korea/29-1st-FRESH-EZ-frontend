@@ -1,21 +1,21 @@
 import React from 'react';
 
 const AdditionalOptionList = props => {
-  const { id, name, value, getSelectedMDInfo } = props;
+  const { id, name, price, selectMDProd } = props;
   return (
     <div key={id} className="additionalOption">
       <div className="checkboxAndOption">
         <input
           type="checkbox"
-          name={name}
-          value={value}
+          name={id}
+          value={name}
           className="optionCheckbox"
-          onClick={getSelectedMDInfo}
+          onClick={selectMDProd}
         />
         <span>{name}</span>
       </div>
       <div>
-        <span className="price">{value}</span>
+        <span className="price">{price.toLocaleString()}</span>
         <span>원</span>
       </div>
     </div>

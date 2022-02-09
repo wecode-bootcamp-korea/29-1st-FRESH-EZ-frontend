@@ -71,10 +71,20 @@
           // border-bottom: 1px solid;
           position: relative;
 
+          .selectCount {
+            padding: 20px 0px;
+            border-bottom: 1px solid $border-gray;
+
+            span {
+              margin: 0px 10px;
+            }
+          }
+
           .selectSize {
             @include flex-center;
             justify-content: space-between;
             padding: 20px 0;
+            border-bottom: 1px solid $border-gray;
 
             select {
               width: 280px;
@@ -107,6 +117,8 @@
 
           .selectAddition {
             padding-top: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid black;
 
             h3 {
               padding-bottom: 20px;
@@ -144,41 +156,20 @@
         }
 
         .selectedDetailModal {
-          .selectedDetailWrapper {
-            .selectedDetailTitle {
+          .selectedList {
+            padding: 20px 10px 10px 10px;
+            margin-bottom: 20px;
+            border-top: 1px solid $border-gray;
+            border-bottom: 1px solid $border-gray;
+
+            .listTop {
               @include flex-center;
               justify-content: space-between;
-              padding: 20px 10px 30px 10px;
-              margin-bottom: 20px;
-              border-top: 1px solid $border-gray;
-              border-bottom: 1px solid $border-gray;
-
-              img {
-                width: 25px;
-                &:hover {
-                  cursor: pointer;
-                }
-              }
             }
 
-            .selectedDetailInputWrap {
-              .formNumber {
-                @include flex-center;
-                // border: 1px solid;
-                width: 150px;
-
-                button,
-                input {
-                  // border: none;
-                  @include flex-center;
-                  justify-content: center;
-                }
-                input {
-                  width: 100px;
-                  // border-left: none;
-                  // border-right: none;
-                }
-              }
+            .listBottom {
+              margin-top: 20px;
+              margin-bottom: 0px;
             }
           }
         }
