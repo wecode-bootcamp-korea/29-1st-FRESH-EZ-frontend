@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SubsProd from './SubsProd';
 import SubsListData from './SubsListData';
 import './SubsList.scss';
 
 function SubsList() {
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/product/subscribe-list')
+      .then(res => res.json())
+      .then(res => console.log(res));
+  }, []);
   return (
     <ul className="subsList">
       <div className="subsListHead">
