@@ -7,6 +7,7 @@ import SubsDetail from './pages/SubsOpt/SubsDetail';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import SubsSelect from './pages/SubsSelect/SubsSelect';
+import Login from './pages/Login/Login';
 
 function Router() {
   return (
@@ -18,6 +19,7 @@ function Router() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/nav" element={<Nav />} />
         <Route path="/subsSelect" element={<SubsSelect />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
