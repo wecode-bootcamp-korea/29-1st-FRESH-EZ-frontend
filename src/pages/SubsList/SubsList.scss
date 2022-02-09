@@ -1,19 +1,5 @@
 @import '../../styles/variables.scss';
 
-@mixin img-positioning {
-  &[position="right"] {
-    img {
-      order: 1;
-    }
-  }
-
-  &[position="left"] {
-    .subsProdText {
-      text-align: end;
-    }
-  }
-}
-
 .subsList {
   @include flex-center;
   flex-direction: column;
@@ -36,87 +22,5 @@
         color: $theme-green;
       }
     }
-
   }
-
-  .subsProdDefault {
-    @include flex-center;
-    justify-content: space-between;
-    padding: 50px;
-    margin-bottom: 20px;
-    width: 60vw;
-    border: 1px solid $border-gray;
-    border-radius: $radio-size;
-    box-shadow: 5px 3px 3px $border-gray;
-    cursor: pointer;
-
-    .subsProdImg {
-      width: 20%;
-    }
-
-    .subsProdText {
-      display: flex;
-      flex-direction: column;
-
-      .subsProdName {
-        margin-bottom: 10px;
-        font-size: 38px;
-        font-weight: bold;
-        color: $theme-green;
-      }
-
-      .subsProdDesc {
-        font-size: $headline;
-      }
-  
-      .subsProdSub {
-        padding-top: 30px;
-        color: $font-gray;
-      }
-    }
-    
-    @include img-positioning()
-  }
-
-    .subsProdEmphasized {
-      @include flex-center;
-      justify-content: space-between;
-      padding: 50px;
-      margin-bottom: 20px;
-      width: 62vw;
-      border: 1px solid $border-gray;
-      border-radius: $radio-size;
-      background-color: $theme-green;
-      box-shadow: 5px 3px 3px $border-gray;
-      cursor: pointer;
-  
-      .subsProdImg {
-        width: 22%;
-        filter: brightness(100);
-      }
-  
-      .subsProdText {
-        display: flex;
-        flex-direction: column;
-  
-        .subsProdName {
-          margin-bottom: 10px;
-          font-size: 40px;
-          font-weight: bold;
-          color: white;
-        }
-
-        .subsProdDesc {
-          font-size: $headline+2;
-          color: white;
-        }
-    
-        .subsProdSub {
-          padding-top: 30px;
-          color: $border-gray;
-        }
-      }
-
-      @include img-positioning()
-    }
 }
