@@ -1,5 +1,94 @@
 @import '../../styles/variables.scss';
 
+.preSignUp {
+  @include flex-center;
+  justify-content: center;
+  height: 100vh;
+
+  .preSignUpBox {
+    @include flex-center;
+    flex-direction: column;
+    margin-top: 200px;
+    padding-bottom: 100px;
+    // 마진은 왜 안되는지 모르겠음 100vh때문에 그런가?
+
+    // background-color: lightgray;
+    // margin: 200px 0;
+
+    .preSignUpHeader {
+      text-align: center;
+      margin: 50px 110px 30px 110px;
+      padding: 40px;
+
+      img {
+        width: 150px;
+        height: auto;
+        margin-bottom: 5px;
+      }
+
+      p {
+        font-size: $body;
+        color: $font-gray;
+      }
+
+      .logo {
+        color: #3d3d3d;
+        font-size: 30px;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .setKakaoConnect {
+    @include flex-center;
+    justify-content: center;
+    width: 420px;
+    padding: 15px 0;
+    // padding: 15px 126px;
+    // 약간 하드코딩느낌... flexㅎ
+    background-color: #f9df33;
+    margin-bottom: 10px;
+    cursor: pointer;
+    &:hover {
+      background-color: #e2ca2e;
+    }
+
+    i {
+      margin-right: 5px;
+    }
+    span {
+      font-size: $body;
+      font-weight: 400;
+      margin-top: 3px;
+    }
+  }
+}
+.advertiseBanner {
+  a {
+    color: $font-gray;
+    text-decoration: none;
+  }
+  img {
+    width: 420px;
+    height: 135px;
+    margin-bottom: 15px;
+    cursor: pointer;
+  }
+}
+.orLine {
+  border-top: 1px solid #c9cacc;
+  // width: 420px;
+  padding: 0 207px;
+  margin-top: 15px;
+}
+.or {
+  font-size: $body;
+  color: #c9cacc;
+  position: relative;
+  background-color: white;
+  padding: 10px;
+  top: -17px;
+}
 .emailSignUpBtn {
   // width: 420px;
   // padding: 13px 0;
@@ -10,33 +99,30 @@
   border-radius: 3px;
   font-size: 15px;
   cursor: pointer;
+  opacity: 0.9;
 
   &:hover {
-    background-color: rgb(109, 184, 109);
+    background-color: $theme-green;
+    opacity: 1;
     // text-align: center;
     // 정렬 아무것도 안했는데 왜 가운데 정렬되는거지
   }
 }
-.setKakaoConnect {
+.appleConnect {
+  // width: 420px;
+  // padding: 13px 0;
+  padding: 15px 142px;
   @include flex-center;
   justify-content: center;
-  width: 420px;
-  padding: 15px 0;
-  // padding: 15px 126px;
-  // 약간 하드코딩느낌... flexㅎ
-  background-color: #f9df33;
-  margin-bottom: 10px;
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  border-radius: 3px;
+  font-size: 15px;
+  margin-top: 10px;
   cursor: pointer;
-  &:hover {
-    background-color: #e2ca2e;
-  }
 
   i {
-    margin-right: 5px;
-  }
-  span {
-    font-size: $body;
-    font-weight: 400;
-    margin-top: 2px;
+    margin-right: 10px;
   }
 }

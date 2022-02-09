@@ -7,9 +7,9 @@ function PreSignUp() {
   return (
     <>
       <Nav />
-      <div className="login">
-        <div className="loginBox">
-          <div className="loginHeader">
+      <div className="preSignUp">
+        <div className="preSignUpBox">
+          <div className="preSignUpHeader">
             <img
               src="images/onlyLogo.png"
               className="logo"
