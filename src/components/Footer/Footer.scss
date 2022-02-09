@@ -1,0 +1,159 @@
+@import '../../styles/variables.scss';
+
+.align {
+  display: flex;
+  justify-content: center;
+
+  .footer {
+    width: 1173px;
+    margin-top: 100px;
+    color: $font-gray;
+
+    .footerFirst {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 42px;
+      margin-bottom: 45px;
+      img {
+        width: 170px;
+        height: 35px;
+      }
+      .footerFirstRight {
+        cursor: pointer;
+        display: flex;
+        a {
+          text-decoration: none;
+          color: $font-gray;
+          &:nth-child(even) {
+            margin: 0 30px;
+          }
+        }
+        // .contract:nth-child(-n + 2),
+        // classname안쓰고 a태그 취급하면서 css해도 되는건 머지..?
+      }
+    }
+    h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333333;
+    }
+    .footerSecond {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      // @include flex-center;
+      height: 62px;
+
+      .questionBtn button {
+        cursor: pointer;
+        width: 124px;
+        height: 44px;
+        border: 1px solid $theme-green;
+        background-color: white;
+        color: $theme-green;
+        margin-right: 30px;
+        border-radius: 3px;
+      }
+
+      .questionSchedule {
+        .questionScheduleFirst,
+        .questionScheduleSecond {
+          display: flex;
+
+          p:first-child {
+            width: 330px;
+            border-right: 1px solid $border-gray;
+            margin-right: 20px;
+
+            span:first-child {
+              color: #333333;
+              margin-right: 10px;
+            }
+          }
+          p:last-child {
+            span:first-child {
+              color: #333333;
+              margin-right: 10px;
+            }
+          }
+        }
+        div:first-child {
+          margin-bottom: 6px;
+        }
+      }
+    }
+    .footerThird {
+      margin-bottom: 45px;
+
+      .footerThirdFirst {
+        display: flex;
+        margin-bottom: 15px;
+        div:nth-child(-n + 3) {
+          border-right: 1px solid $border-gray;
+          margin-right: 15px;
+          padding-right: 15px;
+
+          span:first-child {
+            color: #333333;
+            margin-right: 10px;
+          }
+        }
+        div:last-child {
+          span:first-child {
+            color: #333333;
+            margin-right: 10px;
+          }
+        }
+      }
+      .footerThirdSecond {
+        display: flex;
+        div:nth-child(-n + 2) {
+          border-right: 1px solid $border-gray;
+          margin-right: 15px;
+          padding-right: 15px;
+
+          span:first-child {
+            color: #333333;
+            margin-right: 10px;
+          }
+        }
+        div:last-child {
+          span:first-child {
+            color: #333333;
+            margin-right: 10px;
+          }
+        }
+      }
+      a {
+        text-decoration: none;
+        color: $font-gray;
+        cursor: pointer;
+      }
+    }
+    .footerFourth {
+      display: flex;
+      justify-content: space-between;
+      height: 61px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      line-height: 20px;
+
+      .footerFourthIcon {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        i {
+          font-size: 25px;
+          color: $theme-green;
+
+          //   폰트어썸 태그라 폰트사이즈로 지정 가능
+
+          &:nth-child(even) {
+            margin: 0 25px;
+          }
+        }
+      }
+    }
+  }
+}
