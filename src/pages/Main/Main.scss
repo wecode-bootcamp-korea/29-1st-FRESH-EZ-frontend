@@ -20,24 +20,15 @@
     display: flex;
     justify-content: space-between;
     position: absolute;
-    width: 1130px;
+    width: 70vw;
     height: 300px;
-    bottom: 160px;
-    left: 153px;
+    bottom: 300px;
+    left: 230px;
 
-    .fa-angle-left {
+    i {
       color: gray;
       opacity: 0.3;
-      font-size: 40px;
-
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-    .fa-angle-right {
-      color: gray;
-      opacity: 0.3;
-      font-size: 40px;
+      font-size: 50px;
 
       &:hover {
         opacity: 0.5;
