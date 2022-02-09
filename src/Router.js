@@ -6,16 +6,18 @@ import SubsOpt from './pages/SubsOpt/SubsOpt';
 import SubsDetail from './pages/SubsOpt/SubsDetail';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+import SubsSelect from './pages/SubsSelect/SubsSelect';
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
-        <Route path="/subsDetails" element={<SubsDetails />} />
+        <Route path="/subsDetails/:id" element={<SubsDetails />} />
         <Route path="/subsOpt" element={<SubsOpt />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/nav" element={<Nav />} />
+        <Route path="/subsSelect" element={<SubsSelect />} />
       </Routes>
     </BrowserRouter>
   );

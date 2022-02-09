@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Button from './Button';
 
 export default function SubsSelect() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/data/SUBS_CATEGORY.json')
+      .then(res => res.json())
+      .then(res => setData(res));
+  });
   return (
     <div>
-      <button>샐러드</button>
-      <button>샌드위치</button>
-      <button>도시락</button>
-      <button>반반메뉴</button>
+      {data.map(data => {
+        return <Button key={data.id} data={data} />;
+      })}
     </div>
   );
 }

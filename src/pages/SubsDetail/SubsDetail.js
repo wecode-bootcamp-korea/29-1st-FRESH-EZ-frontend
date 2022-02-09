@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './SubsDetail.scss';
 
 function SubsDetail() {
   const [carouselData, setCarouselData] = useState([]);
   const [xValue, setXValue] = useState(0);
+  const params = useParams();
+  const [data, setData] = useState([]);
 
   const goLeft = () => {
     if (xValue < 0) {
@@ -18,11 +21,17 @@ function SubsDetail() {
   };
 
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
+    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${params.id}`)
       .then(response => response.json())
       .then(response => setCarouselData(response.product_list));
+    fetch('http://localhost:3000/data/SUBS_CATEGORY.json')
+      .then(res => res.json())
+      .then(res => setData(res));
+    console.log(data);
   }, []);
-  console.log(carouselData);
+
+  const detailCategory = data[0][params.id - 1];
+
   return (
     <div className="subsDetail">
       <section className="imgAndInfo">
@@ -51,7 +60,7 @@ function SubsDetail() {
           </div>
         </section>
         <section className="information">
-          <div className="header1">샐러드 정기구독</div>
+          <div className="header1">{detailCategory} 정기구독</div>
           <div className="header2">
             [기간] 1주-8주 / [배송] 주 1회-6회 / [사이즈] M/L Size
           </div>
@@ -69,13 +78,13 @@ function SubsDetail() {
           <div className="header1">36,000원 ~</div>
           <div className="infoDetail">
             <div className="header4">상품설명</div>
-            원하는 날에, 원하는 끼니에 먹는 샐러드 식단
+            원하는 날에, 원하는 끼니에 먹는 {detailCategory} 식단
             <br /> <br />
             ✔ 구성
             <br />
-            20종의 샐러드
+            20종의 {detailCategory}
             <br />
-            원하는 샐러드로 변경 가능해요
+            원하는 {detailCategory}로 변경 가능해요
             <br /> <br />
             ✔ 주문
             <br />
