@@ -8,19 +8,21 @@ import ProductBento from './pages/ProductList/ProductBento';
 import ProductSoup from './pages/ProductList/ProductSoup';
 import ProductSnack from './pages/ProductList/ProductSnack';
 import ProductDrink from './pages/ProductList/ProductDrink';
+import Details from './pages/Details/Details';
 
 function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
-        <Route path="/products/all" element={<ProductAll />} />
+        <Route path="/products" element={<ProductAll />} />
         <Route path="/products/salad" element={<ProductSalad />} />
         <Route path="/products/sandwich" element={<ProductSandwich />} />
         <Route path="/products/bento" element={<ProductBento />} />
         <Route path="/products/soup" element={<ProductSoup />} />
         <Route path="/products/snack" element={<ProductSnack />} />
         <Route path="/products/drink" element={<ProductDrink />} />
+        <Route path="/products/detail/:id" element={<Details />} />
       </Routes>
     </BrowserRouter>
   );

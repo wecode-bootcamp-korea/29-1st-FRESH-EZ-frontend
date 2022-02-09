@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import ProductList from './components/ProductList';
 
 export default function ProductAll() {
@@ -8,6 +9,9 @@ export default function ProductAll() {
     allergiesFilterValue: '나에게 안전한 메뉴 보기',
   });
 
+  const testJWT =
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6M30.niNmVRTCz9yD_B5BjBhfyVaDVAKyboSxAUxRmOOnvJg';
+
   const allergiesFilterToggle = () => {
     if (data.allergiesFilterValue === '모든 메뉴 보기') {
       setData(prev => ({
@@ -15,14 +19,19 @@ export default function ProductAll() {
         allergiesFilterValue: '나에게 안전한 메뉴 보기',
       }));
     } else {
+      fetch('', {
+        method: 'POST',
+        header: JSON.stringify({
+          jwt: testJWT,
+        }),
+      });
       setData(prev => ({
         ...prev,
         allergiesFilterValue: '모든 메뉴 보기',
       }));
     }
   };
-  //request body: filter_off드리면 됨... filter_on(로그인)
-  //로그인을 했는지 안했는지 확인하는 방법. -> 토큰이 있는지 없는지 확인하면 될 것 같은데...
+
   useEffect(() => {
     fetch('http://208.82.62.99:8000/product/menu')
       .then(res => res.json())

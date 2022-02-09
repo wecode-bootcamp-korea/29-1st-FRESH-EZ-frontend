@@ -4,20 +4,6 @@ import './ProductList.scss';
 import ProductCard from './ProductCard';
 
 function ProductList({ title, subnav, productData, children }) {
-  /*const vegeterianSelector = () => {
-    Math.round(Math.random() * 5) === 0
-      ? return '비건'
-      : Math.round(Math.random() * 5) === 1
-      ? return '락토베지테리언'
-      : Math.round(Math.random() * 5) === 2
-      ? return '페스코베지테리언'
-      : Math.round(Math.random() * 5) === 3
-      ? return '폴로베지테리언'
-      : Math.round(Math.random() * 5) === 4
-      ? return '플렉시테리언'
-      : return '오보베지테리언';
-  };*/
-
   return (
     <div className="ProductList">
       <div className="navWrapper">FRESH-EZ</div>
@@ -60,6 +46,7 @@ function ProductList({ title, subnav, productData, children }) {
                 name={input.name}
                 price={input.price}
                 description={input.small_desc}
+                id={input.id}
               />
             ))}
           </article>

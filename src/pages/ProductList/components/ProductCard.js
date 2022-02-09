@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.scss';
 
-export default function ProductCard({ image, name, price, description }) {
+export default function ProductCard({ image, name, price, description, id }) {
+  const navigate = useNavigate();
+
+  const goToDetail = () => {
+    navigate(`/products/detail/${id}`);
+  };
+
   return (
-    <section className="productCard">
+    <section className="productCard" onClick={goToDetail}>
       <figure className="imgWrapper">
         <img src={image} alt="food" />
       </figure>
