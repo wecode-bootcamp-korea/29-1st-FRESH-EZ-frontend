@@ -15,43 +15,30 @@
       height: auto;
     }
   }
-  // .container {
-  //   display: flex;
-  //   position: relative;
-  //   height: 450px;
-  //   padding-top: 143px;
-  //   width: 400vw;
-  //   transition: transform 0.5s;
-  //   .img {
-  //     width: 100vw;
-  //     img {
-  //       width: 100%;
-  //       height: auto;
-  //     }
-  //   }
-  // }
+
   .btnContainer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
     width: 1130px;
     height: 300px;
-    position: absolute;
-    // position: relative;
-    display: flex;
     bottom: 160px;
     left: 153px;
-    justify-content: space-between;
 
     .fa-angle-left {
-      font-size: 40px;
       color: gray;
       opacity: 0.3;
+      font-size: 40px;
+
       &:hover {
         opacity: 0.5;
       }
     }
     .fa-angle-right {
-      font-size: 40px;
       color: gray;
       opacity: 0.3;
+      font-size: 40px;
+
       &:hover {
         opacity: 0.5;
       }

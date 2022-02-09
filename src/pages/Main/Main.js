@@ -26,8 +26,6 @@ function Main() {
   const goLeft = () => {
     if (xValue < 0) {
       setXValue(prev => prev + 100);
-
-      // 100vw를 어떻게 담아야할 지 모르겠음.
     }
   };
   const goRight = () => {
@@ -43,19 +41,12 @@ function Main() {
       <div
         className="container"
         style={{ transform: `translatex(${xValue}vw)` }}
-        // 꿀팁..!
       >
         {imageLists.map(img => {
           return (
             <div className="img" key={img.id}>
               <img src={img.img} alt="잠시만 기다려주세요" />
             </div>
-
-            // 왜 imageLists.하면 안뜸?
-            // map함수는 어레이의 인자를 받아서 그 인자를 가지고 쓰는 거라
-
-            // <img src={img.img} alt="잠시만 기다려주세요" key={img.id} />
-            // 왜 div로 안묶으면 마지막에 다같이 나오는 그림이 나오지?
           );
         })}
       </div>
