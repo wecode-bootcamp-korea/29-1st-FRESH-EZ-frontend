@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import './Nav.scss';
-import FirstCategory from './FirstCategory';
+// import FirstCategory from './FirstCategory';
 
 const Nav = () => {
   const [firstCateMode, setfirstCateMode] = useState(false);
@@ -47,6 +47,8 @@ const Nav = () => {
               <i className="fas fa-bars" />
               <li
                 // className={`menuOpen${mode}`}
+                // onMouseOver={() => setfirstCateMode(true)}
+                // onMouseLeave={() => setfirstCateMode(false)}
                 onMouseOver={() => setfirstCateMode(true)}
                 onMouseLeave={() => setfirstCateMode(false)}
               >
@@ -93,26 +95,14 @@ const Nav = () => {
           </ul>
         </div>
       </div>
-      <div
-        className="menuContainer"
-        onMouseOver={() => setfirstCateMode(true)}
-        onMouseLeave={() => setfirstCateMode(false)}
-      >
+      <div className="menuContainer">
         {firstCateMode && (
-          <ul
-            className="menuFirstList"
-            // onMouseOver={() => setfirstCateMode(true)}
-            // onMouseLeave={() => setfirstCateMode(false)}
-          >
+          <ul className="menuFirstList">
             <li>정기구독</li>
             <li>단품구매</li>
           </ul>
         )}
-        <ul
-          className="menuFirstOfFirst"
-          onMouseOver={() => setfirstCateMode(true)}
-          onMouseLeave={() => setfirstCateMode(false)}
-        >
+        <ul className="menuFirstOfFirst">
           <li>
             <Link to="/">샐러드</Link>
           </li>
