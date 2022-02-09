@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Nav.scss';
-// import FirstCategory from './FirstCategory';
 
 const Nav = () => {
   const [firstCateMode, setfirstCateMode] = useState(false);
-
+  const subScriptMenu = [
+    { name: '샐러드' },
+    { name: '샌드위치' },
+    { name: '도시락' },
+  ];
+  const subSingleMenu = [
+    { name: '샐러드' },
+    { name: '샌드위치 · 랩' },
+    { name: '도시락 · 간편식' },
+    { name: '죽 · 스프' },
+    { name: '간식' },
+    { name: '음료' },
+  ];
   return (
     <div className="nav">
       <div className="navFirstLine">
@@ -19,24 +30,16 @@ const Nav = () => {
 
         <ul className="navFirstLineRight">
           <li className="signUpBtn">
-            <NavLink className="themeColor" to="/">
-              회원가입
-            </NavLink>
+            <Link to="/">회원가입</Link>
           </li>
           <li className="loginBtn">
-            <NavLink className="fontGray" to="/">
-              로그인
-            </NavLink>
+            <Link to="/">로그인</Link>
           </li>
           <li className="as">
-            <NavLink className="fontGray" to="/">
-              1:1 문의
-            </NavLink>
+            <Link to="/">1:1 문의</Link>
           </li>
           <li>
-            <NavLink className="fontGray" to="/">
-              B2B 신청
-            </NavLink>
+            <Link to="/">B2B 신청</Link>
           </li>
         </ul>
       </div>
@@ -46,32 +49,18 @@ const Nav = () => {
             <ul className="allOfMenu">
               <i className="fas fa-bars" />
               <li
-                // className={`menuOpen${mode}`}
-                // onMouseOver={() => setfirstCateMode(true)}
-                // onMouseLeave={() => setfirstCateMode(false)}
                 onMouseOver={() => setfirstCateMode(true)}
                 onMouseLeave={() => setfirstCateMode(false)}
               >
-                {/* <li
-                className={`menuOpen${mode}`}
-                onMouseOver={() => setMode('Reveal')}
-                onMouseLeave={() => setMode('Disapper')}
-              > */}
                 전체 카테고리
               </li>
-              {/* 마우스를 올리면 해당 카테고리의 백그라운드 색상도 변해야하고 하위
-              카테고리 목록도 떠야함. */}
             </ul>
 
             <li className="subScriptionMenu">
-              <NavLink className="fontGray" to="/">
-                정기구독
-              </NavLink>
+              <Link to="/">정기구독</Link>
             </li>
             <li className="oneMenuPurchase">
-              <NavLink className="fontGray" to="/">
-                단품구매
-              </NavLink>
+              <Link to="/">단품구매</Link>
             </li>
           </ul>
 
@@ -82,15 +71,15 @@ const Nav = () => {
             </ul>
             <i className="fas fa-shopping-cart" />
             <li className="cart">
-              <NavLink className="fontGray" to="/" activeClassName="active">
+              <Link className="fontGray" to="/" activeClassName="active">
                 장바구니
-              </NavLink>
+              </Link>
             </li>
             <i className="fas fa-file-alt" />
             <li>
-              <NavLink className="fontGray" to="/">
+              <Link className="fontGray" to="/">
                 바로주문
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </div>
@@ -103,36 +92,23 @@ const Nav = () => {
           </ul>
         )}
         <ul className="menuFirstOfFirst">
-          <li>
-            <Link to="/">샐러드</Link>
-          </li>
-          <li>
-            <Link to="/">샌드위치</Link>
-          </li>
-          <li>
-            <Link to="/">도시락</Link>
-          </li>
+          {subScriptMenu.map((menu, idx) => {
+            return (
+              <li key={idx}>
+                <Link to="/">{menu.name}</Link>
+              </li>
+            );
+          })}
         </ul>
 
         <ul className="menuFirstOfSecond">
-          <li>
-            <Link to="/">샐러드</Link>
-          </li>
-          <li>
-            <Link to="/">샌드위치 · 랩</Link>
-          </li>
-          <li>
-            <Link to="/">도시락 · 간편식</Link>
-          </li>
-          <li>
-            <Link to="/">죽 · 스프</Link>
-          </li>
-          <li>
-            <Link to="/">간식</Link>
-          </li>
-          <li>
-            <Link to="/">음료</Link>
-          </li>
+          {subSingleMenu.map((single, idx) => {
+            return (
+              <li key={idx}>
+                <Link to="/">{single.name}</Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
