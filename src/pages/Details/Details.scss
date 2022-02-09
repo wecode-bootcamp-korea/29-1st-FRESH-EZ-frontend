@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.menuDetails {
+.Details {
   color: #3d3d3d;
 
   .menuBody {
@@ -65,114 +65,7 @@
           }
         }
 
-        .productSelect {
-          padding-bottom: 30px;
-          // @include flex-center;
-          // border-bottom: 1px solid;
-          position: relative;
-
-          .selectCount {
-            padding: 20px 0px;
-            border-bottom: 1px solid $border-gray;
-
-            span {
-              margin: 0px 10px;
-            }
-          }
-
-          .selectSize {
-            @include flex-center;
-            justify-content: space-between;
-            padding: 20px 0;
-            border-bottom: 1px solid $border-gray;
-
-            select {
-              width: 280px;
-              height: 40px;
-              padding-left: 12px;
-              border: 1px solid #3d3d3d;
-
-              &:hover {
-                cursor: pointer;
-              }
-
-              option {
-                font-size: 13px;
-                color: #979797;
-              }
-
-              .medium {
-                margin-top: 13px;
-                // border-bottom: #3d3d3d;
-              }
-
-              div {
-                border: 1px solid #3d3d3d;
-                border-top: 0;
-                padding: 10px;
-                // transform: translate();
-              }
-            }
-          }
-
-          .selectAddition {
-            padding-top: 20px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid black;
-
-            h3 {
-              padding-bottom: 20px;
-            }
-
-            .additionalOptionList {
-              // div {
-              //   @include flex-center;
-              // }
-              .additionalOption {
-                @include flex-center;
-                justify-content: space-between;
-                padding: 5px 0;
-
-                .checkboxAndOption {
-                  @include flex-center;
-                  justify-content: flex-start;
-
-                  input[type='checkbox'] {
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 2px;
-                    border: 1px solid #ddd;
-                    background-color: #fff;
-                    margin-right: 8px;
-
-                    &:checked {
-                      background-color: $theme-green;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .selectedDetailModal {
-          .selectedList {
-            padding: 20px 10px 10px 10px;
-            margin-bottom: 20px;
-            border-top: 1px solid $border-gray;
-            border-bottom: 1px solid $border-gray;
-
-            .listTop {
-              @include flex-center;
-              justify-content: space-between;
-            }
-
-            .listBottom {
-              margin-top: 20px;
-              margin-bottom: 0px;
-            }
-          }
-        }
+        //BigComponent자리
 
         .productPrice {
           @include flex-center;
@@ -256,9 +149,47 @@
 
     .productInformation {
       padding-top: 100px;
+      display: flex;
+      align-items: flex-start;
 
       img {
         width: 700px;
+      }
+
+      .selectionModalSticky {
+        position: sticky;
+        top: 10%;
+        border: 2px solid;
+        padding: 20px;
+
+        h3 {
+          font-weight: bold;
+        }
+
+        .menuName {
+          @include flex-center;
+          justify-content: space-between;
+          background-color: $theme-green;
+
+          h2 {
+            font-weight: bold;
+            font-size: 24px;
+            color: #111;
+            padding: 15px;
+          }
+        }
+
+        .productPrice {
+          @include flex-center;
+          justify-content: space-between;
+          padding: 40px 0;
+          border-top: 1px solid#3d3d3d;
+
+          span {
+            font-weight: bold;
+            font-size: 24px;
+          }
+        }
       }
     }
   }

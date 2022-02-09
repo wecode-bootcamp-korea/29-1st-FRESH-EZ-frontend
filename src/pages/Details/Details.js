@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import SelectedProduct from './SelectedProduct';
 import ADDITIONS_LIST from './additionalOptions';
 import AdditionalOptionList from './AdditionalOptionList';
+import BigComponent from './BigComponent';
 import SuggestionsWrap from './SuggestionsWrap';
 import './Details.scss';
+import './BigComponent.scss';
 
 function Details() {
   const [selectedProduct, setSelectedProduct] = useState({});
@@ -67,7 +69,7 @@ function Details() {
   console.log(calcTotalPrice());
 
   return (
-    <div className="menuDetails">
+    <div className="Details">
       <div className="menuBody">
         <div className="menuHeader">
           <picture className="picture">
@@ -88,7 +90,19 @@ function Details() {
               </div>
             </div>
 
-            <div className="productSelect">
+            <BigComponent
+              className="first"
+              productCount={productCount}
+              setProductCount={setProductCount}
+              selectSize={selectSize}
+              sizeInfo={sizeInfo}
+              selectMDProd={selectMDProd}
+              selectedProduct={selectedProduct}
+              sizeState={sizeState}
+              selectedMDProd={selectedMDProd}
+              calcTotalPrice={calcTotalPrice}
+            ></BigComponent>
+            {/* <div className="productSelect">
               <div className="selectCount">
                 <h3>수량 선택</h3>
                 <button
@@ -139,21 +153,11 @@ function Details() {
                       />
                     );
                   })}
-
-                  {/* {ADDITIONS_LIST.map(list => (
-                    <AdditionalOptionList
-                      key={list.id}
-                      id={list.id}
-                      name={list.name}
-                      price={list.price}
-                      selectMDProd={selectMDProd}
-                    />
-                  ))} */}
                 </div>
               </div>
-            </div>
+            </div> */}
 
-            <div className="selectedDetailModal">
+            {/* <div className="selectedDetailModal">
               <SelectedProduct
                 name={selectedProduct.name}
                 price={selectedProduct.price}
@@ -167,7 +171,7 @@ function Details() {
                   price={productInfo.price}
                 />
               ))}
-            </div>
+            </div> */}
 
             <div className="productPrice">
               <p>상품 금액</p>
@@ -178,6 +182,7 @@ function Details() {
                 </span>
               </p>
             </div>
+
             <div className="makeAnOrder">
               <button className="buttonBasket">장바구니 담기</button>
               <button className="buttonOrder">주문하기</button>
@@ -208,10 +213,41 @@ function Details() {
         </article>
 
         <div className="productInformation">
-          <img
-            alt="productinformation"
-            src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/content/origin/11362_20211130105738"
-          />
+          <div>
+            <img
+              alt="productinformation"
+              src="https://s3.ap-northeast-2.amazonaws.com/freshcode/menu/content/origin/11362_20211130105738"
+            />
+          </div>
+
+          <div className="selectionModalSticky">
+            <div className="menuName">
+              <h3>상품선택</h3>
+              <h2>{selectedProduct.name}</h2>
+            </div>
+
+            <BigComponent
+              className="second"
+              productCount={productCount}
+              setProductCount={setProductCount}
+              selectSize={selectSize}
+              sizeInfo={sizeInfo}
+              selectMDProd={selectMDProd}
+              selectedProduct={selectedProduct}
+              sizeState={sizeState}
+              selectedMDProd={selectedMDProd}
+            ></BigComponent>
+
+            <div className="productPrice">
+              <h3>상품 금액</h3>
+              <p>
+                <span>
+                  {selectedProduct.message &&
+                    `${calcTotalPrice().toLocaleString()}원`}
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
