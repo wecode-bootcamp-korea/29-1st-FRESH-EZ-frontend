@@ -1,0 +1,97 @@
+@import '../../../styles/variables.scss';
+
+.header {
+  display: flex;
+  flex-direction: column;
+  section {
+    &:nth-child(1) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .title {
+        font-size: $headline;
+        font-weight: bold;
+        margin: 0 0 18px;
+        color: #3d3d3d;
+      }
+    }
+    &:nth-child(2) {
+      display: flex;
+      justify-content: space-between;
+      margin: 3px 0 15px;
+
+      .text-link {
+        color: inherit;
+        text-decoration: inherit;
+      }
+
+      .navElement {
+        background-color: #fff;
+        border: 1px solid $theme-green;
+        border-radius: 2px;
+        padding: 2px 16px 0 16px;
+        margin-right: 8px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        font-size: $body;
+        color: $theme-green;
+        cursor: pointer;
+
+        &:hover:not(.active) {
+          background-color: $theme-green;
+          color: #fff;
+        }
+      }
+
+      .navElementSelected {
+        background-color: $theme-green;
+        border: 1px solid $theme-green;
+        border-radius: 2px;
+        padding: 2px 16px 0 16px;
+        margin-right: 8px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        font-size: $body;
+        color: #fff;
+        cursor: default;
+      }
+
+      .singleNav {
+        display: flex;
+      }
+      .allergiesFilterWrap {
+        text-align: end;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .allergiesFilter {
+          background-color: #fff;
+          border: 1px solid $theme-green;
+          border-radius: 2px;
+          padding: 2px 16px 0 16px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          font-size: $body;
+          color: $theme-green;
+          cursor: pointer;
+          margin: 0 0 10px 0;
+
+          &:hover:not(.active) {
+            background-color: $theme-green;
+            color: #fff;
+          }
+        }
+        .caption {
+          color: #3d3d3d;
+          font-size: $caption;
+        }
+      }
+    }
+    &:nth-child(3) {
+      margin: 0 0 15px;
+    }
+  }
+}
