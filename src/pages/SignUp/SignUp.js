@@ -15,7 +15,6 @@ const SignUp = () => {
     month: '',
     day: '',
     sex: '',
-    // allergy: '',
     allergy: [],
   });
 
@@ -44,7 +43,7 @@ const SignUp = () => {
       });
   }, []);
 
-  // const emailVaildCheck = email.includes('@') && email.includes('.com');
+  const emailVaildCheck = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
   const passwordVaildCheck2 =
@@ -53,8 +52,11 @@ const SignUp = () => {
   const goPwCheck = () => {
     if (passwordVaildCheck.test(password) === false) {
       alert('비밀번호 조건에 맞춰 다시 작성해주세요.');
+    } else if (password === 0) {
+      alert('값이 입력되지 않았습니다. 다시 입력해주세요:)');
     }
   };
+
   const yearData = () => {
     const year = [];
     for (let i = 2009; i > 1930; i--) {
@@ -79,50 +81,68 @@ const SignUp = () => {
   const checkError = () => {
     if (password !== rePwCheck) {
       alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+    } else if (password === 0) {
+      alert('값이 입려되지 않았습니다. 다시 입력해주세요:)');
     }
   };
 
   const handleInput = e => {
-    console.log(inputs);
     const { name, value } = e.target;
-
-    setInputs(prev => ({ ...prev, [name]: value }));
+    setInputs({ ...inputs, [name]: value });
   };
+
   const handleRePwInput = e => {
     setRePwCheck(e.target.value);
   };
 
-  // useEffect(() => {
-  //   console.log(inputs);
-  // }, [inputs]);
-
   const selectAllergy = e => {
     if (e.target.checked) {
+      // e를 콘솔찍어보면 엄청난 항목의 값을 전달해주는데 그중에서 체크박스 타입에서의 밸류는 checked 속성으로
+      // 불리언 타입으로 정해지기 떄문에 그 수많은 밸류 항목들 중에 checked의 값을 알기 위해 e.target.checked한거임.
+      // e.target은 수많은 이벤트의 항목중에 타겟을 정하는 것. 예를 들어서 input이 타겟이 되는 거임.
+      // 수많은 이벤트 항목죽에 input이라는 타겟을 정하는 것. 그 타겟에 있는 value가 알고 싶다고 하면 value값을 정의해줘서
+      // 그 값을 넘겨주는 것이 바로 e.target.value
+      // e 가지고 콘솔 많이 찍어보기
       setInputs(prev => ({
+        ...prev,
         allergy: [...prev.allergy, e.target.value],
+        // prev는 !함수안에서! prev를 쓰는데 함수를 실행되는 순간의&현재의 state 값을 참조하는 것. prev=>로 참조하면서
+        // (...prev)할 떄 비로소 진짜 값이 되 느낌.(...는 값을 복제하는 거니까)
+        // input으로 값을 할당하는 거는 변수에 지정해주는 느낌? 여기에 뭐가 들어감. 약간 이런 느낌. 지정해주는 느낌.
+        // 둘 다ㅏ 써도 작동 잘하는데... 흠...?
       }));
     } else {
       setInputs(prev => ({
-        allergy: inputs.allergy.filter(data => data !== e.target.value),
+        ...prev,
+        allergy: prev.allergy.filter(data => data !== e.target.value),
+        // filter(조건)은 조건을 남기는 함수 그래도 잘 모르니까 공부하기
       }));
     }
   };
 
   const emailDuplicateCheck = () => {
-    fetch('http://208.82.62.99:8000/user/signup', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: email,
-      }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        if (res.message === 'ERROR : EMAIL_DUPLICATE') {
-          alert('가입 되어있는 이메일 입니다.');
-        } else {
-          alert('사용가능한 이메일 입니다.');
-        }
-      });
+    if (!email.includes('@')) {
+      alert('@가 포함되지 않았습니다. 다시 입력해주세요:)');
+    } else if (!email.includes('.com')) {
+      alert('.com이 포함되지 않았습니다. 다시 입력해주세요:)');
+    } else if (email === 0) {
+      alert('값이 입력되지 않았습니다. 다시 입력해주세요:)');
+    } else {
+      fetch('http://208.82.62.99:8000/user/duplication', {
+        method: 'POST',
+        body: JSON.stringify({
+          email: email,
+        }),
+      })
+        .then(res => res.json())
+        .then(res => {
+          if (res.message === 'Duplicate (email)') {
+            alert('가입 되어있는 이메일 입니다.');
+          } else {
+            alert('사용가능한 이메일 입니다.');
+          }
+        });
+    }
   };
 
   const signUpCheck = () => {
@@ -136,33 +156,14 @@ const SignUp = () => {
         phone: phone,
         birth: `${year}-${month}-${day}`,
         sex: sex,
-        allergy_id: allergy,
+        allergy_ids: allergy,
+        // 보내는 데이터는 백엔드의 키값,밸류값 맞춰야함
       }),
     })
       .then(res => res.json())
       .then(res => {
-        if (res.message === 'ERROR : INVALID_VALUE (email)') {
-          alert('이메일 입력 시 @와 .com이 필수로 포함되어야 합니다');
-        } else if (res.message === 'ERROR : INVALID_VALUE (password)') {
-          alert(
-            '비밀번호 입력 시 문자 8자 이상, 소문자, 대문자, 숫자, 특수기호 포함되어야 합니다'
-          );
-        } else {
-          navigate('/main');
-        }
+        navigate('/main');
       });
-    console.log(
-      JSON.stringify({
-        name: name,
-        email: email,
-        password: password,
-        nickname: nickname,
-        phone: phone,
-        birth: `${year}-${month}-${day}`,
-        sex: sex,
-        allergy_id: allergy,
-      })
-    );
   };
 
   return (
@@ -192,6 +193,7 @@ const SignUp = () => {
                   name="email"
                   value={email}
                   onChange={handleInput}
+                  // 콘솔 찍어보다가 onKeyUp 적용해봤는데 입력조차도 안되서 .. 이론은 완벽한데 왜안되는지..?
                 />
                 <button onClick={emailDuplicateCheck}>중복 확인</button>
               </div>
@@ -327,7 +329,7 @@ const SignUp = () => {
           </div>
 
           <div className="allergy">
-            <span className="necessary">알러지 옵션</span>
+            <span>알러지 옵션</span>
             {allergyData.map((allergy, idx) => {
               return (
                 <div key={idx}>
@@ -347,12 +349,8 @@ const SignUp = () => {
           </div>
 
           <button
-            // className={
-            //   emailVaildCheck && passwordVaildCheck2
-            //     ? 'signUpButton'
-            //     : 'failure'
-            // }
-            // disabled={emailVaildCheck || passwordVaildCheck2}
+            className="signUpButton"
+            disabled={!emailVaildCheck || !passwordVaildCheck2}
             onClick={signUpCheck}
           >
             가입하기

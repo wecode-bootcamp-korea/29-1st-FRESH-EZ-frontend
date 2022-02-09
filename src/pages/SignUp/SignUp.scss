@@ -75,7 +75,7 @@
       &:last-child button {
         &:hover {
           cursor: pointer;
-          opacity: 0.9;
+          opacity: 1;
         }
         // 왜 전체 버튼태그에 걸면 안되는가
         width: 120px;
@@ -84,6 +84,7 @@
         background-color: $theme-green;
         color: white;
         border-radius: 3px;
+        opacity: 0.9;
       }
     }
   }
@@ -162,6 +163,7 @@
         background-color: $theme-green;
         color: white;
         border-radius: 3px;
+        opacity: 1;
         &:hover {
           opacity: 0.9;
           cursor: pointer;
@@ -177,8 +179,11 @@
     color: white;
     border-radius: 3px;
     margin-bottom: 50px;
+    opacity: 0.9;
     &:hover {
       cursor: pointer;
+      opacity: 1;
+      background-color: $theme-green;
     }
   }
   .failure {
