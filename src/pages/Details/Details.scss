@@ -2,10 +2,16 @@
 
 .Details {
   color: #3d3d3d;
+  @include flex-center;
+  justify-content: center;
 
   .menuBody {
     padding: 100px 100px;
     font-size: 16px;
+    max-width: 1600px;
+    @include flex-center;
+    // justify-content: center;
+    flex-direction: column;
 
     .menuHeader {
       // right: 50%;
@@ -16,8 +22,8 @@
       padding: 100px 100px;
 
       .picture {
+        padding-right: 100px;
         img {
-          padding-right: 100px;
           width: 500px;
         }
       }
@@ -72,6 +78,11 @@
           justify-content: space-between;
           padding: 40px 0;
           border-top: 1px solid#3d3d3d;
+
+          p {
+            font-weight: bold;
+            font-size: 18px;
+          }
         }
 
         .makeAnOrder {
@@ -106,9 +117,11 @@
 
     .productRecommendation {
       padding: 20px 0;
+      width: 86%;
 
       .recommendationTitle {
         @include flex-center;
+
         padding-bottom: 20px;
 
         img {
@@ -154,13 +167,15 @@
 
       img {
         width: 700px;
+        margin-right: 32px;
       }
 
       .selectionModalSticky {
         position: sticky;
-        top: 10%;
+        top: 48px;
         border: 2px solid;
-        padding: 20px;
+        padding: 24px;
+        width: 460px;
 
         h3 {
           font-weight: bold;
@@ -173,25 +188,22 @@
 
           h2 {
             font-weight: bold;
-            font-size: 24px;
+            font-size: 20px;
             color: #111;
-            padding: 15px;
+            padding: 16px;
           }
         }
 
         .productPrice {
           @include flex-center;
           justify-content: space-between;
-          padding: 40px 0;
+          padding: 28px 0;
+
           border-top: 1px solid#3d3d3d;
+          font-weight: bold;
 
-          p {
-            font-weight: bold;
-          }
-
-          span {
-            font-weight: bold;
-            font-size: 24px;
+          h2 {
+            font-size: 20px;
           }
         }
       }

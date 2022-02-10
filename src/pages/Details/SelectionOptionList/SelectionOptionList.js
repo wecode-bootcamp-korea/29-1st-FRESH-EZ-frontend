@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import SelectedProduct from './SelectedProduct';
-import ADDITIONS_LIST from './additionalOptions';
-import AdditionalOptionList from './AdditionalOptionList';
-import SuggestionsWrap from './SuggestionsWrap';
-import './Details.scss';
-import './BigComponent.scss';
+import React from 'react';
+import SelectedProduct from '../SelectedProduct';
+import ADDITIONS_LIST from '../additionalOptions';
+import AdditionalOptionList from '../AdditionalOptionList';
+import './SelectionOptionList.scss';
 
-function BigComponent(props) {
+function SelectionOptionList(props) {
   const {
     className,
     productCount,
@@ -17,11 +15,10 @@ function BigComponent(props) {
     selectedProduct,
     sizeState,
     selectedMDProd,
-    calcTotalPrice,
   } = props;
 
   return (
-    <div className={`BigComponent ${className}`}>
+    <div className={`SelectionOptionList ${className}`}>
       <div className="productSelect">
         <div className="selectCount">
           <h3>수량 선택</h3>
@@ -33,7 +30,7 @@ function BigComponent(props) {
               }}
               disabled={productCount <= 1}
             >
-              {'<'}
+              {'-'}
             </button>
             <span>{productCount}</span>
             <button
@@ -42,13 +39,13 @@ function BigComponent(props) {
                 setProductCount(productCount + 1);
               }}
             >
-              {'>'}
+              {'+'}
             </button>
           </div>
         </div>
         <div className="selectSize">
           <h3>사이즈 선택</h3>
-          <select onChange={selectSize}>
+          <select onChange={selectSize} value={sizeState}>
             {sizeInfo.map((size, idx) => (
               <option
                 key={idx}
@@ -82,8 +79,8 @@ function BigComponent(props) {
       <div className="selectedDetailModal">
         <SelectedProduct
           name={selectedProduct.name}
-          price={selectedProduct.price}
           size={sizeState}
+          price={selectedProduct.price}
           count={productCount}
         />
         {selectedMDProd.map((productInfo, idx) => (
@@ -94,18 +91,8 @@ function BigComponent(props) {
           />
         ))}
       </div>
-
-      {/* <div className="productPrice">
-        <p>상품 금액</p>
-        <p>
-          <span>
-            {selectedProduct.message &&
-              `${calcTotalPrice().toLocaleString()}원`}
-          </span>
-        </p>
-      </div> */}
     </div>
   );
 }
 
-export default BigComponent;
+export default SelectionOptionList;

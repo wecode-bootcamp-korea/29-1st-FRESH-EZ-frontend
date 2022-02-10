@@ -1,19 +1,15 @@
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
-.BigComponent {
+.SelectionOptionList {
   &.first {
     // margin: 0;
   }
 
   &.second {
+    font-size: 14px;
     h3 {
       font-weight: bold;
       padding-right: 50px;
-    }
-
-    .selectCount {
-      @include flex-center;
-      justify-content: space-between;
     }
   }
 
@@ -24,11 +20,19 @@
     position: relative;
 
     .selectCount {
+      @include flex-center;
+      justify-content: space-between;
       padding: 20px 0px;
       border-bottom: 1px solid $border-gray;
 
+      // font-weight: bold;
+
+      button {
+        width: 30px;
+        height: 30px;
+      }
       span {
-        margin: 0px 10px;
+        margin: 0px 18px;
       }
     }
 
@@ -109,7 +113,7 @@
 
   .selectedDetailModal {
     .selectedList {
-      padding: 20px 10px 10px 10px;
+      padding: 16px 0;
       margin-bottom: 20px;
       border-top: 1px solid $border-gray;
       border-bottom: 1px solid $border-gray;

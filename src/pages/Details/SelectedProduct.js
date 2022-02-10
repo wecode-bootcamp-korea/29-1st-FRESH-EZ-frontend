@@ -11,6 +11,7 @@ function SelectedProduct(props) {
           <span>{size}</span>
         </div>
         <div className="priceArea">
+          {/* <span>{`${price.toLocaleString()}원`}</span> */}
           <span>{price}원</span>
         </div>
       </div>

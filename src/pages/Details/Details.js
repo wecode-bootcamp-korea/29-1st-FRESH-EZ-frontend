@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import SelectedProduct from './SelectedProduct';
 import ADDITIONS_LIST from './additionalOptions';
 import AdditionalOptionList from './AdditionalOptionList';
-import BigComponent from './BigComponent';
+import SelectionOptionList from './SelectionOptionList/SelectionOptionList';
 import SuggestionsWrap from './SuggestionsWrap';
 import './Details.scss';
-import './BigComponent.scss';
 
 function Details() {
   const [selectedProduct, setSelectedProduct] = useState({});
@@ -37,7 +36,7 @@ function Details() {
   const selectMDProd = e => {
     if (e.target.checked) {
       const { name, size, price } = ADDITIONS_LIST[e.target.name];
-      console.log(e.target);
+
       setSelectedMDProd(prev => [
         { name: name, size: size, price: price },
         ...prev,
@@ -54,7 +53,6 @@ function Details() {
       .then(res => res.json())
       .then(res => {
         setSelectedProduct(res);
-        console.log(res);
       });
   }, []);
 
@@ -65,8 +63,6 @@ function Details() {
         setRecommendProducts(res);
       });
   }, []);
-
-  console.log(calcTotalPrice());
 
   return (
     <div className="Details">
@@ -90,7 +86,7 @@ function Details() {
               </div>
             </div>
 
-            <BigComponent
+            <SelectionOptionList
               className="first"
               productCount={productCount}
               setProductCount={setProductCount}
@@ -101,7 +97,7 @@ function Details() {
               sizeState={sizeState}
               selectedMDProd={selectedMDProd}
               calcTotalPrice={calcTotalPrice}
-            ></BigComponent>
+            />
             {/* <div className="productSelect">
               <div className="selectCount">
                 <h3>수량 선택</h3>
@@ -226,7 +222,7 @@ function Details() {
               <h2>{selectedProduct.name}</h2>
             </div>
 
-            <BigComponent
+            <SelectionOptionList
               className="second"
               productCount={productCount}
               setProductCount={setProductCount}
@@ -236,15 +232,15 @@ function Details() {
               selectedProduct={selectedProduct}
               sizeState={sizeState}
               selectedMDProd={selectedMDProd}
-            ></BigComponent>
+            />
 
             <div className="productPrice">
               <h3>상품 금액</h3>
               <p>
-                <span>
+                <h2>
                   {selectedProduct.message &&
                     `${calcTotalPrice().toLocaleString()}원`}
-                </span>
+                </h2>
               </p>
             </div>
           </div>
