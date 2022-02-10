@@ -65,10 +65,7 @@ function Login() {
 
           <div className="advertiseBanner">
             <Link to="/main">
-              <img
-                src="images/Login/minibanner.png"
-                alt="잠시만 기다려주세요"
-              />
+              <img src="images/Login/banner1.png" alt="잠시만 기다려주세요" />
             </Link>
           </div>
 
