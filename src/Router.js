@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main';
+import SignUp from './pages/SignUp/SignUp';
+import Nav from './components/Nav/Nav';
+import PreSignUp from './pages/SignUp/PreSignUp';
 import SubsList from './pages/SubsList/SubsList';
 import SubsDetails from './pages/SubsDetail/SubsDetail';
 import SubsOpt from './pages/SubsOpt/SubsOpt';
-import SubsDetail from './pages/SubsOpt/SubsDetail';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
 import Login from './pages/Login/Login';
@@ -14,6 +16,9 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/nav" element={<Nav />} />
+        <Route path="/preSignUp" element={<PreSignUp />} />
         <Route path="/subsList" element={<SubsList />} />
         <Route path="/subsDetails" element={<SubsDetails />} />
         <Route path="/subsOpt" element={<SubsOpt />} />
