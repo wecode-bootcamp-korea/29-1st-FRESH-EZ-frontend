@@ -26,7 +26,7 @@ function Router() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/preSignUp" element={<PreSignUp />} />
         <Route path="/subsList" element={<SubsList />} />
-        <Route path="/subsDetails" element={<SubsDetails />} />
+        <Route path="/subsDetails/:id" element={<SubsDetails />} />
         <Route path="/subsOpt" element={<SubsOpt />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/nav" element={<Nav />} />
