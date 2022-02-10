@@ -2,13 +2,17 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main';
 import ProductAll from './pages/ProductList/ProductAll';
-import ProductSalad from './pages/ProductList/ProductSalad';
-import ProductSandwich from './pages/ProductList/ProductSandwich';
-import ProductBento from './pages/ProductList/ProductBento';
-import ProductSoup from './pages/ProductList/ProductSoup';
-import ProductSnack from './pages/ProductList/ProductSnack';
-import ProductDrink from './pages/ProductList/ProductDrink';
 import Details from './pages/Details/Details';
+import SignUp from './pages/SignUp/SignUp';
+import Nav from './components/Nav/Nav';
+import PreSignUp from './pages/SignUp/PreSignUp';
+import SubsList from './pages/SubsList/SubsList';
+import SubsDetails from './pages/SubsDetail/SubsDetail';
+import SubsOpt from './pages/SubsOpt/SubsOpt';
+import Footer from './components/Footer/Footer';
+import Nav from './components/Nav/Nav';
+import SubsSelect from './pages/SubsSelect/SubsSelect';
+import Login from './pages/Login/Login';
 
 function Router() {
   return (
@@ -16,13 +20,18 @@ function Router() {
       <Routes>
         <Route path="/main" element={<Main />} />
         <Route path="/products" element={<ProductAll />} />
-        <Route path="/products/salad" element={<ProductSalad />} />
-        <Route path="/products/sandwich" element={<ProductSandwich />} />
-        <Route path="/products/bento" element={<ProductBento />} />
-        <Route path="/products/soup" element={<ProductSoup />} />
-        <Route path="/products/snack" element={<ProductSnack />} />
-        <Route path="/products/drink" element={<ProductDrink />} />
         <Route path="/products/detail/:id" element={<Details />} />
+        <Route path="/subsDetails/:id" element={<SubsDetails />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="/nav" element={<Nav />} />
+        <Route path="/preSignUp" element={<PreSignUp />} />
+        <Route path="/subsList" element={<SubsList />} />
+        <Route path="/subsDetails" element={<SubsDetails />} />
+        <Route path="/subsOpt" element={<SubsOpt />} />
+        <Route path="/footer" element={<Footer />} />
+        <Route path="/nav" element={<Nav />} />
+        <Route path="/subsSelect" element={<SubsSelect />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
