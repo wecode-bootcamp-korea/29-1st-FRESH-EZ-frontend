@@ -26,10 +26,7 @@ function PreSignUp() {
 
           <div className="advertiseBanner">
             <Link to="/main">
-              <img
-                src="images/SignUp/minibanner.png"
-                alt="잠시만 기다려주세요"
-              />
+              <img src="images/SignUp/banner1.png" alt="잠시만 기다려주세요" />
             </Link>
           </div>
 
