@@ -25,12 +25,12 @@ function SubsOpt(props) {
     food_day_count: '1회',
     food_week_count: '주 3일',
     food_period: '2주',
-    food_start: [
+    start_date: [
       new Date().getFullYear(),
       (new Date().getMonth() + 1).toString().padStart(2, '0'),
       new Date().getDate().toString().padStart(2, '0'),
     ].join('-'),
-    product_list: [],
+    product_ids: [],
   });
 
   const data = prodCategory === '1' ? SubsOptData[step - 1] : SubsOptData[step];
@@ -51,18 +51,19 @@ function SubsOpt(props) {
     return {
       ...userData,
       category_id: prodCategory,
-      jwt: window.sessionStorage.getItem('JWT'),
-      size: sizeNum,
+      subscription_size_id: sizeNum,
       food_day_count: /\d/.exec(userData.food_day_count).toString(),
       food_week_count: /\d/.exec(userData.food_week_count).toString(),
       food_period: /\d/.exec(userData.food_period).toString(),
     };
   };
+  const JWT = window.sessionStorage.getItem('JWT');
 
   const moveToCart = () => {
     if (window.confirm('장바구니로 이동하시겠습니까?')) {
       fetch('http://54.165.180.52:8000/product/subscribe-option', {
         method: 'post',
+        headers: { Authorization: JWT },
         body: JSON.stringify(preprocessUserData(selectedData)),
       });
       navigate('/cart');
