@@ -24,7 +24,7 @@ export default function ProductAll() {
     if (data.allergiesFilterValue === '모든 메뉴 보기') {
       fetch(
         `http://54.165.180.52:8000/product/menu${
-          location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
+          location.search || `?categoryId=1&offset=0&limit=${LIMIT}`
         }`
       )
         .then(res => res.json())
@@ -38,7 +38,7 @@ export default function ProductAll() {
     } else {
       fetch(
         `http://54.165.180.52:8000/product/menu/filter${
-          location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
+          location.search || `?categoryId=1&offset=0&limit=${LIMIT}`
         }`,
         {
           method: 'POST',
@@ -61,7 +61,7 @@ export default function ProductAll() {
   useEffect(() => {
     fetch(
       `http://54.165.180.52:8000/product/menu${
-        location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
+        location.search || `?categoryId=1&offset=0&limit=${LIMIT}`
       }`
     )
       .then(res => res.json())
@@ -76,19 +76,29 @@ export default function ProductAll() {
       });
   }, [location.search]);
 
+  const [query, setQuery] = useState({
+    offset: '',
+    category: '',
+  });
+
   const updateOffset = buttonIndex => {
     const offset = buttonIndex * LIMIT;
-    const queryString = `&offset=${offset}&limit=${LIMIT}`;
-    navigate(prev => prev + queryString);
+    const queryString = `offset=${offset}&limit=${LIMIT}`;
+    setQuery(prev => ({ ...prev, offset: queryString }));
+    //setQuery((query[1] = queryString));
   };
 
   const goToCategory = categoryIndex => {
-    const queryString = `?categoryId=${categoryIndex}`;
-    navigate(`${queryString}`);
+    const queryString = `categoryId=${categoryIndex}&`;
+    setQuery(prev => ({ ...prev, category: queryString }));
+    //prev => ({ ...prev, product: filtered.products_filtered })
+    // query
   };
-  //useEffect(() => {
-  //navigate(`products?${goToCategory}${updateOffset}`);
-  // }, [updateOffset, goToCategory]);
+
+  useEffect(() => {
+    console.log(query);
+    navigate(`?${query.category}${query.offset}`);
+  }, [query]);
 
   return (
     <div className="productAll">

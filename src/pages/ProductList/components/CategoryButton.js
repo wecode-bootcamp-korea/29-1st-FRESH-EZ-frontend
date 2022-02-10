@@ -4,7 +4,7 @@ import './CategoryButton.scss';
 export default function CategoryButtons({ info, title, goToCategory }) {
   return (
     <button
-      className={title === info.category ? 'navElementSelected' : 'navElement'}
+      className="navElement"
       onClick={() => {
         goToCategory(`${info.id - 1}`);
       }}

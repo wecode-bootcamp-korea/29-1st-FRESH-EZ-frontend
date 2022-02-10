@@ -42,20 +42,19 @@
           background-color: $theme-green;
           color: #fff;
         }
-      }
-
-      .navElementSelected {
-        background-color: $theme-green;
-        border: 1px solid $theme-green;
-        border-radius: 2px;
-        padding: 2px 16px 0 16px;
-        margin-right: 8px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        font-size: $body;
-        color: #fff;
-        cursor: default;
+        &:active {
+          background-color: $theme-green;
+          border: 1px solid $theme-green;
+          border-radius: 2px;
+          padding: 2px 16px 0 16px;
+          margin-right: 8px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          font-size: $body;
+          color: #fff;
+          cursor: default;
+        }
       }
 
       .singleNav {
