@@ -38,7 +38,7 @@ export default function ProductAll() {
     } else {
       fetch(
         `http://54.165.180.52:8000/product/menu/filter${
-          location.search || `?categoryId=1&offset=0&limit=${LIMIT}`
+          location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
         }`,
         {
           method: 'POST',
@@ -61,7 +61,7 @@ export default function ProductAll() {
   useEffect(() => {
     fetch(
       `http://54.165.180.52:8000/product/menu${
-        location.search || `?categoryId=1&offset=0&limit=${LIMIT}`
+        location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
       }`
     )
       .then(res => res.json())
@@ -77,7 +77,7 @@ export default function ProductAll() {
   }, [location.search]);
 
   const [query, setQuery] = useState({
-    offset: `?categoryId=1&offset=0&limit=${LIMIT}`,
+    offset: `?categoryId=0&offset=0&limit=${LIMIT}`,
     category: '',
   });
 
