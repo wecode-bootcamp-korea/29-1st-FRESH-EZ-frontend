@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Main from './pages/Main/Main';
+import SubsList from './pages/SubsList/SubsList';
 import SubsDetails from './pages/SubsDetail/SubsDetail';
 import SubsOpt from './pages/SubsOpt/SubsOpt';
 import SubsDetail from './pages/SubsOpt/SubsDetail';
@@ -13,6 +14,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
+        <Route path="/subsList" element={<SubsList />} />
         <Route path="/subsDetails" element={<SubsDetails />} />
         <Route path="/subsOpt" element={<SubsOpt />} />
         <Route path="/footer" element={<Footer />} />
