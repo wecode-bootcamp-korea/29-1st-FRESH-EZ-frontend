@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import './Main.scss';
 
@@ -45,7 +46,9 @@ function Main() {
         {imageLists.map(img => {
           return (
             <div className="img" key={img.id}>
-              <img src={img.img} alt="잠시만 기다려주세요" />
+              <Link to="/products">
+                <img src={img.img} alt="잠시만 기다려주세요" />
+              </Link>
             </div>
           );
         })}
