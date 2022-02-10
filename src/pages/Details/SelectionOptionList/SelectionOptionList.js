@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SelectedProduct from '../SelectedProduct';
 import ADDITIONS_LIST from '../additionalOptions';
 import AdditionalOptionList from '../AdditionalOptionList';
@@ -15,7 +15,14 @@ function SelectionOptionList(props) {
     selectedProduct,
     sizeState,
     selectedMDProd,
+    checkUpdate,
+    handleChecked,
+    isCheckedfromData,
   } = props;
+
+  // const checkUpdate = () => {
+  //   !isChecked;
+  // };
 
   return (
     <div className={`SelectionOptionList ${className}`}>
@@ -61,7 +68,6 @@ function SelectionOptionList(props) {
           <h3>함께 드시면 좋을 MD 추천 상품</h3>
           <div className="additionalOptionList">
             {ADDITIONS_LIST.map(list => {
-              //console.log(list);
               return (
                 <AdditionalOptionList
                   key={list.id}
@@ -69,6 +75,8 @@ function SelectionOptionList(props) {
                   name={list.name}
                   price={list.price}
                   selectMDProd={selectMDProd}
+                  isChecked={list.isChecked}
+                  handleChecked={handleChecked}
                 />
               );
             })}

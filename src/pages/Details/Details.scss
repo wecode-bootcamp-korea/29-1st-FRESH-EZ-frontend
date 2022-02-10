@@ -134,7 +134,7 @@
       }
 
       .recommendationList {
-        @include flex-center;
+        display: flex;
         justify-content: space-between;
 
         .recommendationWrap {
