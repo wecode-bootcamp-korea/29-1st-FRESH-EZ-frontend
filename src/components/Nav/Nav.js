@@ -5,7 +5,7 @@ import './Nav.scss';
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState('');
-  const [colorChange, setColorChange] = useState(false);
+  // const [colorChange, setColorChange] = useState(false);
 
   const subMenu = {
     subScript: ['샐러드', '샌드위치', '도시락'],
@@ -52,6 +52,7 @@ const Nav = () => {
               className="allOfMenu"
               onMouseLeave={() => {
                 setShowSubMenu('');
+                // setShowMenu(false);
               }}
             >
               <i className="fas fa-bars" />
@@ -70,27 +71,33 @@ const Nav = () => {
                   }}
                 >
                   <li
+                    className="subScription"
                     onMouseOver={() => setShowSubMenu('subScript')}
-                    className={colorChange ? 'color' : 'uncolor'}
+                    // className={colorChange ? 'color' : 'uncolor'}
                   >
                     정기구독
                   </li>
 
                   <li
-                    className="align"
+                    className="single"
                     onMouseOver={() => setShowSubMenu('single')}
                   >
                     단품구매
                   </li>
 
                   {showSubMenu && (
-                    <div className="menuBox">
+                    <div
+                      className="menuBox"
+                      onMouseLeave={() => {
+                        setShowMenu(false);
+                      }}
+                    >
                       <ul>
                         {subMenu[showSubMenu].map(menu => (
                           <li
                             key={menu + 1}
                             className="singleMenu"
-                            onMouseOver={() => setColorChange(true)}
+                            // onMouseOver={() => setColorChange(true)}
                           >
                             <Link to="">{menu}</Link>
                           </li>

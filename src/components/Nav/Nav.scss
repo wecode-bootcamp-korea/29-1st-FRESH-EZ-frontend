@@ -112,14 +112,17 @@
           background-color: white;
           color: $font-gray;
 
-          .color,
-          .align {
+          .single,
+          .subScription {
             padding: 20px 15px 15px 15px;
           }
 
-          .color {
-            background-color: #dff9ec;
-          }
+          // .color {
+          //   background-color: #dff9ec;
+          // }
+          // .uncolor {
+          //   background-color: white;
+          // }
 
           .menuBox {
             position: absolute;
@@ -129,6 +132,10 @@
             background-color: #dff9ec;
 
             li {
+              a:hover {
+                color: $theme-green;
+                text-decoration: underline;
+              }
               &:nth-child(-n + 6) {
                 padding: 22px 15px 15px 15px;
               }
