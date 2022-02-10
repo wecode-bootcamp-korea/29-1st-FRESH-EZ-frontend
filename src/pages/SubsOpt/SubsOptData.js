@@ -67,7 +67,7 @@ const SubsOptData = [
     optType: 'datepicker',
     questions: { queryMain: '구독은 언제부터', querySub: '시작하시겠어요?' },
     selectOpt: {
-      queryKey: 'food_start',
+      queryKey: 'food_start_date',
       optList: [
         {
           id: 1,

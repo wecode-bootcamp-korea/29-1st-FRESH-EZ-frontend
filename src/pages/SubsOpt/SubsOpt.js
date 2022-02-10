@@ -25,12 +25,11 @@ function SubsOpt(props) {
     food_day_count: '1회',
     food_week_count: '주 3일',
     food_period: '2주',
-    start_date: [
+    food_start_date: [
       new Date().getFullYear(),
       (new Date().getMonth() + 1).toString().padStart(2, '0'),
       new Date().getDate().toString().padStart(2, '0'),
     ].join('-'),
-    product_ids: [],
   });
 
   const data = prodCategory === '1' ? SubsOptData[step - 1] : SubsOptData[step];
@@ -50,8 +49,8 @@ function SubsOpt(props) {
     let sizeNum = userData.size === 'Medium' ? '1' : '2';
     return {
       ...userData,
-      category_id: prodCategory,
-      subscription_size_id: sizeNum,
+      categoryId: prodCategory,
+      size: sizeNum,
       food_day_count: /\d/.exec(userData.food_day_count).toString(),
       food_week_count: /\d/.exec(userData.food_week_count).toString(),
       food_period: /\d/.exec(userData.food_period).toString(),
