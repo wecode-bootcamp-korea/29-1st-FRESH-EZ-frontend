@@ -6,7 +6,6 @@ import CategoryButton from './CategoryButton';
 function ProductList({ title, subnav, productData, children, goToCategory }) {
   return (
     <div className="ProductList">
-      <div className="navWrapper">FRESH-EZ</div>
       <div className="listWrapper">
         <div className="listBody">
           <header className="header">

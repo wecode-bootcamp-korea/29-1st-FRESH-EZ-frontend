@@ -3,12 +3,12 @@
 .subsList {
   @include flex-center;
   flex-direction: column;
-  margin-top: 148px;
 
   .subsListHead {
     @include flex-center;
     flex-direction: column;
     padding: 50px;
+    margin-top: 148px;
 
     .title {
       padding-bottom: 15px;

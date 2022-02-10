@@ -1,14 +1,19 @@
 @import '../../styles/variables.scss';
 
+.margin {
+  height: 128px;
+}
 .subsDetail {
   padding: 80px 0 40px;
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  
   .imgAndInfo {
     display: flex;
     max-width: 1200px;
+
     .carousel {
       width: 486px;
       overflow: hidden;
@@ -46,7 +51,7 @@
         width: 486px;
         padding: 0 18px;
         position: absolute;
-        top: 309px;
+        top: calc(309px + 128px);
 
         .leftRightArrow {
           display: flex;
@@ -129,7 +134,7 @@
     width: 100%;
     max-width: 1200px;
     position: sticky;
-    top: 52px;
+    top: 128px;
     display: flex;
     justify-content: flex-start;
     background-color: #fff;
@@ -183,7 +188,7 @@
         padding: 20px 16px;
         display: flex;
         position: sticky;
-        top: 164px;
+        top: calc(164px + 80px);
 
         flex-direction: column;
 

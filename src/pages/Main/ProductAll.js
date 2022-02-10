@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import PaginationButton from './components/PaginationButton';
-import Nav from '../../components/Nav/Nav';
 import './ProductAll.scss';
 
 export default function ProductAll() {
@@ -99,21 +98,18 @@ export default function ProductAll() {
   }, [query]);
 
   return (
-    <>
-      <Nav />
-      <div className="productAll">
-        <ProductList
-          title="전체"
-          subnav={data.category}
-          productData={data.product}
-          goToCategory={goToCategory}
-        >
-          <button className="allergiesFilter" onClick={allergiesFilterToggle}>
-            {data.allergiesFilterValue}
-          </button>
-        </ProductList>
-        <PaginationButton updateOffset={updateOffset} />
-      </div>
-    </>
+    <div className="productAll2">
+      <ProductList
+        title="전체"
+        subnav={data.category}
+        productData={data.product}
+        goToCategory={goToCategory}
+      >
+        <button className="allergiesFilter" onClick={allergiesFilterToggle}>
+          {data.allergiesFilterValue}
+        </button>
+      </ProductList>
+      <PaginationButton updateOffset={updateOffset} />
+    </div>
   );
 }

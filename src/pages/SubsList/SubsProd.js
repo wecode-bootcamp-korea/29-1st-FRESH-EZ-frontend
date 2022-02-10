@@ -12,7 +12,7 @@ function SubsProd(props) {
     <li
       className={`subsProd${buttonMode}`}
       position={img_pos}
-      onClick={() => navigate(`/subsDetail/${id}`)}
+      onClick={() => navigate(`/subsDetails/${id}`)}
       onMouseEnter={() => setButtonMode('Emphasized')}
       onMouseLeave={() => setButtonMode('Default')}
     >

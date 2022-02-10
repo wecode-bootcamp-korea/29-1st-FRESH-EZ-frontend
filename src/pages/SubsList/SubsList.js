@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import SubsProd from './SubsProd';
+import Nav from '../../components/Nav/Nav';
 import './SubsList.scss';
 
 function SubsList() {
@@ -24,23 +25,26 @@ function SubsList() {
   }, []);
 
   return (
-    <ul className="subsList">
-      <div className="subsListHead">
-        <p className="title">구독 상품</p>
-        <p className="subsSlogan">
-          <span>구독 횟수부터 식단까지 모두</span>
-          <span> 내 맘대로</span>
-        </p>
-      </div>
-      {subsListData.length > 0 &&
-        subsListData.map(data => (
-          <SubsProd
-            key={data.id}
-            data={data}
-            price={recommProdPrice.length > 0 && recommProdPrice[data.id - 1]}
-          />
-        ))}
-    </ul>
+    <>
+      <Nav />
+      <ul className="subsList">
+        <div className="subsListHead">
+          <p className="title">구독 상품</p>
+          <p className="subsSlogan">
+            <span>구독 횟수부터 식단까지 모두</span>
+            <span> 내 맘대로</span>
+          </p>
+        </div>
+        {subsListData.length > 0 &&
+          subsListData.map(data => (
+            <SubsProd
+              key={data.id}
+              data={data}
+              price={recommProdPrice.length > 0 && recommProdPrice[data.id - 1]}
+            />
+          ))}
+      </ul>
+    </>
   );
 }
 

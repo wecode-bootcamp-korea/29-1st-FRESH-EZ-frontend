@@ -1,0 +1,20 @@
+@import '../../../styles/variables.scss';
+
+.paginationButton2 {
+  font-size: 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+
+  .btn {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+    border-radius: 2px;
+    border: 1px solid $border-gray;
+  }
+}

@@ -7,6 +7,7 @@ import ADDITIONS_LIST from './additionalOptions';
 import AdditionalOptionList from './AdditionalOptionList';
 import SelectionOptionList from './SelectionOptionList/SelectionOptionList';
 import SuggestionsWrap from './SuggestionsWrap';
+import Nav from '../../components/Nav/Nav';
 import './Details.scss';
 
 function Details() {
@@ -90,117 +91,120 @@ function Details() {
   }, []);
 
   return (
-    <div className="Details">
-      <div className="menuBody">
-        <div className="menuHeader">
-          <picture className="picture">
-            <img alt="productImage" src={selectedProduct.title_image_url} />
-          </picture>
+    <>
+      <Nav />
+      <div className="Details">
+        <div className="menuBody">
+          <div className="menuHeader">
+            <picture className="picture">
+              <img alt="productImage" src={selectedProduct.title_image_url} />
+            </picture>
 
-          <div className="menuInfo">
-            <div className="menuData">
-              <h2>{selectedProduct.name}</h2>
-              <p>{selectedProduct.small_desc}</p>
-              <p className="price">{selectedProduct.price}원</p>
-            </div>
+            <div className="menuInfo">
+              <div className="menuData">
+                <h2>{selectedProduct.name}</h2>
+                <p>{selectedProduct.small_desc}</p>
+                <p className="price">{selectedProduct.price}원</p>
+              </div>
 
-            <div className="productExplanation">
-              <h3>상품설명</h3>
-              <div>
-                <p>{selectedProduct.desc}</p>
+              <div className="productExplanation">
+                <h3>상품설명</h3>
+                <div>
+                  <p>{selectedProduct.desc}</p>
+                </div>
+              </div>
+
+              <SelectionOptionList
+                className="first"
+                productCount={productCount}
+                setProductCount={setProductCount}
+                selectSize={selectSize}
+                sizeInfo={sizeInfo}
+                selectMDProd={selectMDProd}
+                selectedProduct={selectedProduct}
+                sizeState={sizeState}
+                selectedMDProd={selectedMDProd}
+                // handleChecked={handleChecked}
+                calcTotalPrice={calcTotalPrice}
+                // isCheckedfromData={isCheckedfromData}
+                // checkUpdate={checkUpdate}
+              />
+
+              <div className="productPrice">
+                <p>상품 금액</p>
+                <p>
+                  <span>
+                    {selectedProduct.message &&
+                      `${calcTotalPrice().toLocaleString()}원`}
+                  </span>
+                </p>
+              </div>
+
+              <div className="makeAnOrder">
+                <button className="buttonBasket">장바구니 담기</button>
+                <button className="buttonOrder">주문하기</button>
               </div>
             </div>
-
-            <SelectionOptionList
-              className="first"
-              productCount={productCount}
-              setProductCount={setProductCount}
-              selectSize={selectSize}
-              sizeInfo={sizeInfo}
-              selectMDProd={selectMDProd}
-              selectedProduct={selectedProduct}
-              sizeState={sizeState}
-              selectedMDProd={selectedMDProd}
-              // handleChecked={handleChecked}
-              calcTotalPrice={calcTotalPrice}
-              // isCheckedfromData={isCheckedfromData}
-              // checkUpdate={checkUpdate}
-            />
-
-            <div className="productPrice">
-              <p>상품 금액</p>
-              <p>
-                <span>
-                  {selectedProduct.message &&
-                    `${calcTotalPrice().toLocaleString()}원`}
-                </span>
-              </p>
-            </div>
-
-            <div className="makeAnOrder">
-              <button className="buttonBasket">장바구니 담기</button>
-              <button className="buttonOrder">주문하기</button>
-            </div>
-          </div>
-        </div>
-
-        <article className="productRecommendation">
-          <div className="recommendationTitle">
-            <img alt="favicon" src="/images/favicon.png" />
-            <h2>다른 고객들이 함께 본 상품</h2>
           </div>
 
-          <ul className="recommendationList">
-            {recommendProducts.recommend &&
-              recommendProducts.recommend.map(list => {
-                return <SuggestionsWrap list={list} />;
-              })}
-          </ul>
-        </article>
-
-        <div className="productInformation">
-          <div>
-            <img
-              alt="singleDescriptionSalad"
-              src="/images/Details/SingleDescriptionSalad.jpg"
-            />
-          </div>
-
-          <div className="selectionModalSticky">
-            <div className="menuName">
-              <h3>상품선택</h3>
-              <h2>{selectedProduct.name}</h2>
+          <article className="productRecommendation">
+            <div className="recommendationTitle">
+              <img alt="favicon" src="/images/favicon.png" />
+              <h2>다른 고객들이 함께 본 상품</h2>
             </div>
 
-            <SelectionOptionList
-              className="second"
-              productCount={productCount}
-              setProductCount={setProductCount}
-              selectSize={selectSize}
-              sizeInfo={sizeInfo}
-              selectMDProd={selectMDProd}
-              selectedProduct={selectedProduct}
-              sizeState={sizeState}
-              selectedMDProd={selectedMDProd}
-              // handleChecked={handleChecked}
-              // isCheckedfromData={isCheckedfromData}
-              // checkboxChecked={checkboxChecked}
-              // checkUpdate={checkUpdate}
-            />
+            <ul className="recommendationList">
+              {recommendProducts.recommend &&
+                recommendProducts.recommend.map(list => {
+                  return <SuggestionsWrap list={list} />;
+                })}
+            </ul>
+          </article>
 
-            <div className="productPrice">
-              <h3>상품 금액</h3>
-              <p>
-                <h2>
-                  {selectedProduct.message &&
-                    `${calcTotalPrice().toLocaleString()}원`}
-                </h2>
-              </p>
+          <div className="productInformation">
+            <div>
+              <img
+                alt="singleDescriptionSalad"
+                src="/images/Details/SingleDescriptionSalad.jpg"
+              />
+            </div>
+
+            <div className="selectionModalSticky">
+              <div className="menuName">
+                <h3>상품선택</h3>
+                <h2>{selectedProduct.name}</h2>
+              </div>
+
+              <SelectionOptionList
+                className="second"
+                productCount={productCount}
+                setProductCount={setProductCount}
+                selectSize={selectSize}
+                sizeInfo={sizeInfo}
+                selectMDProd={selectMDProd}
+                selectedProduct={selectedProduct}
+                sizeState={sizeState}
+                selectedMDProd={selectedMDProd}
+                // handleChecked={handleChecked}
+                // isCheckedfromData={isCheckedfromData}
+                // checkboxChecked={checkboxChecked}
+                // checkUpdate={checkUpdate}
+              />
+
+              <div className="productPrice">
+                <h3>상품 금액</h3>
+                <p>
+                  <h2>
+                    {selectedProduct.message &&
+                      `${calcTotalPrice().toLocaleString()}원`}
+                  </h2>
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
