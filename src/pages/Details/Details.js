@@ -8,6 +8,7 @@ import AdditionalOptionList from './AdditionalOptionList';
 import SelectionOptionList from './SelectionOptionList/SelectionOptionList';
 import SuggestionsWrap from './SuggestionsWrap';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import './Details.scss';
 
 function Details() {
@@ -104,7 +105,11 @@ function Details() {
               <div className="menuData">
                 <h2>{selectedProduct.name}</h2>
                 <p>{selectedProduct.small_desc}</p>
-                <p className="price">{selectedProduct.price}원</p>
+                <p className="price">
+                  {selectedProduct.price > 0 &&
+                    selectedProduct.price.toLocaleString()}
+                  원
+                </p>
               </div>
 
               <div className="productExplanation">
@@ -204,6 +209,7 @@ function Details() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

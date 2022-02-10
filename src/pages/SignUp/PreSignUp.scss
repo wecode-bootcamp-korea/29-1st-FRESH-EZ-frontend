@@ -3,7 +3,7 @@
 .preSignUp {
   @include flex-center;
   justify-content: center;
-  height: 100vh;
+  height: 80vh;
 
   .preSignUpBox {
     @include flex-center;
@@ -119,4 +119,7 @@
   i {
     margin-right: 10px;
   }
+}
+.marginbottom {
+  height: 100px;
 }

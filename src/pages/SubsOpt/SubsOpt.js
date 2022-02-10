@@ -66,7 +66,7 @@ function SubsOpt(props) {
         body: JSON.stringify(preprocessUserData(selectedData)),
       });
       navigate('/cart');
-      window.sessionStorage.removeItem('selectedData');
+      // window.sessionStorage.removeItem('selectedData');
       window.sessionStorage.removeItem('step');
     }
   };

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Nav from '../../../src/components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -341,6 +342,8 @@ const SignUp = () => {
           </button>
         </div>
       </div>
+      <div className="marginbottom" />
+      <Footer />
     </>
   );
 };

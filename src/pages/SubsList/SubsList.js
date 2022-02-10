@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SubsProd from './SubsProd';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import './SubsList.scss';
 
 function SubsList() {
@@ -44,6 +45,7 @@ function SubsList() {
             />
           ))}
       </ul>
+      <Footer />
     </>
   );
 }

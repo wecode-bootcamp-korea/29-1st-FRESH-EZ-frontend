@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+
+.cartcart {
+  width: 100vw;
+  margin-bottom: 50px;
+
+  .texttext {
+    position: fixed;
+    top:45%;
+    right: 50%;
+    bottom: 50%;
+    left: 35%;
+    padding:30px;
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  .imgimg {
+    width:100%;
+  }
+}

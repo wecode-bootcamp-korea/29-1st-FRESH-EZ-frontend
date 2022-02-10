@@ -64,13 +64,13 @@
       margin-top: 20px;
   
       .title {
-        font-size: 1.7vw;
+        font-size: 1.4vw;
       }
   
       .subsStep {
         margin-top: 10px;
         font-weight: bold;
-        font-size: 1.8vw;
+        font-size: 1.5vw;
   
         .finalStep {
           color: #C9CACC;
@@ -84,7 +84,7 @@
     width: 90%;
     
     .subsOptQuery {
-      font-size: 2.3vw;
+      font-size: 1.7vw;
       font-weight: bold;
       text-align: center;
       color: $theme-green;
@@ -114,8 +114,8 @@
             appearance: none;
             margin: 5px;
             border-radius: 50%;
-            width: 1.6vw;
-            height: 1.6vw;
+            width: 1vw;
+            height: 1vw;
             border: 1px solid $font-gray;
             transition: 0.2s all linear;
   
@@ -125,16 +125,30 @@
           }
   
           label {
-            font-size: 1.8vw;
+            font-size: 1.5vw;
+          }
+        }
+
+        select {
+          width: 15vw;
+          padding: 6px;
+          margin-top: 10px;
+          border-radius: 5px;
+          font-size: 0.9vw;
+
+          option {
+            padding: 5px;
           }
         }
 
         input[type="date"] {
-          padding: 0.4vw;
+          width: 10vw;
+          padding: 0.6vw;
           border: 1px solid $font-gray;
           border-radius: $radio-size;
           color: black;
           text-align: center;
+          font-size: 0.9vw;
 
           &:focus {
             outline: 1px solid $theme-green;
@@ -147,7 +161,7 @@
           background-color: #e4e4e4;
           border: none;
           border-radius: $radio-size;
-          font-size: $body;
+          font-size: 1vw;
           color: black;
 
           &:hover {
@@ -169,7 +183,7 @@
     .subsOptPred {
       @include flex-center;
       flex-direction: column;
-      font-size: 1.4vw;
+      font-size: 1.1vw;
       color: $font-gray;
 
       .subsPredictionDesc {
@@ -183,7 +197,7 @@
 
       .subsOptFinalCaution {
         margin-top: 1.2vw;
-        font-size: 1vw;;
+        font-size: 0.7vw;;
         color: $theme-green;
       }
 
@@ -194,7 +208,7 @@
     
       p {
         margin-top: 1.2vw;
-        font-size: 2vw;
+        font-size: 1.7vw;
         font-weight: bold;
         color: black;
       }
@@ -207,7 +221,7 @@
       button {
         background-color: white;
         border: none;
-        font-size: 1.3vw;
+        font-size: 1vw;
         color: $theme-green;
         cursor: pointer;
       

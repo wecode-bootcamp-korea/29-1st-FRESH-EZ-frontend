@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="align">
       <div className="footer">
         <div className="footerFirst">
-          <img src="./images/Logo.png" alt="잠시만 기다려주세요" />
+          <img src="/images/Logo.png" alt="잠시만 기다려주세요" />
           <div className="footerFirstRight">
             <a href="/" target="_blank">
               FAQ

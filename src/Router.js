@@ -12,6 +12,7 @@ import SubsOpt from './pages/SubsOpt/SubsOpt';
 import Footer from './components/Footer/Footer';
 import SubsSelect from './pages/SubsSelect/SubsSelect';
 import Login from './pages/Login/Login';
+import Cart from './pages/Cart/Cart';
 
 function Router() {
   return (
@@ -30,6 +31,7 @@ function Router() {
         <Route path="/nav" element={<Nav />} />
         <Route path="/subsSelect" element={<SubsSelect />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

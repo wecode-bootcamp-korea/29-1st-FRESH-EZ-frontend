@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import PaginationButton from './components/PaginationButton';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import './ProductAll.scss';
 
 export default function ProductAll() {
@@ -114,6 +115,7 @@ export default function ProductAll() {
         </ProductList>
         <PaginationButton updateOffset={updateOffset} />
       </div>
+      <Footer />
     </>
   );
 }

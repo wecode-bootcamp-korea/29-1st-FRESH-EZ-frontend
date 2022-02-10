@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import SubsOpt from '../SubsOpt/SubsOpt';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
+
 import './SubsDetail.scss';
 
 function SubsDetail() {
@@ -210,6 +212,7 @@ function SubsDetail() {
           </details>
         </article>
       </div>
+      <Footer />
     </>
   );
 }

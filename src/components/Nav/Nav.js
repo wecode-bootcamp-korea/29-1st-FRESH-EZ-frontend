@@ -117,11 +117,11 @@ const Nav = () => {
             </ul>
             <i className="fas fa-shopping-cart" />
             <li className="cart">
-              <Link to="/">장바구니</Link>
+              <Link to="/cart">장바구니</Link>
             </li>
             <i className="fas fa-file-alt" />
             <li>
-              <Link to="/">바로주문</Link>
+              <Link to="/subsDetails/1">바로주문</Link>
             </li>
           </ul>
         </div>

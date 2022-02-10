@@ -3,6 +3,7 @@
 .subsList {
   @include flex-center;
   flex-direction: column;
+  margin-bottom: 80px;
 
   .subsListHead {
     @include flex-center;

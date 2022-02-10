@@ -7,7 +7,7 @@ function SuggestionsWrap({ list }) {
     <li key={id} className="recommendationWrap">
       <img alt="recommendproduct" src={image} />
       <h3>{name}</h3>
-      <span>{price}</span>
+      <span>{price && price.toLocaleString()}</span>
       <span>~</span>
       <p>{small_desc}</p>
     </li>

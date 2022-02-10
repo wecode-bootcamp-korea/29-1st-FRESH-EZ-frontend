@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
+import Footer from '../../components/Footer/Footer';
 import './PreSignUp.scss';
 
 function PreSignUp() {
@@ -43,6 +44,8 @@ function PreSignUp() {
           </button>
         </div>
       </div>
+      <div className="marginbottom" />
+      <Footer />
     </>
   );
 }
