@@ -3,18 +3,18 @@ import SubsProd from './SubsProd';
 import './SubsList.scss';
 
 function SubsList() {
-  const [recommProdPrice, setRecommProdPrice] = useState([
-    47000, 53000, 55000, 62000,
-  ]);
+  const [recommProdPrice, setRecommProdPrice] = useState(['', '', '', '']);
   const [subsListData, setSubsListData] = useState({});
   const addPrice = (prev, curr) => prev + curr;
 
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/product/subscribe-list')
+    fetch('http://54.165.180.52:8000/product/subscribe-list')
       .then(res => res.json())
-      .then(res =>
-        setRecommProdPrice(res.map(price => price.reduce(addPrice)))
-      );
+      .then(res => {
+        setRecommProdPrice(
+          Object.values(res.products).map(price => price.reduce(addPrice))
+        );
+      });
   }, []);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function SubsList() {
           <SubsProd
             key={data.id}
             data={data}
-            price={recommProdPrice[data.id - 1]}
+            price={recommProdPrice.length > 0 && recommProdPrice[data.id - 1]}
           />
         ))}
     </ul>
