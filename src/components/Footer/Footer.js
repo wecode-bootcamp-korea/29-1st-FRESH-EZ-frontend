@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
@@ -12,12 +12,12 @@ const Footer = () => {
             <a href="/" target="_blank">
               FAQ
             </a>
-            <NavLink to="/" className="contract">
+            <Link to="/" className="contract">
               이용약관
-            </NavLink>
-            <NavLink to="/" className="contract">
+            </Link>
+            <Link to="/" className="contract">
               개인정보처리방침
-            </NavLink>
+            </Link>
             <a href="/" target="_blank">
               제휴문의
             </a>
