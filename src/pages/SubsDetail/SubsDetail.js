@@ -123,7 +123,7 @@ function SubsDetail() {
           <img
             className="productDetailLeft"
             alt="product details"
-            src="https://infographicjournal.com/wp-content/uploads/2013/01/hidden-value-of-long-tail-seo-10001.png"
+            src={`/images/SubsDetail/subscriptionDetail${params.id}.jpg`}
           />
           <div className="productDetailRight">
             <div className="title">구독 옵션</div>
