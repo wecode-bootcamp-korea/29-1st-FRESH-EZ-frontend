@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
@@ -33,6 +33,7 @@ function Login() {
     })
       .then(res => res.json())
       .then(res => {
+        window.sessionStorage.setItem('JWT', res.JWT);
         if (res.message === 'SUCCESS') {
           navigate('/main');
         } else if (res.message === 'INVALID_USER (email)') {
