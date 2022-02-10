@@ -15,7 +15,6 @@ function Login() {
   const checkValidation = email.includes('@') && email.includes('.com');
   const passwordVaildCheck =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  // /꼭 써줘야함
   const allVaildCheck = checkValidation && passwordVaildCheck.test(password);
 
   const handleInput = e => {
@@ -23,6 +22,7 @@ function Login() {
 
     setInputs({ ...inputs, [name]: value });
   };
+
   function signIn() {
     fetch('http://208.82.62.99:8000/user/signin', {
       method: 'POST',
@@ -35,8 +35,10 @@ function Login() {
       .then(res => {
         if (res.message === 'SUCCESS') {
           navigate('/main');
-        } else {
-          alert('다시 입력해주세요:)');
+        } else if (res.message === 'INVALID_USER (email)') {
+          alert('이메일이 틀렸습니다. 다시 입력해주세요:)');
+        } else if (res.message === 'INVALID_USER (password)') {
+          alert('비밀번호가 틀렸습니다. 다시 입력해주세요:)');
         }
       });
   }
@@ -61,9 +63,9 @@ function Login() {
           </div>
 
           <div className="advertiseBanner">
-            <Link to="/">
+            <Link to="/main">
               <img
-                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80"
+                src="images/Login/minibanner.png"
                 alt="잠시만 기다려주세요"
               />
             </Link>
@@ -119,7 +121,7 @@ function Login() {
             </ul>
             <ul>
               <li>
-                <Link to="/presignuppage">회원가입</Link>
+                <Link to="/preSignUp">회원가입</Link>
               </li>
             </ul>
           </div>
