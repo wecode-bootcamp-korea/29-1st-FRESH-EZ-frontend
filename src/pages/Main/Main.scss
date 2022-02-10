@@ -21,11 +21,11 @@
     justify-content: space-between;
     position: absolute;
     width: 70vw;
-    height: 300px;
-    bottom: 300px;
-    left: 230px;
+    top: 290px;
+    left: 15vw;
 
     i {
+      position: sticky;
       color: gray;
       opacity: 0.3;
       font-size: 50px;
