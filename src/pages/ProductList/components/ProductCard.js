@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './ProductCard.scss';
 
 export default function ProductCard({ input }) {
-  const { image, name, price, description } = input;
+  const { image, name, price, small_desc } = input;
   const navigate = useNavigate();
 
   const goToDetail = () => {
@@ -17,7 +17,7 @@ export default function ProductCard({ input }) {
       </figure>
       <div className="productName">{name}</div>
       <div className="price">{price.toLocaleString()}원~</div>
-      <div className="description">{description}</div>
+      <div className="description">{small_desc}</div>
       <div className="cardFooter">
         <div className="scoreComment">
           <div className="score">
