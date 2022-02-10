@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import SubsOpt from '../SubsOpt/SubsOpt';
 import './SubsDetail.scss';
 
 function SubsDetail() {
@@ -7,6 +8,13 @@ function SubsDetail() {
   const [xValue, setXValue] = useState(0);
   const params = useParams();
   const [data, setData] = useState([]);
+  const [modalState, setModalState] = useState(false);
+  const prodCategory = params.id;
+
+  window.sessionStorage.setItem(
+    'JWT',
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NH0.tciSp2r2HkiKdb5YLgBY8GRRMIGlfzfNDWXSBE420dg'
+  );
 
   const goLeft = () => {
     if (xValue < 0) {
@@ -21,7 +29,7 @@ function SubsDetail() {
   };
 
   useEffect(() => {
-    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${params.id}`)
+    fetch(`http://54.165.180.52:8000/product/subscribe-detail/${params.id}`)
       .then(response => response.json())
       .then(response => setCarouselData(response.product_list));
   }, []);
@@ -32,8 +40,19 @@ function SubsDetail() {
       .then(res => setData(res));
   }, []);
 
+  useEffect(() => {
+    fetch('http://54.165.180.52:8000/product/subscribe-list')
+      .then(res => res.json())
+      .then(res => {
+        window.sessionStorage.setItem('rec_price', res.products[params.id]);
+      });
+  }, []);
+
   return (
-    <div className="subsDetail">
+    <div
+      className="subsDetail"
+      onKeyUp={e => e.key === 'Escape' && setModalState(false)}
+    >
       <section className="imgAndInfo">
         <section className="carousel">
           <div
@@ -108,7 +127,14 @@ function SubsDetail() {
             <br />
             구독 옵션에서 이를 바꿀 수 있어요
           </div>
-          <button className="subsBtn">구독 옵션 세팅하기</button>
+          <button className="subsBtn" onClick={() => setModalState(true)}>
+            구독 옵션 세팅하기
+          </button>
+          <SubsOpt
+            modalState={modalState}
+            closeModal={() => setModalState(false)}
+            prodCategory={prodCategory}
+          />
         </section>
       </section>
       <div className="inPageTab">
