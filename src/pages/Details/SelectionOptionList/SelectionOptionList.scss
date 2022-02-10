@@ -1,0 +1,132 @@
+@import '../../../styles/variables.scss';
+
+.SelectionOptionList {
+  &.first {
+    // margin: 0;
+  }
+
+  &.second {
+    font-size: 14px;
+    h3 {
+      font-weight: bold;
+      padding-right: 50px;
+    }
+  }
+
+  .productSelect {
+    padding-bottom: 30px;
+    // @include flex-center;
+    // border-bottom: 1px solid;
+    position: relative;
+
+    .selectCount {
+      @include flex-center;
+      justify-content: space-between;
+      padding: 20px 0px;
+      border-bottom: 1px solid $border-gray;
+
+      // font-weight: bold;
+
+      button {
+        width: 30px;
+        height: 30px;
+      }
+      span {
+        margin: 0px 18px;
+      }
+    }
+
+    .selectSize {
+      @include flex-center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid $border-gray;
+
+      select {
+        width: 280px;
+        height: 40px;
+        padding-left: 12px;
+        border: 1px solid #3d3d3d;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        option {
+          font-size: 13px;
+          color: #979797;
+        }
+
+        .medium {
+          margin-top: 13px;
+          // border-bottom: #3d3d3d;
+        }
+
+        div {
+          border: 1px solid #3d3d3d;
+          border-top: 0;
+          padding: 10px;
+          // transform: translate();
+        }
+      }
+    }
+
+    .selectAddition {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid black;
+
+      h3 {
+        padding-bottom: 20px;
+      }
+
+      .additionalOptionList {
+        // div {
+        //   @include flex-center;
+        // }
+        .additionalOption {
+          @include flex-center;
+          justify-content: space-between;
+          padding: 5px 0;
+
+          .checkboxAndOption {
+            @include flex-center;
+            justify-content: flex-start;
+
+            input[type='checkbox'] {
+              width: 20px;
+              height: 20px;
+              border-radius: 2px;
+              border: 1px solid #ddd;
+              background-color: #fff;
+              margin-right: 8px;
+
+              &:checked {
+                background-color: $theme-green;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .selectedDetailModal {
+    .selectedList {
+      padding: 16px 0;
+      margin-bottom: 20px;
+      border-top: 1px solid $border-gray;
+      border-bottom: 1px solid $border-gray;
+
+      .listTop {
+        @include flex-center;
+        justify-content: space-between;
+      }
+
+      .listBottom {
+        margin-top: 20px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
