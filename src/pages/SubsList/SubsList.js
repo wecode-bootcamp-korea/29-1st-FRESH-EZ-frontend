@@ -9,11 +9,13 @@ function SubsList() {
   const [subsListData, setSubsListData] = useState({});
   const addPrice = (prev, curr) => prev + curr;
 
-  // useEffect(() => {
-  //   fetch('http://208.82.62.99:8000/product/subscribe-list')
-  //     .then(res => res.json())
-  //     .then(res => setRecommProdPrice(res.map(price => price.reduce(addPrice))));
-  // }, []);
+  useEffect(() => {
+    fetch('http://208.82.62.99:8000/product/subscribe-list')
+      .then(res => res.json())
+      .then(res =>
+        setRecommProdPrice(res.map(price => price.reduce(addPrice)))
+      );
+  }, []);
 
   useEffect(() => {
     fetch('/data/SUBSLIST_DATA.json')
