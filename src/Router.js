@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Details from './pages/Details/Details';
 import Main from './pages/Main/Main';
 import ProductAll from './pages/ProductList/ProductAll';
-import Details from './pages/Details/Details';
 import SignUp from './pages/SignUp/SignUp';
 import Nav from './components/Nav/Nav';
 import PreSignUp from './pages/SignUp/PreSignUp';
@@ -11,7 +10,6 @@ import SubsList from './pages/SubsList/SubsList';
 import SubsDetails from './pages/SubsDetail/SubsDetail';
 import SubsOpt from './pages/SubsOpt/SubsOpt';
 import Footer from './components/Footer/Footer';
-import Nav from './components/Nav/Nav';
 import SubsSelect from './pages/SubsSelect/SubsSelect';
 import Login from './pages/Login/Login';
 

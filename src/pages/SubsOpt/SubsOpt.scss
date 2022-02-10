@@ -19,6 +19,7 @@
   bottom:0;
   background-color: black;
   opacity: 0.5;
+  z-index: 100;
 }
 
 .subsOptModal {
@@ -35,6 +36,7 @@
   border-radius: $radio-size;
   padding: 20px;
   background: #fff;
+  z-index: 1000;
 
   .subsOptHeader {
     @include flex-column();

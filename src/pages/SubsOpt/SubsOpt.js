@@ -10,14 +10,14 @@ import SubsOptData from './SubsOptData';
 import './SubsOpt.scss';
 
 function SubsOpt(props) {
-  const { modalState, closeModal, testJWT, prodCategory } = props;
+  const { modalState, closeModal, prodCategory } = props;
   const navigate = useNavigate();
   const [step, setStep] = useState(
-    () => Number(window.localStorage.getItem('step')) || 1
+    () => Number(window.sessionStorage.getItem('step')) || 1
   );
 
   useEffect(() => {
-    window.localStorage.setItem('step', JSON.stringify(step));
+    window.sessionStorage.setItem('step', JSON.stringify(step));
   }, [step]);
 
   const [selectedData, setSelectedData] = useState({
@@ -25,12 +25,11 @@ function SubsOpt(props) {
     food_day_count: '1회',
     food_week_count: '주 3일',
     food_period: '2주',
-    food_start: [
+    food_start_date: [
       new Date().getFullYear(),
       (new Date().getMonth() + 1).toString().padStart(2, '0'),
       new Date().getDate().toString().padStart(2, '0'),
     ].join('-'),
-    product_list: [],
   });
 
   const data = prodCategory === '1' ? SubsOptData[step - 1] : SubsOptData[step];
@@ -43,41 +42,45 @@ function SubsOpt(props) {
   };
 
   useEffect(() => {
-    window.localStorage.setItem('selectedData', JSON.stringify(selectedData));
+    window.sessionStorage.setItem('selectedData', JSON.stringify(selectedData));
   }, [selectedData]);
 
   const preprocessUserData = userData => {
     let sizeNum = userData.size === 'Medium' ? '1' : '2';
     return {
       ...userData,
-      category_id: prodCategory,
-      jwt: testJWT,
+      categoryId: prodCategory,
       size: sizeNum,
       food_day_count: /\d/.exec(userData.food_day_count).toString(),
       food_week_count: /\d/.exec(userData.food_week_count).toString(),
       food_period: /\d/.exec(userData.food_period).toString(),
     };
   };
+  const JWT = window.sessionStorage.getItem('JWT');
 
   const moveToCart = () => {
     if (window.confirm('장바구니로 이동하시겠습니까?')) {
-      fetch('http://208.82.62.99:8000/product/subscribe-option', {
+      fetch('http://54.165.180.52:8000/product/subscribe-option', {
         method: 'post',
+        headers: { Authorization: JWT },
         body: JSON.stringify(preprocessUserData(selectedData)),
       });
       navigate('/cart');
-      window.localStorage.clear();
+      window.sessionStorage.removeItem('selectedData');
+      window.sessionStorage.removeItem('step');
     }
   };
 
   const moveToNext = () => {
     if (window.confirm('식단 구성 단계로 넘어가시겠습니까?')) {
-      fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
+      fetch(
+        `http://54.165.180.52:8000/product/subscribe-detail/${prodCategory}`
+      )
         .then(res => res.json())
         .then(res => {
-          window.localStorage.setItem('products', res.products);
-          window.localStorage.setItem('image_list', res.image_list);
-          window.localStorage.setItem('price', res.price);
+          window.sessionStorage.setItem('products', res.products);
+          window.sessionStorage.setItem('image_list', res.image_list);
+          window.sessionStorage.setItem('price', res.price);
         });
       navigate('/subsOptSelf');
     }

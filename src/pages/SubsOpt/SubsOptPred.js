@@ -2,7 +2,7 @@ import React from 'react';
 
 function SubsOptPred(props) {
   const { prodCategory, queryKey, selectedValue, selectedData } = props;
-  const productPrices = window.localStorage
+  const productPrices = window.sessionStorage
     .getItem('rec_price')
     .split(',')
     .slice(0, 5)
@@ -26,7 +26,7 @@ function SubsOptPred(props) {
   const checkSize = totalPrice =>
     selectedData.size === 'Large' ? totalPrice + 1000 * totalCount : totalPrice;
 
-  if (queryKey === 'food_start') {
+  if (queryKey === 'food_start_date') {
     let date = new Date(selectedValue);
     date.setDate(date.getDate() + 7 * /\d/.exec(selectedData.food_period));
     return (
