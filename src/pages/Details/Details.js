@@ -21,7 +21,6 @@ function Details() {
   const calcTotalPrice = () => {
     if (selectedProduct.message) {
       const reducer = (preValue, curValue) => preValue + curValue;
-
       const MDPriceArray = selectedMDProd.map(MDprod => MDprod.price);
       const MDPrice =
         MDPriceArray.length > 0 ? MDPriceArray.reduce(reducer) : 0;
@@ -83,14 +82,6 @@ function Details() {
         }));
       });
   }, []);
-
-  // useEffect(() => {
-  //   fetch('data/recommendData.json')
-  //     .then(res => res.json())
-  //     .then(res => {
-  //       setRecommendProducts(res);
-  //     });
-  // }, []);
 
   return (
     <div className="Details">
