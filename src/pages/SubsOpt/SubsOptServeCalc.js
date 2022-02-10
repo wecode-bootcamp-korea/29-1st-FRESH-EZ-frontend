@@ -16,11 +16,11 @@ function SubsOpt(props) {
 
   const navigate = useNavigate();
   const [step, setStep] = useState(
-    () => Number(window.localStorage.getItem('step')) || 1
+    () => Number(window.sessionStorage.getItem('step')) || 1
   );
 
   useEffect(() => {
-    window.localStorage.setItem('step', JSON.stringify(step));
+    window.sessionStorage.setItem('step', JSON.stringify(step));
   }, [step]);
 
   const [selectedData, setSelectedData] = useState({
@@ -42,7 +42,7 @@ function SubsOpt(props) {
   });
 
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/product/subscribe-totalprice', {
+    fetch('http://54.165.180.52:8000/product/subscribe-totalprice', {
       method: 'post',
       body: JSON.stringify({
         category_id: prodCategory,
@@ -69,7 +69,7 @@ function SubsOpt(props) {
   };
 
   useEffect(() => {
-    window.localStorage.setItem('selectedData', JSON.stringify(selectedData));
+    window.sessionStorage.setItem('selectedData', JSON.stringify(selectedData));
   }, [selectedData]);
 
   // client 단에서 preprocessing하는 것 vs server에서 받을 때 하는 것 효율?
@@ -89,23 +89,27 @@ function SubsOpt(props) {
   const moveToCart = () => {
     if (window.confirm('장바구니로 이동하시겠습니까?')) {
       navigate('/cart');
-      fetch('http://208.82.62.99:8000/product/subscribe-option', {
+      fetch('http://54.165.180.52:8000/product/subscribe-option', {
         method: 'post',
         body: JSON.stringify(preprocessUserData(selectedData)),
       });
-      window.localStorage.clear();
+      navigate('/cart');
+      window.sessionStorage.removeItem('selectedData');
+      window.sessionStorage.removeItem('step');
     }
   };
 
   const moveToNext = () => {
     if (window.confirm('식단 구성 단계로 넘어가시겠습니까?')) {
       navigate('/subsOptSelf');
-      fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
+      fetch(
+        `http://54.165.180.52:8000/product/subscribe-detail/${prodCategory}`
+      )
         .then(res => res.json())
         .then(res => {
-          window.localStorage.setItem('products', res.products);
-          window.localStorage.setItem('image_list', res.image_list);
-          window.localStorage.setItem('price', res.price);
+          window.sessionStorage.setItem('products', res.products);
+          window.sessionStorage.setItem('image_list', res.image_list);
+          window.sessionStorage.setItem('price', res.price);
         });
     }
   };

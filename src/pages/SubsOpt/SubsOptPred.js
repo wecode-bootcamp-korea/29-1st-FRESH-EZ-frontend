@@ -2,7 +2,7 @@ import React from 'react';
 
 function SubsOptPred(props) {
   const { prodCategory, queryKey, selectedValue, selectedData } = props;
-  const productPrices = window.localStorage
+  const productPrices = window.sessionStorage
     .getItem('rec_price')
     .split(',')
     .slice(0, 5)

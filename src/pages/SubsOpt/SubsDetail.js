@@ -4,15 +4,13 @@ import SubsOpt from './SubsOpt';
 
 function SubsDetail() {
   const [modalState, setModalState] = useState(false);
-  const testJWT =
-    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6M30.niNmVRTCz9yD_B5BjBhfyVaDVAKyboSxAUxRmOOnvJg';
-  const prodCategory = '1';
+  const prodCategory = '4';
 
   useEffect(() => {
-    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${prodCategory}`)
+    fetch('http://54.165.180.52:8000/product/subscribe-list')
       .then(res => res.json())
       .then(res => {
-        window.localStorage.setItem('rec_price', res.price);
+        window.sessionStorage.setItem('rec_price', res.products[prodCategory]);
       });
   }, []);
 
@@ -26,7 +24,6 @@ function SubsDetail() {
       <SubsOpt
         modalState={modalState}
         closeModal={() => setModalState(false)}
-        testJWT={testJWT}
         prodCategory={prodCategory}
       />
     </div>
