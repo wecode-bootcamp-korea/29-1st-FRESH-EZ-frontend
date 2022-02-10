@@ -9,6 +9,7 @@ import SubsDetails from './pages/SubsDetail/SubsDetail';
 import SubsOpt from './pages/SubsOpt/SubsOpt';
 import Footer from './components/Footer/Footer';
 import Nav from './components/Nav/Nav';
+import SubsSelect from './pages/SubsSelect/SubsSelect';
 import Login from './pages/Login/Login';
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
     <BrowserRouter>
       <Routes>
         <Route path="/main" element={<Main />} />
+        <Route path="/subsDetails/:id" element={<SubsDetails />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/nav" element={<Nav />} />
         <Route path="/preSignUp" element={<PreSignUp />} />
@@ -24,6 +26,7 @@ function Router() {
         <Route path="/subsOpt" element={<SubsOpt />} />
         <Route path="/footer" element={<Footer />} />
         <Route path="/nav" element={<Nav />} />
+        <Route path="/subsSelect" element={<SubsSelect />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

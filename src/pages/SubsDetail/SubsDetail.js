@@ -1,32 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import './SubsDetail.scss';
 
 function SubsDetail() {
-  const imageLists = [
-    {
-      id: 1,
-      image:
-        'https://upload.wikimedia.org/wikipedia/commons/d/de/Windows_live_square.JPG',
-      name: '두툼한 스테이크 샐러드',
-      price: '8990',
-    },
-    {
-      id: 2,
-      image:
-        'https://play-lh.googleusercontent.com/IeNJWoKYx1waOhfWF6TiuSiWBLfqLb18lmZYXSgsH1fvb8v1IYiZr5aYWe0Gxu-pVZX3',
-      name: '랍스터 샐러드',
-      price: '8990',
-    },
-    {
-      id: 3,
-      image:
-        'https://media-exp1.licdn.com/dms/image/C4E0BAQHikN6EXPd23Q/company-logo_200_200/0/1595359131127?e=2159024400&v=beta&t=S5MNjBDjiH433VCWzjPeiopNDhxGwmfcMk4Zf1P_m_s',
-      name: '대게 샐러드',
-      price: '8990',
-    },
-  ];
   const [carouselData, setCarouselData] = useState([]);
   const [xValue, setXValue] = useState(0);
+  const params = useParams();
+  const [data, setData] = useState([]);
 
   const goLeft = () => {
     if (xValue < 0) {
@@ -35,15 +15,21 @@ function SubsDetail() {
   };
 
   const goRight = () => {
-    if (xValue > -(486 * (imageLists.length - 1))) {
+    if (xValue > -(486 * (carouselData.length - 1))) {
       setXValue(prev => prev - 486);
     }
   };
 
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/product/subscribe-detail/1')
+    fetch(`http://208.82.62.99:8000/product/subscribe-detail/${params.id}`)
       .then(response => response.json())
-      .then(response => setCarouselData(prev => [...prev, response]));
+      .then(response => setCarouselData(response.product_list));
+  }, []);
+
+  useEffect(() => {
+    fetch('/data/SUBS_CATEGORY.json')
+      .then(res => res.json())
+      .then(res => setData(res));
   }, []);
 
   return (
@@ -54,10 +40,10 @@ function SubsDetail() {
             className="carouselContents"
             style={{ transform: `translateX(${xValue}px)` }}
           >
-            {imageLists.map(salads => {
+            {carouselData.map((salads, idx) => {
               return (
-                <div className="separateCarouselContents" key={salads.id}>
-                  <img alt="salad" src={salads.image} />
+                <div className="separateCarouselContents" key={idx}>
+                  <img alt="salad" src={salads.url} />
                   <div className="imgNameAndPrice">
                     <div>{salads.name}</div>
                     <div>{salads.price}원</div>
@@ -74,7 +60,9 @@ function SubsDetail() {
           </div>
         </section>
         <section className="information">
-          <div className="header1">샐러드 정기구독</div>
+          <div className="header1">
+            {data.length > 0 && data[params.id - 1].value} 정기구독
+          </div>
           <div className="header2">
             [기간] 1주-8주 / [배송] 주 1회-6회 / [사이즈] M/L Size
           </div>
@@ -92,13 +80,15 @@ function SubsDetail() {
           <div className="header1">36,000원 ~</div>
           <div className="infoDetail">
             <div className="header4">상품설명</div>
-            원하는 날에, 원하는 끼니에 먹는 샐러드 식단
+            원하는 날에, 원하는 끼니에 먹는{' '}
+            {data.length > 0 && data[params.id - 1].value} 식단
             <br /> <br />
             ✔ 구성
             <br />
-            20종의 샐러드
+            20종의 {data.length > 0 && data[params.id - 1].value}
             <br />
-            원하는 샐러드로 변경 가능해요
+            원하는 {data.length > 0 && data[params.id - 1].value}로 변경
+            가능해요
             <br /> <br />
             ✔ 주문
             <br />
@@ -133,7 +123,7 @@ function SubsDetail() {
           <img
             className="productDetailLeft"
             alt="product details"
-            src="https://infographicjournal.com/wp-content/uploads/2013/01/hidden-value-of-long-tail-seo-10001.png"
+            src={`/images/SubsDetail/subscriptionDetail${params.id}.jpg`}
           />
           <div className="productDetailRight">
             <div className="title">구독 옵션</div>
