@@ -11,12 +11,19 @@ export default function ProductAll() {
     allergiesFilterValue: '나에게 안전한 메뉴 보기',
   });
 
+  const [query, setQuery] = useState({
+    category: '',
+    offset: '',
+  });
+
   const navigate = useNavigate();
   const location = useLocation();
   const LIMIT = 16;
+  //const testJWT = window.sessionStorage.getItem('JWT');
   const testJWT =
     'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6NH0.tciSp2r2HkiKdb5YLgBY8GRRMIGlfzfNDWXSBE420dg';
-  console.log(location);
+
+  //Allergy Filter Data fetch
   const allergiesFilterToggle = () => {
     if (data.allergiesFilterValue === '모든 메뉴 보기') {
       fetch(
@@ -54,7 +61,7 @@ export default function ProductAll() {
       }));
     }
   };
-
+  //initiall Data Fetch
   useEffect(() => {
     fetch(
       `http://208.82.62.99:8000/product/menu${
@@ -75,10 +82,14 @@ export default function ProductAll() {
 
   const updateOffset = buttonIndex => {
     const offset = buttonIndex * LIMIT;
-    const queryString = `?offset=${offset}&limit=${LIMIT}`;
-
-    navigate(queryString);
+    const queryString = `offset=${offset}&limit=${LIMIT}`;
+    setQuery(prev => (prev.offset = queryString));
+    console.log(query.offset);
   };
+
+  useEffect(() => {
+    navigate(`&${query.category}&${query.offset}`);
+  }, [query]);
 
   return (
     <div className="productAll">
