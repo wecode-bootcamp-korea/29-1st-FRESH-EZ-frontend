@@ -102,6 +102,7 @@
         li {
           margin-left: 8px;
         }
+
         .twoMenu {
           display: flex;
           flex-direction: column;
@@ -112,17 +113,20 @@
           background-color: white;
           color: $font-gray;
 
-          .single,
+          .single {
+            padding: 20px 15px 15px 15px;
+
+            &:hover {
+              background-color: #dff9ec;
+            }
+          }
           .subScription {
             padding: 20px 15px 15px 15px;
-          }
 
-          // .color {
-          //   background-color: #dff9ec;
-          // }
-          // .uncolor {
-          //   background-color: white;
-          // }
+            &:hover {
+              background-color: #dff9ec;
+            }
+          }
 
           .menuBox {
             position: absolute;
@@ -136,6 +140,7 @@
                 color: $theme-green;
                 text-decoration: underline;
               }
+
               &:nth-child(-n + 6) {
                 padding: 22px 15px 15px 15px;
               }
@@ -189,21 +194,5 @@
         margin-right: 7px;
       }
     }
-  }
-
-  p {
-    margin: 0 3px;
-    color: $border-gray;
-    font-size: 18px;
-  }
-
-  .themeColor {
-    color: $theme-green;
-    text-decoration: none;
-  }
-
-  .fontGray {
-    color: $font-gray;
-    text-decoration: none;
   }
 }

@@ -5,7 +5,6 @@ import './Nav.scss';
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState('');
-  // const [colorChange, setColorChange] = useState(false);
 
   const subMenu = {
     subScript: ['샐러드', '샌드위치', '도시락'],
@@ -52,7 +51,6 @@ const Nav = () => {
               className="allOfMenu"
               onMouseLeave={() => {
                 setShowSubMenu('');
-                // setShowMenu(false);
               }}
             >
               <i className="fas fa-bars" />
@@ -71,9 +69,8 @@ const Nav = () => {
                   }}
                 >
                   <li
-                    className="subScription"
                     onMouseOver={() => setShowSubMenu('subScript')}
-                    // className={colorChange ? 'color' : 'uncolor'}
+                    className="subScription"
                   >
                     정기구독
                   </li>
@@ -86,19 +83,10 @@ const Nav = () => {
                   </li>
 
                   {showSubMenu && (
-                    <div
-                      className="menuBox"
-                      onMouseLeave={() => {
-                        setShowMenu(false);
-                      }}
-                    >
+                    <div className="menuBox">
                       <ul>
                         {subMenu[showSubMenu].map(menu => (
-                          <li
-                            key={menu + 1}
-                            className="singleMenu"
-                            // onMouseOver={() => setColorChange(true)}
-                          >
+                          <li key={menu + 1} className="singleMenu">
                             <Link to="">{menu}</Link>
                           </li>
                         ))}
