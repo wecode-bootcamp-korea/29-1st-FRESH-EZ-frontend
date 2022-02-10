@@ -4,6 +4,8 @@ import './Nav.scss';
 
 const Nav = () => {
   const [firstCateMode, setfirstCateMode] = useState(false);
+  const [secondCateMode, setSecondCateMode] = useState(false);
+  const [thirdCateMode, setThirdCateMode] = useState(false);
   const subScriptMenu = [
     { name: '샐러드' },
     { name: '샌드위치' },
@@ -44,16 +46,15 @@ const Nav = () => {
         </ul>
       </div>
       <div>
-        <div className="navSecondLine">
+        <div
+          className="navSecondLine"
+          onMouseOver={() => setfirstCateMode(true)}
+          // onMouseLeave={() => setfirstCateMode(false)}
+        >
           <ul className="navSecondLineLeft">
             <ul className="allOfMenu">
               <i className="fas fa-bars" />
-              <li
-                onMouseOver={() => setfirstCateMode(true)}
-                onMouseLeave={() => setfirstCateMode(false)}
-              >
-                전체 카테고리
-              </li>
+              <li onMouseOver={() => setfirstCateMode(true)}>전체 카테고리</li>
             </ul>
 
             <li className="subScriptionMenu">
@@ -80,32 +81,41 @@ const Nav = () => {
           </ul>
         </div>
       </div>
-      <div className="menuContainer">
+      <div
+        className="menuContainer"
+        onMouseLeave={() => setfirstCateMode(false)}
+      >
         {firstCateMode && (
           <ul className="menuFirstList">
-            <li>정기구독</li>
-            <li>단품구매</li>
+            <li onMouseOver={() => setSecondCateMode(true)}>정기구독</li>
+            <li onMouseOver={() => setThirdCateMode(true)}>단품구매</li>
           </ul>
         )}
-        <ul className="menuFirstOfFirst">
-          {subScriptMenu.map((menu, idx) => {
-            return (
-              <li key={idx}>
-                <Link to="/">{menu.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
-
-        <ul className="menuFirstOfSecond">
-          {subSingleMenu.map((single, idx) => {
-            return (
-              <li key={idx}>
-                <Link to="/">{single.name}</Link>
-              </li>
-            );
-          })}
-        </ul>
+        {secondCateMode && (
+          <ul
+            className="menuFirstOfFirst"
+            onMouseLeave={() => setSecondCateMode(false)}
+          >
+            {subScriptMenu.map((menu, idx) => {
+              return (
+                <li key={idx}>
+                  <Link to="/">{menu.name}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+        {thirdCateMode && (
+          <ul className="menuFirstOfSecond">
+            {subSingleMenu.map((single, idx) => {
+              return (
+                <li key={idx}>
+                  <Link to="/">{single.name}</Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </div>
   );

@@ -81,6 +81,9 @@
         margin-left: 10px;
         padding-left: 10px;
         border-left: 1px solid #c9cacc;
+        a:hover {
+          color: $theme-green;
+        }
       }
 
       .allOfMenu {
@@ -89,6 +92,7 @@
 
         &:hover {
           color: $theme-green;
+          transition: all 0.5s ease;
         }
 
         .fa-bars {
@@ -175,11 +179,15 @@
 
     li {
       color: black;
+
+      &:hover {
+        background-color: #dff9ec;
+      }
       &:first-child {
-        padding: 25px 15px 15px 15px;
+        padding: 22px 15px 15px 15px;
       }
       &:last-child {
-        padding: 25px 15px 15px 15px;
+        padding: 22px 15px 15px 15px;
       }
     }
   }
@@ -191,49 +199,57 @@
     a {
       color: black;
       text-decoration: none;
-    }
-
-    li {
-      &:nth-child(1) {
-        padding: 25px 15px 15px 15px;
-      }
-      &:nth-child(2) {
-        padding: 15px;
-      }
-      &:nth-child(3) {
-        padding: 15px;
+      &:hover {
+        color: #27b06e;
+        text-decoration: underline;
       }
     }
   }
 
-  .menuFirstOfSecond {
-    width: 160px;
-    height: 300px;
-    background-color: #dff9ec;
-
-    a {
-      color: black;
-      text-decoration: none;
+  li {
+    &:nth-child(1) {
+      padding: 25px 15px 15px 15px;
     }
-    li {
-      &:nth-child(1) {
-        padding: 25px 15px 15px 15px;
-      }
-      &:nth-child(2) {
-        padding: 15px;
-      }
-      &:nth-child(3) {
-        padding: 15px;
-      }
-      &:nth-child(4) {
-        padding: 15px;
-      }
-      &:nth-child(5) {
-        padding: 15px;
-      }
-      &:nth-child(6) {
-        padding: 15px;
-      }
+    &:nth-child(2) {
+      padding: 15px;
+    }
+    &:nth-child(3) {
+      padding: 15px;
+    }
+  }
+}
+
+.menuFirstOfSecond {
+  width: 160px;
+  height: 300px;
+  background-color: #dff9ec;
+
+  a {
+    color: black;
+    text-decoration: none;
+    &:hover {
+      color: #27b06e;
+      text-decoration: underline;
+    }
+  }
+  li {
+    &:nth-child(1) {
+      padding: 25px 15px 15px 15px;
+    }
+    &:nth-child(2) {
+      padding: 15px;
+    }
+    &:nth-child(3) {
+      padding: 15px;
+    }
+    &:nth-child(4) {
+      padding: 15px;
+    }
+    &:nth-child(5) {
+      padding: 15px;
+    }
+    &:nth-child(6) {
+      padding: 15px;
     }
   }
 }
