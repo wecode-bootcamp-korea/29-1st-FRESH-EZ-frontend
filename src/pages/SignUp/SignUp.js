@@ -111,7 +111,7 @@ const SignUp = () => {
   const dayDataArr = dayData();
 
   useEffect(() => {
-    fetch('http://208.82.62.99:8000/user/allergy')
+    fetch('http://54.165.180.52:8000/user/allergy')
       .then(res => res.json())
       .then(res => {
         setAllergyData(res.allergies_list);
@@ -133,7 +133,7 @@ const SignUp = () => {
   };
 
   const signUpCheck = () => {
-    fetch('http://208.82.62.99:8000/user/signup', {
+    fetch('http://54.165.180.52:8000/user/signup', {
       method: 'POST',
       body: JSON.stringify({
         name: name,
