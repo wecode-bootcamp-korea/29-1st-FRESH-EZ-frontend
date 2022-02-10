@@ -5,6 +5,7 @@ import './Nav.scss';
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showSubMenu, setShowSubMenu] = useState('');
+  const [colorChange, setColorChange] = useState(false);
 
   const subMenu = {
     subScript: ['샐러드', '샌드위치', '도시락'],
@@ -31,10 +32,10 @@ const Nav = () => {
 
         <ul className="navFirstLineRight">
           <li className="signUpBtn">
-            <Link to="/">회원가입</Link>
+            <Link to="/preSignUp">회원가입</Link>
           </li>
           <li className="loginBtn">
-            <Link to="/">로그인</Link>
+            <Link to="/login">로그인</Link>
           </li>
           <li className="as">
             <Link to="/">1:1 문의</Link>
@@ -50,7 +51,6 @@ const Nav = () => {
             <ul
               className="allOfMenu"
               onMouseLeave={() => {
-                setShowMenu(false);
                 setShowSubMenu('');
               }}
             >
@@ -63,8 +63,16 @@ const Nav = () => {
                 전체 카테고리
               </li>
               {showMenu && (
-                <ul className="twoMenu">
-                  <li onMouseOver={() => setShowSubMenu('subScript')}>
+                <ul
+                  className="twoMenu"
+                  onMouseLeave={() => {
+                    setShowMenu(false);
+                  }}
+                >
+                  <li
+                    onMouseOver={() => setShowSubMenu('subScript')}
+                    className={colorChange ? 'color' : 'uncolor'}
+                  >
                     정기구독
                   </li>
 
@@ -79,7 +87,11 @@ const Nav = () => {
                     <div className="menuBox">
                       <ul>
                         {subMenu[showSubMenu].map(menu => (
-                          <li key={menu + 1} className="singleMenu">
+                          <li
+                            key={menu + 1}
+                            className="singleMenu"
+                            onMouseOver={() => setColorChange(true)}
+                          >
                             <Link to="">{menu}</Link>
                           </li>
                         ))}
@@ -91,10 +103,10 @@ const Nav = () => {
             </ul>
 
             <li className="subScriptionMenu">
-              <Link to="/">정기구독</Link>
+              <Link to="/subsList">정기구독</Link>
             </li>
             <li className="oneMenuPurchase">
-              <Link to="/">단품구매</Link>
+              <Link to="/products">단품구매</Link>
             </li>
           </ul>
 

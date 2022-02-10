@@ -9,29 +9,12 @@
     @include flex-center;
     flex-direction: column;
     margin-top: 400px;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-
-    // background-color: lightgray;
-    // margin: 200px 0;
-
-    .loginHeader {
-      text-align: center;
-      margin: 50px 110px 30px 110px;
-      padding: 40px;
-<<<<<<< HEAD
-=======
-=======
     padding-bottom: 80px;
 
     .loginHeader {
       margin: 50px 110px 30px 110px;
       padding: 40px;
       text-align: center;
->>>>>>> master
->>>>>>> master
 
       img {
         width: 150px;
@@ -40,18 +23,8 @@
       }
 
       p {
-<<<<<<< HEAD
-        font-size: $body;
-        color: $font-gray;
-=======
-<<<<<<< HEAD
-        font-size: $body;
-        color: $font-gray;
-=======
         color: $font-gray;
         font-size: $body;
->>>>>>> master
->>>>>>> master
       }
 
       .logo {
@@ -66,23 +39,9 @@
     @include flex-center;
     justify-content: center;
     padding: 15px 110px;
-<<<<<<< HEAD
-    // 약간 하드코딩느낌...
-    background-color: #f9df33;
     margin-bottom: 10px;
+    background-color: #f9df33;
     cursor: pointer;
-    // line-height: 20px;
-=======
-<<<<<<< HEAD
-    // 약간 하드코딩느낌...
-    background-color: #f9df33;
-    margin-bottom: 10px;
-=======
-    margin-bottom: 10px;
-    background-color: #f9df33;
->>>>>>> master
-    cursor: pointer;
->>>>>>> master
 
     &:hover {
       background-color: #ebd233;
@@ -93,39 +52,17 @@
     }
 
     span {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-      font-size: 17px;
-      font-weight: 500;
-      // margin-top: 4px;
-      // 센터로 다 맞췄는데도 이상해서 어거지로 정렬함
-    }
-  }
-<<<<<<< HEAD
-=======
-=======
       margin-top: 3px;
       font-size: 17px;
       font-weight: 500;
     }
   }
 
->>>>>>> master
->>>>>>> master
   .advertiseBanner {
     a {
       color: $font-gray;
       text-decoration: none;
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> master
->>>>>>> master
     img {
       width: 420px;
       height: 135px;
@@ -133,38 +70,6 @@
       cursor: pointer;
     }
   }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-  .orLine {
-    border-top: 1px solid #c9cacc;
-    // width: 420px;
-    padding: 0 207px;
-    margin-top: 15px;
-  }
-  .or {
-    font-size: $body;
-    color: #c9cacc;
-    position: relative;
-    background-color: white;
-    padding: 10px;
-    top: -17px;
-  }
-  .inputInfo {
-    @include flex-center;
-    flex-direction: column;
-    input {
-      // width: 420px;
-      width: 245%;
-      padding: 13px 10px;
-      // padding: 15px 135px;
-      border: 1px solid #c9cacc;
-      border-radius: 3px;
-      // color: #c9cacc;
-<<<<<<< HEAD
-=======
-=======
 
   .orLine {
     padding: 0 207px;
@@ -191,8 +96,6 @@
       border: 1px solid #c9cacc;
       border-radius: 3px;
 
->>>>>>> master
->>>>>>> master
       &:focus {
         outline: 1px solid $theme-green;
       }
@@ -201,29 +104,13 @@
       }
     }
   }
-<<<<<<< HEAD
-  .autoLogin {
-=======
-<<<<<<< HEAD
-  .autoLogin {
-=======
 
   .autoLogin {
     @include flex-center;
->>>>>>> master
->>>>>>> master
     width: 420px;
     margin: 10px;
     padding: 10px 0;
     color: #c9cacc;
-<<<<<<< HEAD
-    @include flex-center;
-=======
-<<<<<<< HEAD
-    @include flex-center;
-=======
->>>>>>> master
->>>>>>> master
 
     input[type='checkbox'] {
       display: none;
@@ -232,19 +119,6 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-        background-color: white;
-        margin-right: 7px;
-        cursor: pointer;
-        border: 1px solid $border-gray;
-        border-radius: 3px;
-      }
-<<<<<<< HEAD
-=======
-=======
         margin-right: 7px;
         background-color: white;
         border: 1px solid $border-gray;
@@ -252,8 +126,6 @@
         cursor: pointer;
       }
 
->>>>>>> master
->>>>>>> master
       &:checked + label {
         background: url(../../../public/images/checked.png) $theme-green
           no-repeat center/20px 20px;
@@ -262,79 +134,20 @@
     span {
       font-size: 16px;
       font-weight: 500;
-<<<<<<< HEAD
-      // color: $font-gray;
-      // line-height: 10px;
-=======
-<<<<<<< HEAD
-      // color: $font-gray;
-      // line-height: 10px;
-=======
->>>>>>> master
->>>>>>> master
     }
   }
 
   .active {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-    // width: 420px;
-    // padding: 13px 10px;
-    padding: 15px 190px;
-    // 얘는 왜 패딩..190...?
-    border: none;
-    background-color: $theme-green;
-    color: white;
-    border-radius: 3px;
-    font-size: 15px;
-<<<<<<< HEAD
-=======
-=======
     padding: 15px 190px;
     background-color: $theme-green;
     color: white;
     font-size: 15px;
     border-radius: 3px;
     border: none;
->>>>>>> master
->>>>>>> master
     cursor: pointer;
   }
 
   .unActive {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-    // width: 420px;
-    // padding: 13px 10px;
-    padding: 15px 190px;
-    // 얘는 왜 패딩..190...?
-    border: none;
-
-    background-color: #c9cacc;
-    color: white;
-    border-radius: 3px;
-    font-size: 15px;
-    cursor: pointer;
-  }
-  .appleConnect {
-    // width: 420px;
-    // padding: 13px 0;
-    padding: 15px 142px;
-    @include flex-center;
-    justify-content: center;
-    border: 1px solid black;
-    background-color: white;
-    color: black;
-    border-radius: 3px;
-    font-size: 15px;
-    margin-top: 10px;
-<<<<<<< HEAD
-=======
-=======
     padding: 15px 190px;
     background-color: #c9cacc;
     color: white;
@@ -353,8 +166,6 @@
     color: black;
     border-radius: 3px;
     font-size: 15px;
->>>>>>> master
->>>>>>> master
     cursor: pointer;
 
     i {
@@ -365,25 +176,11 @@
     @include flex-center;
     justify-content: space-between;
     width: 420px;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-    font-size: $body;
-    margin-top: 15px;
-    color: $font-gray;
-    padding-bottom: 10px;
-    margin-bottom: 100px;
-<<<<<<< HEAD
-=======
-=======
     margin-top: 15px;
     padding-bottom: 10px;
     margin-bottom: 100px;
     color: $font-gray;
     font-size: $body;
->>>>>>> master
->>>>>>> master
     cursor: pointer;
     a {
       color: $font-gray;
