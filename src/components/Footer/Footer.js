@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './Footer.scss';
 
 const Footer = () => {
@@ -12,12 +12,12 @@ const Footer = () => {
             <a href="/" target="_blank">
               FAQ
             </a>
-            <NavLink to="/" className="contract">
+            <Link to="/" className="contract">
               이용약관
-            </NavLink>
-            <NavLink to="/" className="contract">
+            </Link>
+            <Link to="/" className="contract">
               개인정보처리방침
-            </NavLink>
+            </Link>
             <a href="/" target="_blank">
               제휴문의
             </a>
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <h3>프코고객센터</h3>
+        <h3>프이고객센터</h3>
 
         <div className="footerSecond">
           <div className="questionBtn">
@@ -64,39 +64,37 @@ const Footer = () => {
           <div className="footerThirdFirst">
             <div>
               <span>대표</span>
-              <span>정유석</span>
+              <span>Fresh-EZ</span>
             </div>
             <div>
               <span>주소</span>
-              <span>
-                서울특별시 성동구 왕십리로 115, 헤이그라운드 서울숲점 7층
-              </span>
+              <span>서울특별시 강남구 테헤란로 427 위워크타워 8층</span>
             </div>
             <div>
               <span>사업자등록번호</span>
-              <span>883-81-00307</span>
+              <span>123-45-6789</span>
             </div>
             <div>
               <span>통신판매업신고</span>
-              <span>제 2016-서울용산-00657</span>
+              <span>제 2022-서울강남-00001</span>
             </div>
           </div>
 
           <div className="footerThirdSecond">
             <div>
               <span>제휴문의</span>
-              <span>biz@freshcode.me</span>
+              <span>biz@freshez.me</span>
             </div>
             <div>
               <span>카카오ID</span>
 
               <a href="/" target="_blank">
-                @프레시코드-freshcode
+                @프레시이지-freshez
               </a>
             </div>
             <div>
               <span>단체주문문의</span>
-              <span>order@freshcode.me</span>
+              <span>order@freshez.me</span>
             </div>
           </div>
         </div>

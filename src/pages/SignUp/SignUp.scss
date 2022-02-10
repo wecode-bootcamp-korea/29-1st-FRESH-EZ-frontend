@@ -1,0 +1,312 @@
+@import '../../styles/variables.scss';
+
+.signUp {
+  span {
+    font-size: $body;
+    font-weight: 500;
+  }
+
+  .signUpBox {
+    @include flex-center;
+    flex-direction: column;
+
+    .signUpHeader {
+      @include flex-center;
+      flex-direction: column;
+      text-align: center;
+      margin: 50px 110px 30px 110px;
+      padding: 40px;
+      margin-top: 200px;
+
+      img {
+        width: 150px;
+        height: auto;
+        margin-bottom: 5px;
+      }
+
+      span {
+        color: $font-gray;
+        font-size: $body;
+      }
+
+      .logo {
+        color: #3d3d3d;
+        font-size: 30px;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .userInfo {
+    margin-bottom: 20px;
+    font-size: 21px;
+    font-weight: 500;
+  }
+
+  .necessary::after {
+    content: '*';
+    margin-left: 3px;
+    color: red;
+  }
+
+  .accountId {
+    margin-bottom: 35px;
+
+    div {
+      &:last-child input {
+        width: 250px;
+        margin-top: 10px;
+        margin-right: 10px;
+        padding: 12px 15px;
+        border: 1px solid #c9cacc;
+        border-radius: 3px;
+
+        &:focus {
+          outline: 1px solid $theme-green;
+        }
+      }
+
+      &:last-child button {
+        width: 120px;
+        padding: 12px 15px;
+        color: white;
+        background-color: $theme-green;
+        opacity: 0.9;
+        border: none;
+        border-radius: 3px;
+
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .accountPw {
+    margin-bottom: 35px;
+
+    input {
+      width: 380px;
+      margin-top: 10px;
+      padding: 12px 15px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+    }
+  }
+
+  .accountRePw {
+    margin-bottom: 50px;
+
+    input {
+      width: 380px;
+      margin-top: 10px;
+      padding: 12px 15px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+    }
+  }
+
+  .personalId {
+    margin-bottom: 35px;
+
+    input {
+      width: 380px;
+      margin-top: 10px;
+      padding: 12px 15px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+    }
+  }
+
+  .personalNickName {
+    margin-bottom: 35px;
+
+    input {
+      width: 380px;
+      margin-top: 10px;
+      padding: 12px 15px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+    }
+  }
+
+  .phone {
+    margin-bottom: 35px;
+
+    div {
+      &:last-child input {
+        width: 250px;
+        margin-top: 10px;
+        margin-right: 10px;
+        padding: 12px 15px;
+        border: 1px solid #c9cacc;
+        border-radius: 3px;
+
+        &:focus {
+          outline: 1px solid $theme-green;
+        }
+      }
+
+      &:last-child button {
+        width: 120px;
+        padding: 12px 15px;
+        color: white;
+        background-color: $theme-green;
+        opacity: 1;
+        border: none;
+        border-radius: 3px;
+
+        &:hover {
+          opacity: 0.9;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .signUpButton {
+    width: 380px;
+    padding: 15px;
+    margin-bottom: 50px;
+    color: white;
+    background-color: $theme-green;
+    border: none;
+    border-radius: 3px;
+    opacity: 0.9;
+
+    &:hover {
+      background-color: $theme-green;
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+
+  .failure {
+    width: 380px;
+    padding: 15px;
+    margin-bottom: 50px;
+    color: white;
+    background-color: $theme-green;
+    border: none;
+    border-radius: 3px;
+    opacity: 0.7;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .sex {
+    display: inline-block;
+    margin-bottom: 10px;
+  }
+
+  .sexCheck {
+    display: flex;
+    margin-bottom: 35px;
+    font-size: 20px;
+
+    .femaleCheck,
+    .maleCheck {
+      display: flex;
+      align-items: center;
+      color: $font-gray;
+      font-size: 16px;
+
+      input[type='radio'] {
+        width: 20px;
+        height: 20px;
+        margin: 5px 8px 5px 0;
+        border: 1.5px solid $border-gray;
+        border-radius: 50%;
+        transition: 0.2s all linear;
+        appearance: none;
+
+        &:checked {
+          border: 6px solid $theme-green;
+        }
+      }
+    }
+  }
+
+  span {
+    color: $font-gray;
+  }
+
+  .maleCheck {
+    margin: 0 15px;
+  }
+}
+
+.birthday {
+  margin-bottom: 35px;
+
+  .birthdayList {
+    margin-top: 10px;
+
+    select {
+      width: 120px;
+      height: 40px;
+      margin-right: 10px;
+      padding-left: 7px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+    }
+  }
+}
+
+.allergy {
+  width: 380px;
+  margin-bottom: 35px;
+
+  input[type='checkbox'] {
+    display: none;
+
+    + label {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 7px;
+      background-color: white;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    &:checked + label {
+      background: url(../../../public/images/checked.png) $theme-green no-repeat
+        center/20px 20px;
+    }
+  }
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color: $font-gray;
+  }
+
+  span {
+    display: inline-block;
+    margin-bottom: 13px;
+  }
+}

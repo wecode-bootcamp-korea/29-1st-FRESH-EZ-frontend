@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.subsList {
+  @include flex-center;
+  flex-direction: column;
+  margin-top: 148px;
+
+  .subsListHead {
+    @include flex-center;
+    flex-direction: column;
+    padding: 50px;
+
+    .title {
+      padding-bottom: 15px;
+      font-weight: bold;
+      font-size: 30px;
+    }
+    .subsSlogan {
+      font-size: $headline;
+  
+      :nth-child(2) {
+        color: $theme-green;
+      }
+    }
+  }
+}

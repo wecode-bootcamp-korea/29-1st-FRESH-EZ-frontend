@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "category": "전체",
+    "links": "/products"
+  },
+  {
+    "id": 2,
+    "category": "샐러드",
+    "links": "/products/salad"
+  },
+  {
+    "id": 3,
+    "category": "샌드위치 · 랩",
+    "links": "/products/sandwich"
+  },
+  {
+    "id": 4,
+    "category": "도시락 · 간편식",
+    "links": "/products/bento"
+  },
+  {
+    "id": 5,
+    "category": "죽 · 스프",
+    "links": "/products/soup"
+  },
+  {
+    "id": 6,
+    "category": "간식",
+    "links": "/products/snack"
+  },
+  {
+    "id": 7,
+    "category": "음료",
+    "links": "/products/drink"
+  }
+]
