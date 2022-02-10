@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+
+.main {
+  overflow: hidden;
+
+  .container {
+    display: flex;
+    position: relative;
+    // width: 400vw;
+    height: 450px;
+    margin-top: 143px;
+    transition: transform 0.5s;
+
+    img {
+      width: 100vw;
+      height: auto;
+    }
+  }
+
+  .btnContainer {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    width: 70vw;
+    top: 290px;
+    left: 15vw;
+
+    i {
+      position: sticky;
+      color: gray;
+      opacity: 0.3;
+      font-size: 50px;
+
+      &:hover {
+        opacity: 0.5;
+      }
+    }
+  }
+}
