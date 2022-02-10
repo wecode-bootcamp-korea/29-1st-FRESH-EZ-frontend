@@ -77,7 +77,7 @@ export default function ProductAll() {
   }, [location.search]);
 
   const [query, setQuery] = useState({
-    offset: '',
+    offset: `?categoryId=1&offset=0&limit=${LIMIT}`,
     category: '',
   });
 
@@ -85,14 +85,11 @@ export default function ProductAll() {
     const offset = buttonIndex * LIMIT;
     const queryString = `offset=${offset}&limit=${LIMIT}`;
     setQuery(prev => ({ ...prev, offset: queryString }));
-    //setQuery((query[1] = queryString));
   };
 
   const goToCategory = categoryIndex => {
     const queryString = `categoryId=${categoryIndex}&`;
     setQuery(prev => ({ ...prev, category: queryString }));
-    //prev => ({ ...prev, product: filtered.products_filtered })
-    // query
   };
 
   useEffect(() => {
