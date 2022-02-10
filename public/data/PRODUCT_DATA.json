@@ -1,0 +1,56 @@
+[
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "베리베리 스트로베리",
+    "price": "8,010",
+    "description": "Lorem Ipsum Dolor Emet",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  },
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "A",
+    "price": "B",
+    "description": "Lorem Ipsum",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  },
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "A",
+    "price": "B",
+    "description": "Lorem Ipsum",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  },
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "A",
+    "price": "B",
+    "description": "Lorem Ipsum",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  },
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "A",
+    "price": "B",
+    "description": "Lorem Ipsum",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  },
+  {
+    "image": "https://static1.squarespace.com/static/5edb32112cb3cc498e15a24d/t/5ee83edad6eb804bcbe8cbae/1627361783644/",
+    "name": "A",
+    "price": "B",
+    "description": "Lorem Ipsum",
+    "score": "4.8",
+    "review_count": "481",
+    "vegetarian": "락토베지터리안"
+  }
+]
