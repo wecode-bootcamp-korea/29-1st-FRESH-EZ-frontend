@@ -8,7 +8,6 @@ import SubsList from './pages/SubsList/SubsList';
 import SubsDetails from './pages/SubsDetail/SubsDetail';
 import SubsOpt from './pages/SubsOpt/SubsOpt';
 import Footer from './components/Footer/Footer';
-import Nav from './components/Nav/Nav';
 import SubsSelect from './pages/SubsSelect/SubsSelect';
 import Login from './pages/Login/Login';
 
