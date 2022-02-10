@@ -6,19 +6,19 @@ function Main() {
   const imageLists = [
     {
       id: 1,
-      img: 'https://images.unsplash.com/photo-1638913658642-8f22bae3335b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
+      img: 'images/Main/mainbanner1.png',
     },
     {
       id: 2,
-      img: 'https://images.unsplash.com/photo-1643747494952-6d70ab0cb511?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
+      img: 'images/Main/mainbanner2.png',
     },
     {
       id: 3,
-      img: 'https://images.unsplash.com/photo-1643755027544-eee0a8690ea7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+      img: 'images/Main/mainbanner3.png',
     },
     {
       id: 4,
-      img: 'https://images.unsplash.com/photo-1643754713080-cbfc5be44520?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
+      img: 'images/Main/mainbanner4.png',
     },
   ];
   const [xValue, setXValue] = useState(0);

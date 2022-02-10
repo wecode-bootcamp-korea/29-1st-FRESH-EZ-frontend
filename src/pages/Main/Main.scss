@@ -6,12 +6,13 @@
   .container {
     display: flex;
     position: relative;
+    width: 400vw;
     height: 450px;
     padding-top: 143px;
     transition: transform 0.5s;
 
     img {
-      width: 100vw;
+      width: 100%;
       height: auto;
     }
   }
