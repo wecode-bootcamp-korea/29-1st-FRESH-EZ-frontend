@@ -88,7 +88,7 @@
       }
 
       .allOfMenu {
-        @include flex-center;
+        display: flex;
         font-size: 16px;
 
         &:hover {
@@ -101,6 +101,34 @@
 
         li {
           margin-left: 8px;
+        }
+        .twoMenu {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 152px;
+          width: 160px;
+          height: 330px;
+          background-color: white;
+          color: $font-gray;
+
+          li {
+            padding: 20px 15px 15px 15px;
+          }
+
+          .menuBox {
+            position: absolute;
+            width: 160px;
+            left: 160px;
+            height: 330px;
+            background-color: #dff9ec;
+
+            li {
+              &:nth-child(-n + 6) {
+                padding: 22px 15px 15px 15px;
+              }
+            }
+          }
         }
       }
     }
@@ -166,86 +194,4 @@
     color: $font-gray;
     text-decoration: none;
   }
-}
-
-.menuContainer {
-  display: flex;
-  margin-left: 150px;
-
-  .menuFirstList {
-    width: 160px;
-    height: 330px;
-    background-color: white;
-
-    .color {
-      background-color: #dff9ec;
-      color: black;
-      &:hover {
-        background-color: #dff9ec;
-      }
-      &:nth-child(-n + 2) {
-        padding: 22px 15px 15px 15px;
-      }
-    }
-    .uncolor {
-      background-color: white;
-      color: black;
-      &:hover {
-        background-color: #dff9ec;
-      }
-      &:nth-child(-n + 2) {
-        padding: 22px 15px 15px 15px;
-      }
-    }
-  }
-
-  .menuFirstOfFirst {
-    width: 160px;
-    height: 330px;
-    background-color: #dff9ec;
-
-    a {
-      color: black;
-      text-decoration: none;
-      &:hover {
-        color: #27b06e;
-        text-decoration: underline;
-      }
-    }
-  }
-  .hideMenuFirstOfFirst {
-    display: none;
-  }
-
-  li {
-    &:nth-child(-n + 3) {
-      padding: 22px 15px 15px 15px;
-    }
-  }
-}
-
-.menuFirstOfSecond {
-  width: 160px;
-  height: 330px;
-  background-color: #dff9ec;
-
-  a {
-    color: black;
-    text-decoration: none;
-    &:hover {
-      color: #27b06e;
-      text-decoration: underline;
-    }
-  }
-  li {
-    &:nth-child(-n + 6) {
-      padding: 22px 15px 15px 15px;
-    }
-  }
-}
-.color {
-  background-color: #dff9ec;
-}
-.uncolor {
-  background-color: white;
 }

@@ -3,25 +3,21 @@ import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
-  const [allCateMode, setAllCateMode] = useState(false);
-  const [firstCateMode, setfirstCateMode] = useState(false);
-  const [secondCateMode, setSecondCateMode] = useState(false);
-  const [thirdCateMode, setThirdCateMode] = useState(false);
-  const [liColorChange, setLiColorChange] = useState(false);
-  const [liColorChange2, setLiColorChange2] = useState(false);
-  const subScriptMenu = [
-    { name: '샐러드' },
-    { name: '샌드위치' },
-    { name: '도시락' },
-  ];
-  const subSingleMenu = [
-    { name: '샐러드' },
-    { name: '샌드위치 · 랩' },
-    { name: '도시락 · 간편식' },
-    { name: '죽 · 스프' },
-    { name: '간식' },
-    { name: '음료' },
-  ];
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState('');
+
+  const subMenu = {
+    subScript: ['샐러드', '샌드위치', '도시락'],
+    single: [
+      '샐러드',
+      '샌드위치 · 랩',
+      '도시락 · 간편식',
+      '죽 · 스프',
+      '간식',
+      '음료',
+    ],
+  };
+
   return (
     <div className="nav">
       <div className="navFirstLine">
@@ -49,25 +45,49 @@ const Nav = () => {
         </ul>
       </div>
       <div>
-        <div
-          className="navSecondLine"
-
-          // onMouseLeave={() => setfirstCateMode(false)}
-        >
+        <div className="navSecondLine">
           <ul className="navSecondLineLeft">
             <ul
               className="allOfMenu"
-              onMouseOver={() => setfirstCateMode(true)}
+              onMouseLeave={() => {
+                setShowMenu(false);
+                setShowSubMenu('');
+              }}
             >
               <i className="fas fa-bars" />
               <li
                 onMouseOver={() => {
-                  setfirstCateMode(true);
-                  setAllCateMode(true);
+                  setShowMenu(true);
                 }}
               >
                 전체 카테고리
               </li>
+              {showMenu && (
+                <ul className="twoMenu">
+                  <li onMouseOver={() => setShowSubMenu('subScript')}>
+                    정기구독
+                  </li>
+
+                  <li
+                    className="align"
+                    onMouseOver={() => setShowSubMenu('single')}
+                  >
+                    단품구매
+                  </li>
+
+                  {showSubMenu && (
+                    <div className="menuBox">
+                      <ul>
+                        {subMenu[showSubMenu].map(menu => (
+                          <li key={menu + 1} className="singleMenu">
+                            <Link to="">{menu}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </ul>
+              )}
             </ul>
 
             <li className="subScriptionMenu">
@@ -94,74 +114,6 @@ const Nav = () => {
           </ul>
         </div>
       </div>
-      {allCateMode && (
-        <div
-          className="menuContainer"
-          onMouseLeave={() => setfirstCateMode(false)}
-        >
-          {firstCateMode && (
-            <ul className="menuFirstList">
-              <li
-                onMouseOver={() => {
-                  setSecondCateMode(true);
-                }}
-                className={liColorChange ? 'color' : 'uncolor'}
-              >
-                정기구독
-              </li>
-              <li
-                className={liColorChange2 ? 'color' : 'uncolor'}
-                onMouseOver={() => setThirdCateMode(true)}
-              >
-                단품구매
-              </li>
-            </ul>
-          )}
-          {secondCateMode && (
-            <ul
-              className={
-                thirdCateMode ? 'hideMenuFirstOfFirst' : 'menuFirstOfFirst'
-              }
-              onMouseLeave={() => {
-                setSecondCateMode(false);
-                setLiColorChange(false);
-                // setAllCateMode(false);
-              }}
-              onMouseOver={() => {
-                setLiColorChange(true);
-              }}
-            >
-              {subScriptMenu.map((menu, idx) => {
-                return (
-                  <li key={idx}>
-                    <Link to="/">{menu.name}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-          {thirdCateMode && (
-            <ul
-              className="menuFirstOfSecond"
-              onMouseLeave={() => {
-                setLiColorChange(true);
-                // setAllCateMode(false);
-              }}
-              onMouseOver={() => {
-                setLiColorChange2(true);
-              }}
-            >
-              {subSingleMenu.map((single, idx) => {
-                return (
-                  <li key={idx}>
-                    <Link to="/">{single.name}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          )}
-        </div>
-      )}
     </div>
   );
 };
