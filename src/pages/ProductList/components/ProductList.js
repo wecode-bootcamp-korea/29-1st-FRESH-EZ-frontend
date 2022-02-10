@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './ProductList.scss';
 import ProductCard from './ProductCard';
+import CategoryButton from './CategoryButton';
 
-function ProductList({ title, subnav, productData, children }) {
+function ProductList({ title, subnav, productData, children, goToCategory }) {
   return (
     <div className="ProductList">
       <div className="navWrapper">FRESH-EZ</div>
@@ -16,17 +16,12 @@ function ProductList({ title, subnav, productData, children }) {
             <section>
               <nav className="singleNav">
                 {subnav.map(info => (
-                  <Link className="text-link" to={info.links} key={info.id}>
-                    <button
-                      className={
-                        title === info.category
-                          ? 'navElementSelected'
-                          : 'navElement'
-                      }
-                    >
-                      {info.category}
-                    </button>
-                  </Link>
+                  <CategoryButton
+                    key={info.id}
+                    info={info}
+                    title={title}
+                    goToCategory={goToCategory}
+                  />
                 ))}
               </nav>
               <div className="allergiesFilterWrap">

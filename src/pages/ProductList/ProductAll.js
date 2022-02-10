@@ -11,13 +11,9 @@ export default function ProductAll() {
     allergiesFilterValue: '나에게 안전한 메뉴 보기',
   });
 
-  const [query, setQuery] = useState({
-    category: '',
-    offset: '',
-  });
-
   const navigate = useNavigate();
   const location = useLocation();
+
   const LIMIT = 16;
   //const testJWT = window.sessionStorage.getItem('JWT');
   const testJWT =
@@ -27,8 +23,8 @@ export default function ProductAll() {
   const allergiesFilterToggle = () => {
     if (data.allergiesFilterValue === '모든 메뉴 보기') {
       fetch(
-        `http://208.82.62.99:8000/product/menu${
-          location.search || `?offset=0&limit=${LIMIT}`
+        `http://54.165.180.52:8000/product/menu${
+          location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
         }`
       )
         .then(res => res.json())
@@ -41,8 +37,8 @@ export default function ProductAll() {
       }));
     } else {
       fetch(
-        `http://208.82.62.99:8000/product/menu/filter${
-          location.search || `?offset=0&limit=${LIMIT}`
+        `http://54.165.180.52:8000/product/menu/filter${
+          location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
         }`,
         {
           method: 'POST',
@@ -64,8 +60,8 @@ export default function ProductAll() {
   //initiall Data Fetch
   useEffect(() => {
     fetch(
-      `http://208.82.62.99:8000/product/menu${
-        location.search || `?offset=0&limit=${LIMIT}`
+      `http://54.165.180.52:8000/product/menu${
+        location.search || `?categoryId=0&offset=0&limit=${LIMIT}`
       }`
     )
       .then(res => res.json())
@@ -73,7 +69,7 @@ export default function ProductAll() {
         setData(prev => ({ ...prev, product: products.products_list }));
       });
 
-    fetch('http://localhost:3000/data/SUB_CATEGORY.json')
+    fetch('/data/SUB_CATEGORY.json')
       .then(res => res.json())
       .then(categories => {
         setData(prev => ({ ...prev, category: categories }));
@@ -82,14 +78,17 @@ export default function ProductAll() {
 
   const updateOffset = buttonIndex => {
     const offset = buttonIndex * LIMIT;
-    const queryString = `offset=${offset}&limit=${LIMIT}`;
-    setQuery(prev => (prev.offset = queryString));
-    console.log(query.offset);
+    const queryString = `&offset=${offset}&limit=${LIMIT}`;
+    navigate(prev => prev + queryString);
   };
 
-  useEffect(() => {
-    navigate(`&${query.category}&${query.offset}`);
-  }, [query]);
+  const goToCategory = categoryIndex => {
+    const queryString = `?categoryId=${categoryIndex}`;
+    navigate(`${queryString}`);
+  };
+  //useEffect(() => {
+  //navigate(`products?${goToCategory}${updateOffset}`);
+  // }, [updateOffset, goToCategory]);
 
   return (
     <div className="productAll">
@@ -97,6 +96,7 @@ export default function ProductAll() {
         title="전체"
         subnav={data.category}
         productData={data.product}
+        goToCategory={goToCategory}
       >
         <button className="allergiesFilter" onClick={allergiesFilterToggle}>
           {data.allergiesFilterValue}
