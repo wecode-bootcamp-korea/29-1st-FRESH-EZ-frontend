@@ -1,16 +1,16 @@
 @import '../../styles/variables.scss';
 
 .nav {
-  color: $font-gray;
-  font-size: 16px;
-  width: 100%;
   position: fixed;
+  width: 100vw;
+  min-width: 1200px;
+  color: $font-gray;
   background-color: white;
+  font-size: 16px;
 
   .navFirstLine {
-    display: flex;
+    @include flex-center;
     justify-content: space-between;
-    align-items: center;
     padding: 40px 150px 0px 150px;
 
     .navFirstLeft {
@@ -21,16 +21,43 @@
       display: flex;
       font-size: 15px;
 
+      .signUpBtn {
+        a {
+          color: $theme-green;
+          text-decoration: none;
+        }
+      }
+
       .loginBtn {
-        border-left: 1px solid #c9cacc;
-        border-right: 1px solid #c9cacc;
         padding: 0 10px;
         margin: 0 10px;
-      }
-      .as {
+        border-left: 1px solid #c9cacc;
         border-right: 1px solid #c9cacc;
+
+        a {
+          color: $font-gray;
+          text-decoration: none;
+        }
+      }
+
+      .as {
         padding-right: 10px;
         margin-right: 10px;
+        border-right: 1px solid #c9cacc;
+
+        a {
+          color: $font-gray;
+          text-decoration: none;
+        }
+      }
+
+      li {
+        &:last-child {
+          a {
+            color: $font-gray;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
@@ -45,26 +72,63 @@
     .navSecondLineLeft {
       @include flex-center;
 
+      a {
+        color: $font-gray;
+        text-decoration: none;
+      }
+
       .subScriptionMenu,
       .oneMenuPurchase {
-        border-left: 1px solid #c9cacc;
         margin-left: 10px;
         padding-left: 10px;
+        border-left: 1px solid #c9cacc;
+        a:hover {
+          color: $theme-green;
+        }
       }
 
       .allOfMenu {
-        @include flex-center;
+        display: flex;
         font-size: 16px;
 
         &:hover {
           color: $theme-green;
         }
+
         .fa-bars {
           @include flex-center;
         }
+
         li {
           margin-left: 8px;
-          // line-height: 20px;
+        }
+        .twoMenu {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 152px;
+          width: 160px;
+          height: 330px;
+          background-color: white;
+          color: $font-gray;
+
+          li {
+            padding: 20px 15px 15px 15px;
+          }
+
+          .menuBox {
+            position: absolute;
+            width: 160px;
+            left: 160px;
+            height: 330px;
+            background-color: #dff9ec;
+
+            li {
+              &:nth-child(-n + 6) {
+                padding: 22px 15px 15px 15px;
+              }
+            }
+          }
         }
       }
     }
@@ -72,34 +136,37 @@
     .navSecondLineRight {
       @include flex-center;
       font-size: 15px;
+
       .cart {
-        border-right: 1px solid #c9cacc;
         padding-right: 10px;
+        border-right: 1px solid #c9cacc;
       }
 
       i {
         margin-left: 10px;
         margin-right: 12px;
       }
+      a {
+        color: $font-gray;
+        text-decoration: none;
+      }
 
       .searchWrap {
+        margin-right: 3px;
         border: 1px solid $border-gray;
         border-radius: 5px;
-        margin-right: 3px;
 
         input {
-          border: none;
-          outline: none;
           width: 170px;
           padding: 3px 0;
+          border: none;
+          outline: none;
 
           &:focus::-webkit-input-placeholder {
             color: transparent;
-            // 이거 새로 배움
           }
 
           &::placeholder {
-            // 이거 :랑 ::차이 다시 공부하기
             color: rgb(182, 182, 182);
             font-size: 16px;
           }
@@ -113,15 +180,16 @@
   }
 
   p {
-    font-size: 18px;
-    color: $border-gray;
     margin: 0 3px;
+    color: $border-gray;
+    font-size: 18px;
   }
 
   .themeColor {
     color: $theme-green;
     text-decoration: none;
   }
+
   .fontGray {
     color: $font-gray;
     text-decoration: none;

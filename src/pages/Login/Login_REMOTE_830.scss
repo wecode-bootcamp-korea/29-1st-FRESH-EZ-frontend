@@ -1,0 +1,202 @@
+@import '../../styles/variables.scss';
+
+.login {
+  @include flex-center;
+  justify-content: center;
+  height: 100vh;
+
+  .loginBox {
+    @include flex-center;
+    flex-direction: column;
+    margin-top: 400px;
+    padding-bottom: 80px;
+
+    .loginHeader {
+      margin: 50px 110px 30px 110px;
+      padding: 40px;
+      text-align: center;
+
+      img {
+        width: 150px;
+        height: auto;
+        margin-bottom: 5px;
+      }
+
+      p {
+        color: $font-gray;
+        font-size: $body;
+      }
+
+      .logo {
+        color: #3d3d3d;
+        font-size: 30px;
+        font-weight: 900;
+      }
+    }
+  }
+
+  .kakaoConnect {
+    @include flex-center;
+    justify-content: center;
+    padding: 15px 110px;
+    margin-bottom: 10px;
+    background-color: #f9df33;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #ebd233;
+    }
+
+    i {
+      margin-right: 7px;
+    }
+
+    span {
+      margin-top: 3px;
+      font-size: 17px;
+      font-weight: 500;
+    }
+  }
+
+  .advertiseBanner {
+    a {
+      color: $font-gray;
+      text-decoration: none;
+    }
+    img {
+      width: 420px;
+      height: 135px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+  }
+
+  .orLine {
+    padding: 0 207px;
+    margin-top: 15px;
+    border-top: 1px solid #c9cacc;
+  }
+
+  .or {
+    position: relative;
+    padding: 10px;
+    top: -17px;
+    color: #c9cacc;
+    background-color: white;
+    font-size: $body;
+  }
+
+  .inputInfo {
+    @include flex-center;
+    flex-direction: column;
+
+    input {
+      width: 245%;
+      padding: 13px 10px;
+      border: 1px solid #c9cacc;
+      border-radius: 3px;
+
+      &:focus {
+        outline: 1px solid $theme-green;
+      }
+      &:first-child {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .autoLogin {
+    @include flex-center;
+    width: 420px;
+    margin: 10px;
+    padding: 10px 0;
+    color: #c9cacc;
+
+    input[type='checkbox'] {
+      display: none;
+
+      + label {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 7px;
+        background-color: white;
+        border: 1px solid $border-gray;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      &:checked + label {
+        background: url(../../../public/images/checked.png) $theme-green
+          no-repeat center/20px 20px;
+      }
+    }
+    span {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  .active {
+    padding: 15px 190px;
+    background-color: $theme-green;
+    color: white;
+    font-size: 15px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .unActive {
+    padding: 15px 190px;
+    background-color: #c9cacc;
+    color: white;
+    border: none;
+    font-size: 15px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  .appleConnect {
+    @include flex-center;
+    justify-content: center;
+    padding: 15px 142px;
+    margin-top: 10px;
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    border-radius: 3px;
+    font-size: 15px;
+    cursor: pointer;
+
+    i {
+      margin-right: 10px;
+    }
+  }
+  .findAndSignUp {
+    @include flex-center;
+    justify-content: space-between;
+    width: 420px;
+    margin-top: 15px;
+    padding-bottom: 10px;
+    margin-bottom: 100px;
+    color: $font-gray;
+    font-size: $body;
+    cursor: pointer;
+    a {
+      color: $font-gray;
+      text-decoration: none;
+    }
+
+    .find {
+      display: flex;
+
+      li {
+        &:first-child {
+          border-right: 1px solid $font-gray;
+          padding-right: 7px;
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}

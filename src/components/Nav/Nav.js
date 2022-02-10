@@ -1,58 +1,100 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Nav.scss';
 
 const Nav = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const [showSubMenu, setShowSubMenu] = useState('');
+
+  const subMenu = {
+    subScript: ['샐러드', '샌드위치', '도시락'],
+    single: [
+      '샐러드',
+      '샌드위치 · 랩',
+      '도시락 · 간편식',
+      '죽 · 스프',
+      '간식',
+      '음료',
+    ],
+  };
+
   return (
     <div className="nav">
       <div className="navFirstLine">
-        <img
-          className="navFirstLeft"
-          src="/images/Logo.png"
-          alt="잠시만 기다려주세요"
-        />
-        {/* 이게 누르면 메인페이지 가게끔 링크 걸기 */}
+        <Link to="/main">
+          <img
+            className="navFirstLeft"
+            src="/images/Logo.png"
+            alt="잠시만 기다려주세요"
+          />
+        </Link>
+
         <ul className="navFirstLineRight">
           <li className="signUpBtn">
-            <NavLink className="themeColor" to="/">
-              회원가입
-            </NavLink>
+            <Link to="/">회원가입</Link>
           </li>
           <li className="loginBtn">
-            <NavLink className="fontGray" to="/">
-              로그인
-            </NavLink>
+            <Link to="/">로그인</Link>
           </li>
           <li className="as">
-            <NavLink className="fontGray" to="/">
-              1:1 문의
-            </NavLink>
+            <Link to="/">1:1 문의</Link>
           </li>
           <li>
-            <NavLink className="fontGray" to="/">
-              B2B 신청
-            </NavLink>
+            <Link to="/">B2B 신청</Link>
           </li>
         </ul>
       </div>
       <div>
         <div className="navSecondLine">
           <ul className="navSecondLineLeft">
-            <ul className="allOfMenu">
+            <ul
+              className="allOfMenu"
+              onMouseLeave={() => {
+                setShowMenu(false);
+                setShowSubMenu('');
+              }}
+            >
               <i className="fas fa-bars" />
-              <li>전체 카테고리</li>
-              {/* 이거 누르면 상품목록(카테고리) 떠야함 */}
+              <li
+                onMouseOver={() => {
+                  setShowMenu(true);
+                }}
+              >
+                전체 카테고리
+              </li>
+              {showMenu && (
+                <ul className="twoMenu">
+                  <li onMouseOver={() => setShowSubMenu('subScript')}>
+                    정기구독
+                  </li>
+
+                  <li
+                    className="align"
+                    onMouseOver={() => setShowSubMenu('single')}
+                  >
+                    단품구매
+                  </li>
+
+                  {showSubMenu && (
+                    <div className="menuBox">
+                      <ul>
+                        {subMenu[showSubMenu].map(menu => (
+                          <li key={menu + 1} className="singleMenu">
+                            <Link to="">{menu}</Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </ul>
+              )}
             </ul>
 
             <li className="subScriptionMenu">
-              <NavLink className="fontGray" to="/">
-                정기구독
-              </NavLink>
+              <Link to="/">정기구독</Link>
             </li>
             <li className="oneMenuPurchase">
-              <NavLink className="fontGray" to="/">
-                단품구매
-              </NavLink>
+              <Link to="/">단품구매</Link>
             </li>
           </ul>
 
@@ -63,15 +105,11 @@ const Nav = () => {
             </ul>
             <i className="fas fa-shopping-cart" />
             <li className="cart">
-              <NavLink className="fontGray" to="/" activeClassName="active">
-                장바구니
-              </NavLink>
+              <Link to="/">장바구니</Link>
             </li>
             <i className="fas fa-file-alt" />
             <li>
-              <NavLink className="fontGray" to="/">
-                바로주문
-              </NavLink>
+              <Link to="/">바로주문</Link>
             </li>
           </ul>
         </div>
@@ -80,31 +118,4 @@ const Nav = () => {
   );
 };
 
-/* {<ul className="menuFirstList">
-              <li>정기구독</li>
-              <li>단품구매</li>
-            </ul>
-            <ul className="menuSecondList">
-              <li>
-                <Link to="/" activeClassName="active">
-                  샐러드
-                </Li>
-              </li>
-              <li>
-                <NavLink to="/">샌드위치 · 랩</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">도시락 · 간편식</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">죽 · 스프</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">간식</NavLink>
-              </li>
-              <li>
-                <NavLink to="/">음료</NavLink>
-              </li>
-            </ul> */
-// }
 export default Nav;
