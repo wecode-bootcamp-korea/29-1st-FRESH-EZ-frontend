@@ -26,12 +26,12 @@
   },
   {
     "id": 6,
-    "category": "간식",
-    "links": "/products/snack"
+    "category": "음료",
+    "links": "/products/drink"
   },
   {
     "id": 7,
-    "category": "음료",
-    "links": "/products/drink"
+    "category": "간식",
+    "links": "/products/snack"
   }
 ]
